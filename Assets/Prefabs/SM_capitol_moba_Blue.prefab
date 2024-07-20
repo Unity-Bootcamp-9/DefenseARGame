@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7693576403120391827}
   m_Layer: 7
-  m_Name: DetectTr
+  m_Name: DetectRangePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5410497451906596907}
   m_Layer: 7
-  m_Name: AttackTr
+  m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
