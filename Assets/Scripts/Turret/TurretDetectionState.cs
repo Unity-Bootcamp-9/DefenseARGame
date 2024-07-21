@@ -1,23 +1,25 @@
-﻿public class TurretDetectionState : TurretState
+﻿using Unity.VisualScripting;
+using UnityEngine;
+
+public class TurretDetectionState : TurretStateMachine
 {
-    private TurretState turretController;
+    public Animator _animator;
+    public Turret _turret;
 
-    public TurretDetectionState(TurretStateMachine turretStateMachine, Turret turret, string animBoolName) : base(turretStateMachine, turret, animBoolName)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _animator = animator.GetComponent<Animator>();
+        _turret = animator.GetComponent<Turret>();
     }
 
-    public void Enter()
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // 상태에 처음 진입할 때 실행되는 코드
+        _turret.DetectMinion();
     }
-    public void Update()
+
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // 조건이 다른 상태로 전환하기 위해
-        // 존재하는지 여부를 감지하기 위한 로직 추가
-        // …
-    }
-    public void Exit()
-    {
-        // 상태에서 벗어날 때 실행되는 코드
+        _animator.SetBool("attackStart", true);
+
     }
 }
