@@ -9,12 +9,12 @@ public class Minion : MonoBehaviour
 
     public IObjectPool<Minion> ObjectPool { set => objectPool = value; }
 
-
-    [SerializeField] private float timeoutDelay = 3f;
-
     public void Deactivate()
     {
         objectPool.Release(this);
     }
+
+
+
 
 }

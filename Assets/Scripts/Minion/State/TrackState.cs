@@ -5,19 +5,19 @@ using UnityEngine.Animations;
 
 public class TrackState : StateMachineBehaviour
 {
-    private Animator _animator;
+    private MinionBehaviour minionBehaviour;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-    }
-
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
+        minionBehaviour = animator.GetComponent<MinionBehaviour>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        minionBehaviour.TargetDetection();
+    }
+    
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
     }
