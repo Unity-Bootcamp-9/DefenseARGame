@@ -4,11 +4,11 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - objectSpawner: {instanceID: 0}
-  - mapPreview: {fileID: 9198094375386484380, guid: 5abf11342ab90d9458e100438fe71548,
+  - mapPreviewPrefab: {fileID: 9198094375386484380, guid: 5abf11342ab90d9458e100438fe71548,
       type: 3}
   - mapPrefab: {fileID: 4185693927079458726, guid: 1d8fc38fb5ef13b4fb0fa8b2848afeb6,
       type: 3}
+  - objectSpawner: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

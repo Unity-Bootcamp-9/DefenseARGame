@@ -317,10 +317,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88e78c5e93667f4a9014586938101fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapPreview: {fileID: 9198094375386484380, guid: 5abf11342ab90d9458e100438fe71548,
+  mapPreviewPrefab: {fileID: 9198094375386484380, guid: 5abf11342ab90d9458e100438fe71548,
     type: 3}
   mapPrefab: {fileID: 4185693927079458726, guid: 1d8fc38fb5ef13b4fb0fa8b2848afeb6,
     type: 3}
+  objectSpawner: {fileID: 974183293}
 --- !u!1 &702413256
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,15 +462,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CameraToFace: {fileID: 0}
-  m_ObjectPrefabs:
-  - {fileID: 9198094375386484380, guid: 5abf11342ab90d9458e100438fe71548, type: 3}
+  m_ObjectPrefabs: []
   m_SpawnVisualizationPrefab: {fileID: 0}
   m_SpawnOptionIndex: 0
   m_OnlySpawnInView: 1
   m_ViewportPeriphery: 0
   m_ApplyRandomAngleAtSpawn: 0
   m_SpawnAngleRange: 45
-  m_SpawnAsChildren: 0
+  m_SpawnAsChildren: 1
 --- !u!4 &974183294
 Transform:
   m_ObjectHideFlags: 0
