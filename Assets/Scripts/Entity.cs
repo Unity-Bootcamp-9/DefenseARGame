@@ -8,13 +8,24 @@ public class Entity : MonoBehaviour
     protected int damage;
     protected Entity target;
 
-    protected virtual void GetHit(int _damage)
+    private Transform targetTransform;
+
+    private void Awake()
     {
-        hp -= _damage;
+        targetTransform = GetComponent<MinionBehaviour>().target;
+        target = targetTransform.GetComponent<Minion>();
     }
 
-    protected virtual void Attack()
+
+    public virtual void GetHit(int _damage)
+    {
+        hp -= _damage;
+        Debug.Log($"hp : {hp}");
+    }
+
+    public virtual void Attack()
     {
         target.GetHit(damage);
     }
+
 }

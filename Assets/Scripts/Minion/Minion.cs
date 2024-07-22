@@ -14,7 +14,4 @@ public class Minion : Entity
         objectPool.Release(this);
     }
 
-
-
-
 }
