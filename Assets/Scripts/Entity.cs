@@ -8,12 +8,12 @@ public class Entity : MonoBehaviour
     protected int damage;
     protected Entity target;
 
-    protected void GetHit(int _damage)
+    protected virtual void GetHit(int _damage)
     {
         hp -= _damage;
     }
 
-    protected void Attack()
+    protected virtual void Attack()
     {
         target.GetHit(damage);
     }
