@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 129107040}
   - component: {fileID: 129107039}
   - component: {fileID: 129107038}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1355,11 +1355,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a7c051b9230e54aa762bfc85d447d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   isAttack: 0
   enemyLayerName: Red
   AttackTr: {fileID: 1728357951}
   projectile: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
     type: 3}
+  projectiles: []
 --- !u!1 &702413256
 GameObject:
   m_ObjectHideFlags: 0
