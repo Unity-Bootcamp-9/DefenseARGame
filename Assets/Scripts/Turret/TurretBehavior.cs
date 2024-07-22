@@ -77,23 +77,30 @@ public class TurretBehavior : MonoBehaviour
 
     IEnumerator AttackCo()
     {
-        while (AttackCondition())
+        int i = 0;
+        while(true)
         {
-            for (int i = 0; i < 5; ++i)
+            if (projectiles[i].active == true)
             {
-                if (projectiles[i].active == true) continue;
-                else
-                {
-                    projectiles[i].SetActive(true);
-                }
-                yield return new WaitForSeconds(2f);
+                i++;
+                if (i > 4) i = 0;
             }
+            else
+            {
+                projectiles[i].SetActive(true);
+            }
+            yield return new WaitForSeconds(2f);
         }
     }
 
     public void Attacking()
     {
         StartCoroutine(AttackCo());
+    }
+
+    public void StopAttacking()
+    {
+        StopCoroutine(AttackCo());
     }
 
     public bool AttackCondition()

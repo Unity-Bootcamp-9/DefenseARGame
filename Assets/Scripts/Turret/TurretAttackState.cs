@@ -19,5 +19,6 @@ public class TurretAttackState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        turretBehavior.StopAttacking();
     }
 }

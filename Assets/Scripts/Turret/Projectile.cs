@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public Rigidbody projectileRigid;
     public float turn;
     public float velocity;
+    public int damage;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
         projectileRigid = GetComponent<Rigidbody>();
         turn = 20.0f;
         velocity = 7.0f;
+        damage = 5;
 
         gameObject.SetActive(false);
     }
@@ -37,6 +39,7 @@ public class Projectile : MonoBehaviour
         {
             // 공격
             Debug.Log("Attack!!!!");
+            target.gameObject.GetComponent<Entity>().GetHit(damage);
             gameObject.SetActive(false);
         }
     }

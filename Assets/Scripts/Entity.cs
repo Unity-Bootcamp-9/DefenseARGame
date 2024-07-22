@@ -8,9 +8,10 @@ public class Entity : MonoBehaviour
     protected int damage;
     protected Entity target;
 
-    protected virtual void GetHit(int _damage)
+    public virtual void GetHit(int _damage)
     {
         hp -= _damage;
+        Debug.Log($"hp : {hp}");
     }
 
     protected virtual void Attack()
