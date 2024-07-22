@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Entity
 {
     [SerializeField] public float turretHP;
     public Transform? targetTr;

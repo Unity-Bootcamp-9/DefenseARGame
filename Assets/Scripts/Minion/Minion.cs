@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Minion : MonoBehaviour
+public class Minion : Entity
 {
     private IObjectPool<Minion> objectPool;
 
