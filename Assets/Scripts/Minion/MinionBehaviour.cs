@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : MonoBehaviour
@@ -13,20 +15,19 @@ public class MinionBehaviour : MonoBehaviour
     public static readonly int hashDie = Animator.StringToHash("Die");
 
     private float detectionRange = 4f;
-    private float attackRange = 1f;
+    private float attackRange = 2f;
     private Animator animator;
     private int enemyLayer;
     [SerializeField]
     private Transform defaultTarger;
     private List<Transform> enemyMinions = new List<Transform>();
     public Transform target { get; private set; }
-    private Entity entity;
+    private NavMeshAgent agent;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        entity = GetComponent<Entity>();
-
+        agent = GetComponent<NavMeshAgent>(); 
         target = defaultTarger;
         if (gameObject.layer == 6)
         {
@@ -44,6 +45,9 @@ public class MinionBehaviour : MonoBehaviour
         {
             Debug.Log($"target : {target.gameObject.name}");
         }
+        agent.SetDestination(target.position);
+
+
     }
 
     public void TargetDetection()
