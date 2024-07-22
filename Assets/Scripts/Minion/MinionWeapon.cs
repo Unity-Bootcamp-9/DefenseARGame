@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MinionWeapon : MonoBehaviour
 {
-    [SerializeField]
-    private Transform minionPrefab;
-    private Minion minion;
     private int enemyLayer;
+    private int damage;
+
 
     private void Start()
     {
-        minion = minionPrefab.GetComponent<Minion>();
         if (gameObject.layer == 6)
         {
             enemyLayer = 7;
@@ -20,15 +18,16 @@ public class MinionWeapon : MonoBehaviour
         {
             enemyLayer = 6;
         }
+        damage = 10;
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        other.gameObject.GetComponent<Entity>();
         Debug.Log("충돌함");
         if (other.gameObject.layer == enemyLayer)
         {
-            minion.Attack();
-            Debug.Log("공격함");
+            other.gameObject.GetComponent<Entity>().GetHit(damage);
         }
     }
 

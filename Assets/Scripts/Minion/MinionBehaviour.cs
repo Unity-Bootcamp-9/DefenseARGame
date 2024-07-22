@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : MonoBehaviour
 {
@@ -19,10 +20,13 @@ public class MinionBehaviour : MonoBehaviour
     private Transform defaultTarger;
     private List<Transform> enemyMinions = new List<Transform>();
     public Transform target { get; private set; }
+    private Entity entity;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        entity = GetComponent<Entity>();
+
         target = defaultTarger;
         if (gameObject.layer == 6)
         {
@@ -33,7 +37,7 @@ public class MinionBehaviour : MonoBehaviour
             enemyLayer = 6;
         }
     }
-
+        
     private void Update()
     {
         if (target.gameObject.name != null)
@@ -100,7 +104,6 @@ public class MinionBehaviour : MonoBehaviour
         }
 
     }
-
 
 
     private void OnDrawGizmos()
