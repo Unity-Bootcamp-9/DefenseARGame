@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -41,18 +42,24 @@ public class Turret : MonoBehaviour
         }
         else
         {
+            colls = SortCollidersByDistance(colls, gameObject.transform);
+
             foreach (Collider coll in colls)
             {
-                if(coll.name == "mixamorig:Hips")
+                if(coll.gameObject.CompareTag("Minion"))
                 {
                     anim.SetBool("attackStart", true);
 
                     isAttack = true;
-                    Debug.Log("mixamorig:Hips");
+                    Debug.Log("Targetting Minion");
                     targetTr = coll.gameObject.transform;
                 }
             }
         }
+    }
+    Collider[] SortCollidersByDistance(Collider[] colliders, Transform reference)
+    {
+        return colliders.OrderBy(col => Vector3.Distance(reference.position, col.transform.position)).ToArray();
     }
 
     private void OnTriggerEnter(Collider other)
