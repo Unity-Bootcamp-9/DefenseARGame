@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5702736807362747074, guid: 0c2e06d6ad7b30340925a4543909c618,
         type: 3}
       insertIndex: 2
+      addedObject: {fileID: 682708378}
+    - targetCorrespondingSourceObject: {fileID: 5702736807362747074, guid: 0c2e06d6ad7b30340925a4543909c618,
+        type: 3}
+      insertIndex: 3
       addedObject: {fileID: 682708372}
     - targetCorrespondingSourceObject: {fileID: 5702736807362747074, guid: 0c2e06d6ad7b30340925a4543909c618,
         type: 3}
@@ -1162,9 +1166,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.44
-  m_Height: 17.88
+  m_Height: 16
   m_Direction: 1
-  m_Center: {x: 0, y: 5.86, z: 0}
+  m_Center: {x: 0, y: 5, z: 0}
 --- !u!1 &436358032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,12 +1316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d22990f7838be4095eaba0e4243280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretHP: 0
-  targetTr: {fileID: 0}
-  isAttack: 1
-  enemyMinion: 0
-  enemyLayerName: Red
-  layerMask: 0
 --- !u!54 &682708377
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1345,6 +1343,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &682708378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682708366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a7c051b9230e54aa762bfc85d447d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttack: 0
+  enemyLayerName: Red
+  AttackTr: {fileID: 1728357951}
+  projectile: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
+    type: 3}
 --- !u!1 &702413256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,6 +2079,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1760756903}
   m_SourcePrefab: {fileID: 100100000, guid: 3a77a5ef394681545a0f6cda770dfc66, type: 3}
+--- !u!4 &1728357951 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8192895032673060674, guid: 0c2e06d6ad7b30340925a4543909c618,
+    type: 3}
+  m_PrefabInstance: {fileID: 2146198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1760756901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8114289881930843257, guid: 3a77a5ef394681545a0f6cda770dfc66,

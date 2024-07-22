@@ -1,7 +1,7 @@
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
-public class TurretDetectionState : StateMachineBehaviour
+public class TurretAttackState : StateMachineBehaviour
 {
     TurretBehavior turretBehavior;
 
@@ -12,11 +12,11 @@ public class TurretDetectionState : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.DetectMinion();
+        turretBehavior.Attacking();
+        turretBehavior.AttackCondition();
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.isAttack = true;
     }
 }
