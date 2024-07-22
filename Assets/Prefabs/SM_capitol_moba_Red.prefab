@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8991183992461038697}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: ProjectileSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 773719787647693294}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: DetectRangePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,9 +74,9 @@ GameObject:
   - component: {fileID: 7796002743988005017}
   - component: {fileID: 1745587759261949033}
   - component: {fileID: 6951010585565477691}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: SM_capitol_moba_Red
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

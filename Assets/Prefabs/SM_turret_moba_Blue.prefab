@@ -73,10 +73,9 @@ GameObject:
   - component: {fileID: 4010102015847782572}
   - component: {fileID: 1865209089527047420}
   - component: {fileID: 6865274882790330973}
-  - component: {fileID: 5380024414295808744}
   m_Layer: 7
   m_Name: SM_turret_moba_Blue
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,26 +150,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5380024414295808744
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702736807362747074}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 1073742583
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.44
-  m_Height: 17.88
-  m_Direction: 1
-  m_Center: {x: 0, y: 5.86, z: 0}

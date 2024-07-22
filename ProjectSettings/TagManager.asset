@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Minion
   - Turret
+  - Weapon
   layers:
   - Default
   - TransparentFX
