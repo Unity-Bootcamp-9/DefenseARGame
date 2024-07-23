@@ -37,8 +37,8 @@ public class TurretBehavior : MonoBehaviour
     {
         for (int i = 0; i < _Count; i++)
         {
-            GameObject obj = Instantiate(_Obj, AttackTr);
-            obj.SetActive(false);
+            GameObject obj = Instantiate(_Obj, AttackTr, false);
+            //obj.SetActive(false);
             projectiles.Add(obj);
         }
     }
@@ -75,35 +75,55 @@ public class TurretBehavior : MonoBehaviour
         return colliders.OrderBy(col => Vector3.Distance(reference.position, col.transform.position)).ToArray();
     }
 
-    public void Attacking()
+    IEnumerator AttackCo()
     {
-        for(int i = 0; i < 5; ++i)
+        int i = 0;
+        while(true)
         {
-            if (projectiles[i].active) continue;
+            if (projectiles[i].active == true)
+            {
+                i++;
+                if (i > 4) i = 0;
+            }
             else
             {
                 projectiles[i].SetActive(true);
             }
+            yield return new WaitForSeconds(2f);
         }
     }
 
-    public void AttackCondition()
+    public void Attacking()
+    {
+        StartCoroutine(AttackCo());
+    }
+
+    public void StopAttacking()
+    {
+        StopCoroutine(AttackCo());
+    }
+
+    public bool AttackCondition()
     {
         if(target == null)
         {
             anim.SetBool(hashAttackStart, false);
+            return false;
         }
         else if (!target.gameObject.active)
         {
             anim.SetBool(hashAttackStart, false);
+            return false;
         }
         else if (Vector3.Distance(target.position, transform.position) > detectionRange)
         {
             anim.SetBool(hashAttackStart, false);
+            return false;
         }
         else
         {
             anim.SetBool(hashAttackStart, true);
+            return true;
         }
     }
 
