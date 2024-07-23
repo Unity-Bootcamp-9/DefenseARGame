@@ -16,7 +16,7 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private float waveCreateDelay = 30f;
     [SerializeField] private float minionCreateDelay = 1f;
     [SerializeField] private int minionsPperWave = 5;
-    [SerializeField] private Transform enumyMainTurret;
+    [SerializeField] private Transform enemyMainTurret;
 
     private IObjectPool<Minion> objectPool;
 
@@ -42,7 +42,7 @@ public class MinionSpawnManager : MonoBehaviour
     private void OnTakeFromPool(Minion minion)
     {
         minion.gameObject.SetActive(true);
-        minion.Init(enumyMainTurret);
+        minion.Init(enemyMainTurret);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
