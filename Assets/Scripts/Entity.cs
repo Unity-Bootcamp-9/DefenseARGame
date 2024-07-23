@@ -6,7 +6,6 @@ public class Entity : MonoBehaviour
 {
     protected int hp;
     protected int damage;
-    protected Entity target;
 
     public virtual void GetHit(int _damage)
     {
@@ -14,8 +13,6 @@ public class Entity : MonoBehaviour
         Debug.Log($"hp : {hp}");
     }
 
-    protected virtual void Attack()
-    {
-        target.GetHit(damage);
-    }
+
+   
 }

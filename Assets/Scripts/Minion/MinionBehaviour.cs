@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : MonoBehaviour
 {
@@ -12,31 +12,32 @@ public class MinionBehaviour : MonoBehaviour
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
 
-    private float detectionRange = 4.0f;
+    private float detectionRange = 4f;
+    private float attackRange = 1f;
     private Animator animator;
-    private bool camp;
     private int enemyLayer;
-    private Transform target;
     [SerializeField]
     private Transform defaultTarger;
     private List<Transform> enemyMinions = new List<Transform>();
+    public Transform target { get; private set; }
+    private Entity entity;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        entity = GetComponent<Entity>();
+
         target = defaultTarger;
         if (gameObject.layer == 6)
         {
-            camp = true;
             enemyLayer = 7;
         }
         else if(gameObject.layer == 7)
         {
-            camp = false;
             enemyLayer = 6;
         }
     }
-
+        
     private void Update()
     {
         if (target.gameObject.name != null)
@@ -66,8 +67,6 @@ public class MinionBehaviour : MonoBehaviour
     {
         Transform turret = null;
         Transform target = null;
-        float distance;
-        float minDistance;
 
         foreach (Collider collider in colliders)
         {
@@ -83,33 +82,37 @@ public class MinionBehaviour : MonoBehaviour
 
         if(enemyMinions.Count > 0)
         {
+            enemyMinions = enemyMinions.OrderBy(enemyMinion => Vector3.Distance(enemyMinion.position, thisTransform.position)).ToList<Transform>();
             target = enemyMinions[0];
-            minDistance = Vector3.Distance(enemyMinions[0].position, thisTransform.position);
-            for (int i = 1; i < enemyMinions.Count; ++i)
-            {
-                distance = Vector3.Distance(enemyMinions[i].position, thisTransform.position);
-                if (minDistance > distance)
-                {
-                    minDistance = distance;
-                    target = enemyMinions[i];
-                }
-            }
         }
         else
         {
             target = turret;
         }
-
         enemyMinions.Clear();
-        
         
         return target;
     }
 
+    public void AttackDetection()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, 1 << enemyLayer);
+        Collider attackTarget= colliders.FirstOrDefault(collider => collider.transform == target);
+        if (attackTarget != null)
+        {
+            animator.SetTrigger(hashAttack);
+        }
+
+    }
+
+
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange) ;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 
 }

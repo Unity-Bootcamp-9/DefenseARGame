@@ -15,6 +15,7 @@ public class SeekState : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         minionBehaviour.TargetDetection();
+        minionBehaviour.AttackDetection();
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
