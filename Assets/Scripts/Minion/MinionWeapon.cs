@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MinionWeapon : MonoBehaviour
 {
-    private int enemyLayer;
-    private int damage;
     
+    public int damage { get; private set; }
+    private int enemyLayer;
+
     private void Start()
     {
         if (gameObject.layer == 6)
@@ -22,10 +23,12 @@ public class MinionWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("충돌함");
         if (other.gameObject.layer == enemyLayer)
         {
-            other.gameObject.GetComponent<Entity>().GetHit(damage);
+            if (other.gameObject.GetComponent<Entity>() != null)
+            {
+                other.gameObject.GetComponent<Entity>().GetHit(damage);
+            }
         }
     }
 
