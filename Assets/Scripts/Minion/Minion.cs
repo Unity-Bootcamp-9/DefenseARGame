@@ -18,12 +18,12 @@ public class Minion : Entity
 
 	public override void Awake()
     {
-        base.Awake();
         hp = 100;
         maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
         collider = GetComponent<Collider>();
+        base.Awake();
     }
 
     public void Update()

@@ -18,9 +18,7 @@ public class Entity : MonoBehaviour
     public virtual void GetHit(int _damage)
     {
         hp -= _damage;
-        HPFilledImage.fillAmount = hp / maxHP;
-
-        Debug.Log($"hp : {hp}");
+        HPFilledImage.fillAmount = (float)hp / (float)maxHP;
     }
 
 
