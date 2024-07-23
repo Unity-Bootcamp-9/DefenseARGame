@@ -8,36 +8,51 @@ public class Minion : Entity
 {
     private IObjectPool<Minion> objectPool;
     public IObjectPool<Minion> ObjectPool { set => objectPool = value; }
-    
     private MinionBehaviour minionBehaviour;    
     private Transform target;
     private NavMeshAgent agent;
     private Collider collider;
     [SerializeField]
     private Collider attackCollider;
+    private Transform defaultTarget;
 
-  	public override void Awake()
+
+
+    public void Init(Transform mainTurretTransform)
+    {
+        defaultTarget = mainTurretTransform;
+    }
+
+    private void OnEnable()
     {
         hp = 100;
         maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
         collider = GetComponent<Collider>();
-        base.Awake();
+
     }
+
+
 
     public void Update()
     {
+
         if(hp > 0)
             target = minionBehaviour.target;
 
-        if (!minionBehaviour.isAttacking)
+        if(minionBehaviour.target == null)
         {
-            agent.SetDestination(target.position);
+            target = defaultTarget;
+        }
+
+        if (minionBehaviour.isAttacking)
+        {
+            agent.SetDestination(transform.position);
         }
         else
         {
-            agent.SetDestination(transform.position);
+            agent.SetDestination(target.position);
         }
         transform.LookAt(target);
     }
@@ -59,4 +74,5 @@ public class Minion : Entity
             target = transform;
         }
     }
+
 }

@@ -18,17 +18,19 @@ public class MinionBehaviour : MonoBehaviour
     private float attackRange = 1f;
     private Animator animator;
     private int enemyLayer;
-    [SerializeField]
-    private Transform defaultTarger;
+    
+    private Minion minion;
     private List<Transform> enemyMinions = new List<Transform>();
     public Transform target { get; private set; }
-    public bool isAttacking { get; private set; }
+    public bool isAttacking { get;  set; }
+
+
 
     private void Start()
     {
         isAttacking = false;
         animator = GetComponent<Animator>();
-        target = defaultTarger;
+        minion = GetComponent<Minion>();
         if (gameObject.layer == 6)
         {
             enemyLayer = 7;
@@ -39,18 +41,6 @@ public class MinionBehaviour : MonoBehaviour
         }
     }
         
-    private void Update()
-    {
-        if(target == null)
-        {
-            target = defaultTarger;
-        }
-        if (target.gameObject.name != null)
-        {
-            Debug.Log($"target : {target.gameObject.name}");
-        }
-    }
-
     public void TargetDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
@@ -64,7 +54,6 @@ public class MinionBehaviour : MonoBehaviour
         else
         {
             animator.SetBool(hashInPursuit, false);
-            target = defaultTarger;
         }
     }
 
@@ -107,10 +96,6 @@ public class MinionBehaviour : MonoBehaviour
             animator.SetTrigger(hashAttack);
         }
     }
-    public void SetIsAttacking(bool _isAttacking)
-    {
-        isAttacking = _isAttacking;
-    }
 
     public void Die()
     {
@@ -120,8 +105,10 @@ public class MinionBehaviour : MonoBehaviour
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
-        gameObject.SetActive(false);
+        minion.Deactivate();
     }
+
+
 
     private void OnDrawGizmos()
     {
