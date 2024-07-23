@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
 {
+    private MinionBehaviour minionBehaviour;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateEnter(animator, stateInfo, layerIndex);
+        minionBehaviour = animator.GetComponent<MinionBehaviour>();
+        minionBehaviour.SetIsAttacking(true);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateExit(animator, stateInfo, layerIndex);
+        minionBehaviour.SetIsAttacking(false);
     }
-
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        base.OnStateUpdate(animator, stateInfo, layerIndex);
-    }
-
 
 }

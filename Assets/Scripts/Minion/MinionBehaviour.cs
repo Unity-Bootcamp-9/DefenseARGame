@@ -22,12 +22,12 @@ public class MinionBehaviour : MonoBehaviour
     private Transform defaultTarger;
     private List<Transform> enemyMinions = new List<Transform>();
     public Transform target { get; private set; }
-    private NavMeshAgent agent;
+    public bool isAttacking { get; private set; }
 
     private void Start()
     {
+        isAttacking = false;
         animator = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>(); 
         target = defaultTarger;
         if (gameObject.layer == 6)
         {
@@ -45,9 +45,6 @@ public class MinionBehaviour : MonoBehaviour
         {
             Debug.Log($"target : {target.gameObject.name}");
         }
-        agent.SetDestination(target.position);
-
-
     }
 
     public void TargetDetection()
@@ -83,7 +80,6 @@ public class MinionBehaviour : MonoBehaviour
                 turret = collider.transform;
             }
         }
-
         if(enemyMinions.Count > 0)
         {
             enemyMinions = enemyMinions.OrderBy(enemyMinion => Vector3.Distance(enemyMinion.position, thisTransform.position)).ToList<Transform>();
@@ -106,7 +102,10 @@ public class MinionBehaviour : MonoBehaviour
         {
             animator.SetTrigger(hashAttack);
         }
-
+    }
+    public void SetIsAttacking(bool _isAttacking)
+    {
+        isAttacking = _isAttacking;
     }
 
 
