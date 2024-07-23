@@ -12,16 +12,24 @@ public class Minion : Entity
     private MinionBehaviour minionBehaviour;    
     private Transform target;
     private NavMeshAgent agent;
+    private Collider collider;
+    [SerializeField]
+    private Collider attackCollider;
+
+
     public void Start()
     {
-        hp = 100;
+        hp = 50;
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
+        collider = GetComponent<Collider>();
     }
 
     public void Update()
     {
-        target = minionBehaviour.target;
+        if(hp > 0)
+            target = minionBehaviour.target;
+
         if (!minionBehaviour.isAttacking)
         {
             agent.SetDestination(target.position);
@@ -38,4 +46,16 @@ public class Minion : Entity
         objectPool.Release(this);
     }
 
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+
+        if(hp <= 0)
+        {
+            collider.enabled = false;
+            attackCollider.enabled = false;
+            minionBehaviour.Die();
+            target = transform;
+        }
+    }
 }

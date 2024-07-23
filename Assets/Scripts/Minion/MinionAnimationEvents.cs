@@ -10,7 +10,6 @@ public class MinionAnimationEvents : MonoBehaviour
     void Start()
     {
         attackRange.SetActive(false);
-
     }
 
     public void AttackRangeCollierTurnOn()
