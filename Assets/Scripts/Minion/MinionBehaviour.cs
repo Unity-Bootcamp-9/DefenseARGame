@@ -14,8 +14,8 @@ public class MinionBehaviour : MonoBehaviour
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
 
-    private float detectionRange = 4f;
-    private float attackRange = 2f;
+    private float detectionRange = 7f;
+    private float attackRange = 1f;
     private Animator animator;
     private int enemyLayer;
     [SerializeField]
@@ -41,6 +41,10 @@ public class MinionBehaviour : MonoBehaviour
         
     private void Update()
     {
+        if(target == null)
+        {
+            target = defaultTarger;
+        }
         if (target.gameObject.name != null)
         {
             Debug.Log($"target : {target.gameObject.name}");
@@ -108,6 +112,16 @@ public class MinionBehaviour : MonoBehaviour
         isAttacking = _isAttacking;
     }
 
+    public void Die()
+    {
+        animator.SetTrigger(hashDie);
+        StartCoroutine(Deactivate(2f));
+    }
+    IEnumerator Deactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
+    }
 
     private void OnDrawGizmos()
     {
