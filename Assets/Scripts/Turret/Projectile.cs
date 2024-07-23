@@ -39,8 +39,6 @@ public class Projectile : MonoBehaviour
 
         if (Vector3.Distance(gameObject.transform.position, target.position) < 0.8f)
         {
-            // 공격
-            Debug.Log("Attack!!!!");
             target.gameObject.GetComponent<Entity>().GetHit(damage);
             gameObject.SetActive(false);
         }

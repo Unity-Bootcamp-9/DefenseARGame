@@ -73,7 +73,7 @@ public class TurretBehavior : MonoBehaviour
 
     IEnumerator AttackCo()
     {
-        while(true)
+        while(AttackCondition())
         {
             projectileClone.SetActive(true);
             yield return new WaitForSeconds(2f);
@@ -83,11 +83,6 @@ public class TurretBehavior : MonoBehaviour
     public void Attacking()
     {
         StartCoroutine(AttackCo());
-    }
-
-    public void StopAttacking()
-    {
-        StopCoroutine(AttackCo());
     }
 
     public bool AttackCondition()
@@ -103,6 +98,11 @@ public class TurretBehavior : MonoBehaviour
             return false;
         }
         else if (Vector3.Distance(target.position, transform.position) > detectionRange)
+        {
+            anim.SetBool(hashAttackStart, false);
+            return false;
+        }
+        else if (!isAttack)
         {
             anim.SetBool(hashAttackStart, false);
             return false;
