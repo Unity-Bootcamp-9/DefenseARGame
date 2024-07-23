@@ -15,7 +15,7 @@ public class Turret : Entity
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
-        if (hp < 0)
+        if (hp <= 0)
         {
             animator.SetTrigger(TurretBehavior.hastisDead);
         }
