@@ -5,27 +5,42 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public GameObject objectToSpawn;
-    public Sprite iconSprite;
-    public Vector3 offset;
+    [Header("테두리 UI")]
+    public Color activeColor = Color.white;
+    private Color _readyColor = Color.clear;
+    private Image _edgeImage;
 
+    [Header("아이콘")]
+    public Sprite iconSprite;
+    private Image _iconImage;
+
+    [Header("오브젝트")]
+    public GameObject objectToSpawn;
     private GameObject _draggingObject;
-    private LayerMask groundLayer = 1 << 8; // Ground 레이어
+    public Vector3 offset;
+    public LayerMask groundLayer = 1 << 8; // Ground 레이어
 
     private void Start()
     {
-        if (iconSprite) GetComponent<Image>().sprite = iconSprite;
+        _edgeImage = GetComponent<Image>();
+        _edgeImage.color = _readyColor;
+
+        _iconImage = transform.GetChild(0).GetComponent<Image>();
+        if (_iconImage && iconSprite) _iconImage.sprite = iconSprite;
+
+        _draggingObject = Instantiate(objectToSpawn);
+        _draggingObject.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        _edgeImage.color = activeColor;
+
         if (!objectToSpawn)
         {
             Debug.Log("드래그 중");
             return;
         }
-
-        _draggingObject = Instantiate(objectToSpawn);
 
         SetDraggedPosition(eventData);
     }
@@ -38,18 +53,23 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void SetDraggedPosition(PointerEventData data)
     {
-        var target = _draggingObject.transform;
+        bool isHit = Physics.Raycast(Camera.main.ScreenPointToRay(data.position), out RaycastHit hit, 100f, groundLayer);
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(data.position), out RaycastHit hit, 100f, groundLayer))
+        if (isHit)
         {
-            target.position = hit.point + offset;
-            target.rotation = hit.transform.rotation;
+            _draggingObject.transform.position = hit.point + offset;
+            _draggingObject.transform.rotation = hit.transform.rotation; 
         }
+
+        // TBD-73에서 수정 예정
+        _draggingObject.SetActive(isHit);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        _edgeImage.color = _readyColor;
+
         if (_draggingObject != null)
-            Destroy(_draggingObject);
+            _draggingObject.SetActive(false);
     }
 }
