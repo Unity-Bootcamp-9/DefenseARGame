@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UnityEngine.UI.Extensions.FantasyRPG.UIParticleSystem" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBCUABIABAAQIAAYiIoACAwAAAASACAAAAAAQAAEA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIParticle\UIParticleSystem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee.UIExtensions.EffectAreaExtensions" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\EffectArea.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee.UIExtensions.EffectPlayer" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAACAgCAAAAAIAAAAAAACBAAAYogAAAAAACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\EffectPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee.UIExtensions.MaterialResolver" Collapsed="true">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAAAAAQAAAAAAACAAAAAAAAAAAAgACAgAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\MaterialResolver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee.UIExtensions.ParameterTexture" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEAAAACBhQAAAQAAAAAAAAEAAAABAAEAAAAAAAAAkBI=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\ParameterTexture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Coffee.UIExtensions.UIEffectBase" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEQAAGAABAAAAAEESICAAABAACAIAEAAAAAACAI=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\UIEffectBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Coffee.UIExtensions.UIShiny" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAACgEeQACABDAAIQACESAUKAJCBAACIoiBRABEACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\UIShiny.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.Packer" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\Packer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.AnimationRect" Collapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAFAEBAgAAAAAAIASAAAgAAEAgAAAAAICAAEAAVASAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\AnimationRect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.ControlPanel" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAQAgAQigAAAAAAAAAAAAAAAAAAAAIAAAAAAAgAJA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\ControlPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.FakeLoadingBar" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAYAAACAAAAAAAAAEACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\FakeLoadingBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.GameManager" Collapsed="true">
+    <Position X="3.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQQAIABAACAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAgA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.ObjectRotate" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAQAAIAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\ObjectRotate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.PanelController" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\PanelController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.PanelDependency" Collapsed="true">
+    <Position X="7.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\PanelDependency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.PasswordShowHide" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAACAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\PasswordShowHide.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.ShowFxWhenClicked" Collapsed="true">
+    <Position X="6" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAgAAAAAAAAAAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\ShowFxWhenClicked.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.SimpleScrollSnap" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAkAAAgACAAAAAAIAAAAEAAoAAgAAAAAEIgAAEg=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\SimpleScrollSnap.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.SingletonMono&lt;T&gt;" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAFABAAAAAAAAAAAAAAAAAAAAAAAAAIQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\SingletonMono.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\SingletonMono.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.SingletonPersistent&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\SingletonMono.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.SlotMachineController" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAABCAAABAAAAAAAAAAAAAAAIEBEAAgAACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\SlotMachineController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.WarpText" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAABAAEAACAAgAAAAAAAAAAAAAAAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\WarpText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Helios.GUI.WheelMenuController" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQCgEAABBCAAAQAAAAAgEgAAQYACAAgABQFA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Scripts\WheelMenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HS_DemoShooting" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAACYAIAAAAgCAkADAAQAQAAAAAgAQAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\Hovl Studio\HSFiles\Scripts\For demo scenes\HS_DemoShooting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HS_CallBackParent" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\Hovl Studio\HSFiles\Scripts\HS_CallBackParent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HS_ProjectileMover" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAiAAAgAMAABAEQkAAAgAAQAIAAgAAAAACBA=</HashCode>
+      <FileName>Assets\Custom\Hovl Studio\HSFiles\Scripts\HS_ProjectileMover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ARTemplateMenuManager" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gESIICAAACwJVtACCAIQQBEAAAIGAAEscAAEAACdGME=</HashCode>
+      <FileName>Assets\MobileARTemplateAssets\Scripts\ARTemplateMenuManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoalManager" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BESQIACAgAgAEAAwCAJABAAAAwgAKAAAQQCAAAAAAAQ=</HashCode>
+      <FileName>Assets\MobileARTemplateAssets\Scripts\GoalManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MinionSpawnManager" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAIAAAAAAAAAAAAEgDAABAAAAAAAAAAAAAAAAAIAEI=</HashCode>
+      <FileName>Assets\Scripts\Manager\MinionSpawnManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Minion" Collapsed="true">
+    <Position X="7.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAABAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minion\Minion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MinionBehaviour" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minion\MinionBehaviour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttackState" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minion\State\AttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeekState" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minion\State\SeekState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrackState" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAIAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Minion\State\TrackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Turret" Collapsed="true">
+    <Position X="6" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACCAAAAQAIAAAAAAAAAAAAAAIQAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\Turret\Turret.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurretAnimationTrigger" Collapsed="true">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Turret\TurretAnimationTrigger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurretDetectionState" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAEAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Turret\TurretDetectionState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurretState" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQQAAAAAAAAAAAAgAAAAAAAAAAEAAAAIAAAAAEAAAI=</HashCode>
+      <FileName>Assets\Scripts\Turret\TurretState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TurretStateMachine" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAIAAAAAAAAAAAAAAAIAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Turret\TurretStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneTemplate_RotateCube" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\Settings\Project Configuration\SceneTemplate_RotateCube.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Foo" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\TEst.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TEst" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TEst.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LayerLab.GUIScripts.PanelControl" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAyAQAgAQiAABgAAAAEEAAAAAAkAIAAIAAAAABAgABA=</HashCode>
+      <FileName>Assets\Custom\Layer Lab\Scripts\PanelControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LayerLab.CasualGame.PanelView" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Custom\Layer Lab\Scripts\PanelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets.ARFeatheredPlaneMeshVisualizerCompanion" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIQBAAAAQAAAAIAIAAAAAIAAAhAAAABAQAAAAAAAAEA=</HashCode>
+      <FileName>Assets\MobileARTemplateAssets\Scripts\ARFeatheredPlaneMeshVisualizerCompanion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Unity.AR.Companion.Mobile.CutoutMaskUI" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\MobileARTemplateAssets\UI\Scripts\CutoutMaskUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Coffee.UIExtensions.Matrix2x3" Collapsed="true">
+    <Position X="7.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\Matrix2x3.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="Goal" Collapsed="true">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\MobileARTemplateAssets\Scripts\GoalManager.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Coffee.UIExtensions.IParameterTexture" Collapsed="true">
+    <Position X="6" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\ParameterTexture.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IState" Collapsed="true">
+    <Position X="7.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Turret\IState.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Coffee.UIExtensions.EffectArea" Collapsed="true">
+    <Position X="6" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAACAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Custom\2D Game Design Mastery Fantasy Edition\Extensions\UIShinyExtensions\Scripts\Common\EffectArea.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

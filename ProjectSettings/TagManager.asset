@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Minion
+  - Turret
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -11,10 +14,10 @@ TagManager:
   - 
   - Water
   - UI
-  - RedTurret
-  - BlueTurret
-  - RedMinion
-  - BlueMinion
+  - Red
+  - Blue
+  - Ground
+  - 
   - 
   - 
   - 

@@ -25,7 +25,7 @@ public class TEst : MonoBehaviour
 
             foreach(var record in records)
             {
-                Debug.Log($"{record.id}, {record.name}");
+                //Debug.Log($"{record.id}, {record.name}");
             }
         }
     }
