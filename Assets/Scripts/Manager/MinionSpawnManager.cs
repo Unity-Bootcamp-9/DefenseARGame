@@ -42,7 +42,7 @@ public class MinionSpawnManager : MonoBehaviour
     private void OnTakeFromPool(Minion minion)
     {
         minion.gameObject.SetActive(true);
-        minion.Init(enumyMainTurret);
+        minion.Init(enemyMainTurret);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
