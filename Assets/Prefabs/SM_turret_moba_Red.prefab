@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8606934354489015912}
   - component: {fileID: 8586697795317449624}
   - component: {fileID: 8342385771149177990}
+  - component: {fileID: 10375406228026062}
+  - component: {fileID: 6802295256716174009}
   m_Layer: 6
   m_Name: SM_turret_moba_Red
   m_TagString: Turret
@@ -112,6 +114,39 @@ CapsuleCollider:
   m_Height: 17.88
   m_Direction: 1
   m_Center: {x: 0, y: 5.86, z: 0}
+--- !u!114 &10375406228026062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836445025692665840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d22990f7838be4095eaba0e4243280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+--- !u!114 &6802295256716174009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836445025692665840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a7c051b9230e54aa762bfc85d447d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 15
+  target: {fileID: 0}
+  isAttack: 0
+  enemyLayerName: Blue
+  AttackTr: {fileID: 5716623544610942363}
+  projectile: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
+    type: 3}
+  projectiles: []
 --- !u!1 &2305905739989038723
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class Turret : Entity
 {
+    Animator animator;
     public void Awake()
     {
+        animator = GetComponent<Animator>();
         hp = 100;
         damage = 5;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void GetHit(int _damage)
     {
-        if (other.gameObject.CompareTag("Weapon"))
+        base.GetHit(_damage);
+        if (hp < 0)
         {
-            Debug.Log("GetHurt");
+            animator.SetTrigger(TurretBehavior.hastisDead);
         }
     }
 }

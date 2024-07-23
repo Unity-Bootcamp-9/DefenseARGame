@@ -8,7 +8,7 @@ public class TurretBehavior : MonoBehaviour
     public static readonly int hashAttackStart = Animator.StringToHash("attackStart");
     public static readonly int hastisDead = Animator.StringToHash("isDead");
     
-    private float detectionRange = 15.0f;
+    public float detectionRange;
     private Animator anim;
     public Transform target;
     private Transform defaultTarget;
@@ -125,6 +125,11 @@ public class TurretBehavior : MonoBehaviour
             anim.SetBool(hashAttackStart, true);
             return true;
         }
+    }
+
+    public void ColliderOff()
+    {
+        gameObject.GetComponentInChildren<Collider>().enabled = false;
     }
 
     private void OnDrawGizmos()
