@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : Entity
 {
     Animator animator;
-    public void Awake()
+
+    public override void Awake()
     {
+        base.Awake();
         animator = GetComponent<Animator>();
         hp = 100;
+        maxHP = hp;
         damage = 5;
     }
 

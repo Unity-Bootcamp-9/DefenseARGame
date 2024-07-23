@@ -25,10 +25,12 @@ public class Minion : Entity
 
     private void OnEnable()
     {
-        hp = 50;
+        hp = 100;
+        maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
         collider = GetComponent<Collider>();
+
     }
 
 
