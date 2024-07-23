@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MinionWeapon : MonoBehaviour
 {
+
     private int enemyLayer;
     private int damage;
-
-
+    
     private void Start()
     {
         if (gameObject.layer == 6)
