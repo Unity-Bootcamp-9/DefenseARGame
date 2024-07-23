@@ -9,7 +9,6 @@ public class TurretAttackState : StateMachineBehaviour
     {
         turretBehavior = animator.GetComponent<TurretBehavior>();
         turretBehavior.Attacking();
-        Debug.Log("TurretAttackState");
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

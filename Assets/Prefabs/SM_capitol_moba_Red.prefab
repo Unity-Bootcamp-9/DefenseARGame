@@ -206,6 +206,5 @@ MonoBehaviour:
   isAttack: 0
   enemyLayerName: Blue
   AttackTr: {fileID: 8991183992461038697}
-  projectile: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
+  projectilePrefab: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
     type: 3}
-  projectiles: []

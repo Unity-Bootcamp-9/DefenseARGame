@@ -19,8 +19,9 @@ public class TurretBehavior : MonoBehaviour
     private int layerMask;
 
     public Transform AttackTr;
-    public GameObject projectile;
-    public List<GameObject> projectiles;
+    public GameObject projectilePrefab;
+    private GameObject projectileClone;
+
 
     private void Awake()
     {
@@ -29,18 +30,13 @@ public class TurretBehavior : MonoBehaviour
         defaultTarget = null;
         enemyMinionLayer = LayerMask.NameToLayer(enemyLayerName);
         layerMask = (1 << enemyMinionLayer);
-        SetProjectileObject(projectile, 5, "projectile");
+        SetProjectileObject(5, "projectile");
     }
 
     // 오브젝트를 받아 생성. (생성한 원본 오브젝트, 생성할 갯수, 생성할 객체의 이름)
-    public void SetProjectileObject(GameObject _Obj, int _Count, string _Name)
+    public void SetProjectileObject(int _Count, string _Name)
     {
-        for (int i = 0; i < _Count; i++)
-        {
-            GameObject obj = Instantiate(_Obj, AttackTr, false);
-            //obj.SetActive(false);
-            projectiles.Add(obj);
-        }
+        projectileClone = Instantiate(projectilePrefab, AttackTr, false);
     }
 
     public void DetectMinion()
@@ -77,18 +73,9 @@ public class TurretBehavior : MonoBehaviour
 
     IEnumerator AttackCo()
     {
-        int i = 0;
         while(true)
         {
-            if (projectiles[i].active == true)
-            {
-                i++;
-                if (i > 4) i = 0;
-            }
-            else
-            {
-                projectiles[i].SetActive(true);
-            }
+            projectileClone.SetActive(true);
             yield return new WaitForSeconds(2f);
         }
     }
