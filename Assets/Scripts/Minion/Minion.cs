@@ -16,7 +16,7 @@ public class Minion : Entity
     [SerializeField]
     private Collider attackCollider;
 
-	public override void Awake()
+  	public override void Awake()
     {
         hp = 100;
         maxHP = hp;
