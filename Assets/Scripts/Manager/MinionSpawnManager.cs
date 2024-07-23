@@ -16,7 +16,7 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private float waveCreateDelay = 30f;
     [SerializeField] private float minionCreateDelay = 1f;
     [SerializeField] private int minionsPperWave = 5;
-    [SerializeField] private Transform enumyMainTurret;
+    [SerializeField] private Transform enemyMainTurret;
 
     private IObjectPool<Minion> objectPool;
 
