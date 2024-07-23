@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     public float turn;
     public float velocity;
     public int damage;
+    Vector3 spawnPoint;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Projectile : MonoBehaviour
         turn = 20.0f;
         velocity = 7.0f;
         damage = 5;
+        spawnPoint = new Vector3(0, 14, 0);
 
         gameObject.SetActive(false);
     }
@@ -46,7 +48,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.position = Vector3.zero;
+        transform.position = spawnPoint;
     }
 
 }

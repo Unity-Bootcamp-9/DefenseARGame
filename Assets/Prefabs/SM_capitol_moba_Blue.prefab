@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 6310883796395397970}
   - component: {fileID: 1860324445536313544}
   - component: {fileID: 3628685330871821181}
+  - component: {fileID: 8628600808626947613}
+  - component: {fileID: 1337658837572553012}
   m_Layer: 7
   m_Name: SM_capitol_moba_Blue
   m_TagString: Turret
@@ -144,6 +146,39 @@ CapsuleCollider:
   m_Height: 17
   m_Direction: 1
   m_Center: {x: -0.00000047683713, y: 3.2, z: 0}
+--- !u!114 &8628600808626947613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596947200077733237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37d22990f7838be4095eaba0e4243280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+--- !u!114 &1337658837572553012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596947200077733237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1a7c051b9230e54aa762bfc85d447d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 8
+  target: {fileID: 0}
+  isAttack: 0
+  enemyLayerName: Red
+  AttackTr: {fileID: 5410497451906596907}
+  projectile: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
+    type: 3}
+  projectiles: []
 --- !u!1 &3243159792822614983
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    protected int hp;
+    [SerializeField]protected int hp;
     protected int damage;
 
     public virtual void GetHit(int _damage)
