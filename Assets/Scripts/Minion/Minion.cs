@@ -16,13 +16,14 @@ public class Minion : Entity
     [SerializeField]
     private Collider attackCollider;
 
-
-    public void Start()
+  	public override void Awake()
     {
-        hp = 50;
+        hp = 100;
+        maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
         collider = GetComponent<Collider>();
+        base.Awake();
     }
 
     public void Update()
