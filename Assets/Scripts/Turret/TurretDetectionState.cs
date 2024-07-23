@@ -17,6 +17,5 @@ public class TurretDetectionState : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.isAttack = true;
     }
 }

@@ -8,16 +8,16 @@ public class TurretAttackState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         turretBehavior = animator.GetComponent<TurretBehavior>();
+        turretBehavior.isAttack = true;
         turretBehavior.Attacking();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.AttackCondition();
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.StopAttacking();
+        turretBehavior.isAttack = false;
     }
 }
