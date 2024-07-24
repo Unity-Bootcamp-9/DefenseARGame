@@ -1,3 +1,5 @@
+using DTT.AreaOfEffectRegions;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,8 +11,10 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public string skillName = "메테오";
     [Range(1, 10)] public int requireMana = 4;
     [Range(1, 100)] public int damage = 50;
-    [Range(0.1f, 15f)] public float radius = 15;
+    [Range(0.1f, 15f)] public float radius = 9f;
+    [Range(1f, 5f)] public float duration = 5f;
     private bool _isAiming;
+    private bool _isRayHit;
 
     [Header("테두리 UI")]
     public Color activeColor = Color.white;
@@ -23,9 +27,11 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     [Header("오브젝트")]
     public GameObject objectToSpawn;
+    public GameObject effectToSpawn;
     private GameObject _draggingObject;
     public Vector3 offset;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    private SRPCircleRegionProjector _circleRegion;
 
     private void Start()
     {
@@ -33,10 +39,17 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         _edgeImage.color = _readyColor;
 
         _iconImage = transform.GetChild(0).GetComponent<Image>();
-        if (_iconImage && iconSprite) _iconImage.sprite = iconSprite;
+        if (_iconImage && iconSprite)
+        {
+            _iconImage.material = Instantiate(_iconImage.material);
+            _iconImage.sprite = iconSprite;
+        }
 
         _draggingObject = Instantiate(objectToSpawn);
         _draggingObject.SetActive(false);
+
+        _circleRegion = _draggingObject.GetComponent<SRPCircleRegionProjector>();
+        _circleRegion.Radius = radius;
     }
 
     /// <summary>
@@ -71,25 +84,47 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void SetDraggedPosition(PointerEventData data)
     {
-        bool isHit = Physics.Raycast(Camera.main.ScreenPointToRay(data.position), out RaycastHit hit, 100f, groundLayer);
+        _isRayHit = Physics.Raycast(Camera.main.ScreenPointToRay(data.position), out RaycastHit hit, 100f, groundLayer);
 
-        if (isHit)
+        if (_isRayHit)
         {
-            _draggingObject.transform.position = hit.point + offset;
-            _draggingObject.transform.rotation = hit.transform.rotation; 
+            _draggingObject.SetActive(true);
+            _draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
         }
 
-        // TBD-73에서 수정 예정
-        _draggingObject.SetActive(isHit);
+        _circleRegion.FillProgress = Convert.ToInt32(_isRayHit);
+        _circleRegion.GenerateProjector();
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!_isAiming) return;
+
         _edgeImage.color = _readyColor;
 
-        if (_draggingObject != null)
-            _draggingObject.SetActive(false);
+        if (_draggingObject != null) _draggingObject.SetActive(false);
+
+        if (_isRayHit)
+        {
+            SpawnEffect();
+        }
+        else
+        {
+            Debug.Log("스킬 취소");
+        }
 
         _isAiming = false;
+    }
+
+    public void SpawnEffect()
+    {
+        ParticleSystem effect = Instantiate
+            (
+                effectToSpawn,
+                _draggingObject.transform.position - offset,
+                _draggingObject.transform.rotation
+            ).GetComponent<ParticleSystem>();
+
+        Destroy(effect.gameObject, effect ? effect.main.duration : duration);
     }
 }
