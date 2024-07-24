@@ -143,4 +143,5 @@ public class TurretBehavior : Entity
         Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 
+
 }
