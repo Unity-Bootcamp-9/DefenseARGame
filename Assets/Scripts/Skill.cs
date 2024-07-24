@@ -1,3 +1,5 @@
+using System;
+using DTT.AreaOfEffectRegions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -26,6 +28,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     private GameObject _draggingObject;
     public Vector3 offset;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    private SRPCircleRegionProjector _circleRegion;
 
     private void Start()
     {
@@ -37,6 +40,9 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         _draggingObject = Instantiate(objectToSpawn);
         _draggingObject.SetActive(false);
+
+        _circleRegion = _draggingObject.GetComponent<SRPCircleRegionProjector>();
+        _circleRegion.Radius = radius;
     }
 
     /// <summary>
@@ -75,12 +81,12 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (isHit)
         {
-            _draggingObject.transform.position = hit.point + offset;
-            _draggingObject.transform.rotation = hit.transform.rotation; 
+            _draggingObject.SetActive(true);
+            _draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
         }
 
-        // TBD-73에서 수정 예정
-        _draggingObject.SetActive(isHit);
+        _circleRegion.FillProgress = Convert.ToInt32(isHit);
+        _circleRegion.GenerateProjector();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -89,6 +95,15 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (_draggingObject != null)
             _draggingObject.SetActive(false);
+
+        if (_circleRegion.FillProgress == 0)
+        {
+            Debug.Log("스킬 취소");
+        }
+        else
+        {
+            Debug.Log("스킬 발동");
+        }
 
         _isAiming = false;
     }
