@@ -11,7 +11,6 @@ public class TurretBehavior : Entity
     public float detectionRange;
     private Animator anim;
     public Transform target;
-    private Transform defaultTarget;
 
     public bool isAttack;
     private int enemyMinionLayer;
@@ -20,7 +19,6 @@ public class TurretBehavior : Entity
 
     public Transform AttackTr;
     public GameObject projectilePrefab;
-    private GameObject projectileClone;
     private Collider turretCollier;
     [SerializeField]
     private Canvas hpBar;
@@ -30,25 +28,16 @@ public class TurretBehavior : Entity
         anim = GetComponent<Animator>();
         turretCollier = GetComponent<Collider>();
         isAttack = false;
-        defaultTarget = null;
-
         enemyMinionLayer = LayerMask.NameToLayer(enemyLayerName);
         layerMask = (1 << enemyMinionLayer);
-        SetProjectileObject(5, "projectile");
         hp = 100;
         maxHP = hp;
         damage = 5;
     }
 
-    // 오브젝트를 받아 생성. (생성한 원본 오브젝트, 생성할 갯수, 생성할 객체의 이름)
-    public void SetProjectileObject(int _Count, string _Name)
-    {
-        projectileClone = Instantiate(projectilePrefab, AttackTr, false);
-    }
-
     public void DetectMinion()
     {
-        Collider?[] colls = Physics.OverlapSphere(gameObject.transform.position, detectionRange, layerMask);
+        Collider?[] colls = Physics.OverlapSphere(gameObject.transform.position, detectionRange, 1 << layerMask);
 
         if (colls.Length == 0)
         {
@@ -81,7 +70,7 @@ public class TurretBehavior : Entity
     {
         while(AttackCondition())
         {
-            projectileClone.SetActive(true);
+            projectilePrefab.SetActive(true);
             yield return new WaitForSeconds(2f);
         }
     }

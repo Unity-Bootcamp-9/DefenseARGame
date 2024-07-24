@@ -4,39 +4,31 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField]TurretBehavior turretBehavior;
     Transform target;
-    public Rigidbody projectileRigid;
-    public float turn;
-    public float velocity;
-    public int damage;
+    Rigidbody projectileRigid;
+    public float moveSpeed = 7.0f;
+    public int damage = 5;
     Vector3 spawnPoint;
 
     private void Start()
     {
-        turretBehavior = transform.root.GetComponent<TurretBehavior>();
         projectileRigid = GetComponent<Rigidbody>();
-        turn = 20.0f;
-        velocity = 7.0f;
-        damage = 5;
         spawnPoint = new Vector3(0, 14, 0);
-
         gameObject.SetActive(false);
     }
     private void OnEnable()
     {
-        if (turretBehavior != null && turretBehavior.target != null)
-        {
-            target = turretBehavior.target;
-        }
+        target = GetComponentInParent<TurretBehavior>().target;
     }
 
     private void Update()
     {
-        projectileRigid.velocity = transform.forward * velocity;
-        var targetRotation = Quaternion.LookRotation(target.position + new Vector3(0, 0.8f) - transform.position);
-        projectileRigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turn));
+        //projectileRigid.velocity = transform.forward * velocity;
+        //var targetRotation = Quaternion.LookRotation(target.position + new Vector3(0, 0.8f) - transform.position);
+        //projectileRigid.MoveRotation(Quaternion.RotateTowards(transform.rotation, targetRotation, turn));
+        Vector3 moveDir = target.transform.position - transform.position;
 
+        projectileRigid.MovePosition(transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
         if (Vector3.Distance(gameObject.transform.position, target.position) < 0.8f)
         {
             target.gameObject.GetComponent<Entity>().GetHit(damage);
