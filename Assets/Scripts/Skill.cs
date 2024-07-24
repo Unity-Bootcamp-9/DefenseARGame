@@ -5,6 +5,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [Header("스킬 정보")]
+    public string skillName = "메테오";
+    [Range(1, 10)] public int requireMana = 4;
+    [Range(1, 100)] public int damage = 50;
+    [Range(0.1f, 15f)] public float radius = 15;
+    private bool _isAiming;
+
     [Header("테두리 UI")]
     public Color activeColor = Color.white;
     private Color _readyColor = Color.clear;
@@ -32,8 +39,19 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         _draggingObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 아이콘을 현재 마나에 따라 흑백으로 전환
+    /// </summary>
+    public void ChangeColor()
+    {
+        _iconImage.material.SetFloat("_Grayscale",
+            GameManager.CurrentMana >= requireMana ? 0 : 1);
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameManager.CurrentMana < requireMana) return;
+
         _edgeImage.color = activeColor;
 
         if (!objectToSpawn)
@@ -42,12 +60,12 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
             return;
         }
 
-        SetDraggedPosition(eventData);
+        _isAiming = true;
     }
 
     public void OnDrag(PointerEventData data)
     {
-        if (_draggingObject != null)
+        if (_draggingObject != null && _isAiming)
             SetDraggedPosition(data);
     }
 
@@ -71,5 +89,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (_draggingObject != null)
             _draggingObject.SetActive(false);
+
+        _isAiming = false;
     }
 }
