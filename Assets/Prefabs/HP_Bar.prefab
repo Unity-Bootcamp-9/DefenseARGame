@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5d3ebab44e3d74e088eef04216c725bd, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7861338276829680973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,11 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62b90365a676d44896acff78cfb5672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBar: {fileID: 21300000, guid: 5d3ebab44e3d74e088eef04216c725bd, type: 3}
-  blueBar: {fileID: 21300000, guid: 7f33d1ee01bbe40948e0e3c176b4fb80, type: 3}
-  outLine: {fileID: 7505386466457135582}
-  backGround: {fileID: 1445385577564656236}
-  fill: {fileID: 6951656256814105094}
 --- !u!1 &8910223917527775361
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,8 +32,6 @@ public class MinionSpawnManager : MonoBehaviour
     {
         MinionBehaviour minionInstance = Instantiate(minionPrefab);
         minionInstance.ObjectPool = objectPool;
-        minionInstance.Init(enemyMainTurret);
-        //hpBar.Init(gameObject.layer, tag);
         return minionInstance;
     }
 
@@ -45,8 +43,6 @@ public class MinionSpawnManager : MonoBehaviour
     private void OnTakeFromPool(MinionBehaviour minion)
     {
         minion.gameObject.SetActive(true);
-        minion.Init(enemyMainTurret);
-        //hpBar.Init(gameObject.layer, tag);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
@@ -75,7 +71,7 @@ public class MinionSpawnManager : MonoBehaviour
         for(int i = 0; i < minionsPperWave; ++i)
         {
             MinionBehaviour minionObject = objectPool.Get();
-            
+            minionObject.Init(enemyMainTurret);
 
             yield return new WaitForSeconds(_minionCreateDelay);
         }
