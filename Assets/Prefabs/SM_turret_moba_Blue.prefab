@@ -325,7 +325,6 @@ GameObject:
   - component: {fileID: 4010102015847782572}
   - component: {fileID: 8998730876041699303}
   - component: {fileID: 820538622408654069}
-  - component: {fileID: 7702805035940042690}
   - component: {fileID: 1865209089527047420}
   - component: {fileID: 6865274882790330973}
   - component: {fileID: 7432837106818360754}
@@ -387,6 +386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a7c051b9230e54aa762bfc85d447d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHP: 0
+  HPFilledImage: {fileID: 1767678080754050015}
   detectionRange: 10
   target: {fileID: 0}
   isAttack: 0
@@ -394,21 +396,6 @@ MonoBehaviour:
   AttackTr: {fileID: 8192895032673060674}
   projectilePrefab: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
     type: 3}
---- !u!114 &7702805035940042690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5702736807362747074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37d22990f7838be4095eaba0e4243280, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  maxHP: 0
-  HPFilledImage: {fileID: 1767678080754050015}
 --- !u!33 &1865209089527047420
 MeshFilter:
   m_ObjectHideFlags: 0

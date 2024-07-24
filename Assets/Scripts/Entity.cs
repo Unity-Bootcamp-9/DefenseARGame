@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     protected int damage;
     public Image HPFilledImage;
 
-    public virtual void Awake()
+    public void Awake()
     {
         HPFilledImage.fillAmount = 1;
     }

@@ -2205,12 +2205,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8652547698040864152}
   - component: {fileID: 1983248644068878168}
-  - component: {fileID: 8815241523107472696}
   - component: {fileID: -3403188710930685897}
   - component: {fileID: 1858613415597559842}
   - component: {fileID: 1890066896073877029}
   - component: {fileID: 4019247821660359811}
-  - component: {fileID: 7894224680409651134}
   m_Layer: 6
   m_Name: Red_Minion
   m_TagString: Minion
@@ -2258,22 +2256,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8815241523107472696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8313599717752252194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a1834c00eb9134f98236f34daba2bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  maxHP: 0
-  HPFilledImage: {fileID: 6038095114497893768}
-  attackCollider: {fileID: 5419877307229718810}
 --- !u!54 &-3403188710930685897
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2336,6 +2318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHP: 0
+  HPFilledImage: {fileID: 6038095114497893768}
+  attackCollider: {fileID: 5419877307229718810}
 --- !u!95 &4019247821660359811
 Animator:
   serializedVersion: 5
@@ -2357,19 +2343,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7894224680409651134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8313599717752252194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def75dc5d7ddcb643940aa9fc9305d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: {fileID: 6508416635774744163}
 --- !u!1 &8800458733603762771
 GameObject:
   m_ObjectHideFlags: 0

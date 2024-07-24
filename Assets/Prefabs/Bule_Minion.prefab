@@ -1367,12 +1367,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3523710283786607567}
   - component: {fileID: 126904124156921273}
-  - component: {fileID: 7879878108583296676}
   - component: {fileID: 8717612294628435610}
   - component: {fileID: 1485301456518155047}
   - component: {fileID: 363000689054144057}
   - component: {fileID: 7416214552949324702}
-  - component: {fileID: 2195630700895147285}
   m_Layer: 7
   m_Name: Bule_Minion
   m_TagString: Minion
@@ -1420,22 +1418,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7879878108583296676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775777181747073890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a1834c00eb9134f98236f34daba2bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  maxHP: 0
-  HPFilledImage: {fileID: 3329099396617373926}
-  attackCollider: {fileID: 8889249333290010668}
 --- !u!54 &8717612294628435610
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1498,6 +1480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  maxHP: 0
+  HPFilledImage: {fileID: 3329099396617373926}
+  attackCollider: {fileID: 8889249333290010668}
 --- !u!95 &7416214552949324702
 Animator:
   serializedVersion: 5
@@ -1519,19 +1505,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2195630700895147285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775777181747073890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: def75dc5d7ddcb643940aa9fc9305d9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: {fileID: 913369032878365382}
 --- !u!1 &5803566932714335524
 GameObject:
   m_ObjectHideFlags: 0
