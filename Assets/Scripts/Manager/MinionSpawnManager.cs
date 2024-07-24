@@ -8,7 +8,7 @@ using UnityEngine.Pool;
 
 public class MinionSpawnManager : MonoBehaviour
 {
-    [SerializeField] private Minion minionPrefab;
+    [SerializeField] private MinionBehaviour minionPrefab;
     [SerializeField] private bool collectionCheck = false;
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxPoolSize = 50;
@@ -18,35 +18,35 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private int minionsPperWave = 5;
     [SerializeField] private Transform enemyMainTurret;
 
-    private IObjectPool<Minion> objectPool;
+    private IObjectPool<MinionBehaviour> objectPool;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Minion>(CreateMinion, OnTakeFromPool,
+        objectPool = new ObjectPool<MinionBehaviour>(CreateMinion, OnTakeFromPool,
                             OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
                             defaultCapacity,maxPoolSize);
     }
 
-    private Minion CreateMinion()
+    private MinionBehaviour CreateMinion()
     {
-        Minion minionInstance = Instantiate(minionPrefab);
+        MinionBehaviour minionInstance = Instantiate(minionPrefab);
         minionInstance.ObjectPool = objectPool; 
         return minionInstance;
     }
 
-    private void OnReturnedToPool(Minion minion)
+    private void OnReturnedToPool(MinionBehaviour minion)
     {
         minion.gameObject.SetActive(false);
     }
 
-    private void OnTakeFromPool(Minion minion)
+    private void OnTakeFromPool(MinionBehaviour minion)
     {
         minion.gameObject.SetActive(true);
         minion.Init(enemyMainTurret);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
-    private void OnDestroyPoolObject(Minion minion)
+    private void OnDestroyPoolObject(MinionBehaviour minion)
     {
         Destroy(minion.gameObject);
     }
@@ -70,7 +70,7 @@ public class MinionSpawnManager : MonoBehaviour
     {
         for(int i = 0; i < minionsPperWave; ++i)
         {
-            Minion minionObject = objectPool.Get();
+            MinionBehaviour minionObject = objectPool.Get();
             
 
             yield return new WaitForSeconds(_minionCreateDelay);

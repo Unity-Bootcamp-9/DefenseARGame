@@ -908,6 +908,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 754274934282226142, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionPrefab
+      value: 
+      objectReference: {fileID: 1890066896073877029, guid: 3a77a5ef394681545a0f6cda770dfc66,
+        type: 3}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -958,6 +964,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3483449005411246560, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionPrefab
+      value: 
+      objectReference: {fileID: 363000689054144057, guid: e3fe801e90966df429f96a61f32bf995,
+        type: 3}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TurretBehavior : MonoBehaviour
+public class TurretBehavior : Entity
 {
     public static readonly int hashAttackStart = Animator.StringToHash("attackStart");
     public static readonly int hastisDead = Animator.StringToHash("isDead");
@@ -28,9 +28,13 @@ public class TurretBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
         isAttack = false;
         defaultTarget = null;
+
         enemyMinionLayer = LayerMask.NameToLayer(enemyLayerName);
         layerMask = (1 << enemyMinionLayer);
         SetProjectileObject(5, "projectile");
+        hp = 100;
+        maxHP = hp;
+        damage = 5;
     }
 
     // 오브젝트를 받아 생성. (생성한 원본 오브젝트, 생성할 갯수, 생성할 객체의 이름)
@@ -59,7 +63,6 @@ public class TurretBehavior : MonoBehaviour
                 {
                     anim.SetBool(hashAttackStart, true);
 
-                    Debug.Log("Targetting Minion");
                     target = coll.gameObject.transform;
                 }
             }
@@ -118,6 +121,15 @@ public class TurretBehavior : MonoBehaviour
     public void ColliderOff()
     {
         gameObject.GetComponentInChildren<Collider>().enabled = false;
+    }
+
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+        if (hp <= 0)
+        {
+            anim.SetTrigger(TurretBehavior.hastisDead);
+        }
     }
 
     private void OnDrawGizmos()

@@ -4,33 +4,37 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class MinionBehaviour : MonoBehaviour
+public class MinionBehaviour : Entity
 {
+    private IObjectPool<MinionBehaviour> objectPool;
+    public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
+
+    private Animator animator;
+    private List<Transform> enemyMinions = new List<Transform>();
+    public Transform target { get; private set; }
+    private NavMeshAgent agent;
+    private Collider minionCollider;
+    [SerializeField]
+    private Collider attackCollider;
+    private Transform defaultTarget;
+
+    public bool isAttacking { get;  set; }
+    private int enemyLayer;
+    private float detectionRange = 7f;
+    private float attackRange = 1f;
+
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
-
-    private float detectionRange = 7f;
-    private float attackRange = 1f;
-    private Animator animator;
-    private int enemyLayer;
-    
-    private Minion minion;
-    private List<Transform> enemyMinions = new List<Transform>();
-    public Transform target { get; private set; }
-    public bool isAttacking { get;  set; }
-
-
-
     private void Start()
     {
         isAttacking = false;
         animator = GetComponent<Animator>();
-        minion = GetComponent<Minion>();
         if (gameObject.layer == 6)
         {
             enemyLayer = 7;
@@ -40,7 +44,57 @@ public class MinionBehaviour : MonoBehaviour
             enemyLayer = 6;
         }
     }
-        
+
+    public void Init(Transform mainTurretTransform)
+    {
+        defaultTarget = mainTurretTransform;
+    }
+
+    private void OnEnable()
+    {
+        hp = 100;
+        maxHP = hp;
+        agent = GetComponent<NavMeshAgent>();
+        minionCollider = GetComponent<Collider>();
+        minionCollider.enabled = true;
+        attackCollider.enabled = false;
+    }
+    public void Update()
+    {
+        if (target == null)
+        {
+            target = defaultTarget;
+        }
+
+        if (isAttacking)
+        {
+            agent.SetDestination(transform.position);
+        }
+        else
+        {
+            agent.SetDestination(target.position);
+        }
+        transform.LookAt(target);
+    }
+
+    public void Deactivate()
+    {
+        objectPool.Release(this);
+    }
+
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+
+        if (hp <= 0)
+        {
+            minionCollider.enabled = false;
+            attackCollider.enabled = false;
+            Die();
+            target = transform;
+        }
+    }
+
     public void TargetDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
@@ -102,13 +156,22 @@ public class MinionBehaviour : MonoBehaviour
         animator.SetTrigger(hashDie);
         StartCoroutine(Deactivate(2f));
     }
+
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
-        minion.Deactivate();
+        Deactivate();
     }
 
+    public void AttackRangeCollierTurnOn()
+    {
+        attackCollider.enabled = true; 
+    }
 
+    public void AttackRangeCollierTurnOff()
+    {
+        attackCollider.enabled = false;
+    }
 
     private void OnDrawGizmos()
     {
