@@ -2360,7 +2360,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 90
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &1858613415597559842
 CapsuleCollider:
@@ -2402,6 +2402,7 @@ MonoBehaviour:
   HPFilledImage: {fileID: 831203461542757613}
   text: {fileID: 377332123580489916}
   attackCollider: {fileID: 5419877307229718810}
+  hpBar: {fileID: 2614587255745178183}
 --- !u!95 &4019247821660359811
 Animator:
   serializedVersion: 5
@@ -2668,6 +2669,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &2614587255745178183 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1404571186321319253, guid: d7240eccbb7c8054395dc2dade6e4e4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3978626036682854162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6829582175416705931 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7633996647933373593, guid: d7240eccbb7c8054395dc2dade6e4e4d,

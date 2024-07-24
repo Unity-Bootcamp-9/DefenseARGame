@@ -951,6 +951,11 @@ PrefabInstance:
     - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionsPperWave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: waveCreateDelay
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
@@ -1022,12 +1027,62 @@ PrefabInstance:
     - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionsPperWave
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: waveCreateDelay
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952015920300908716, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3547816956966188050, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3946837347367502671, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188498850486107898, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4391467931831672608, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4667342307389038283, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469563533978956748, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427957075820112164, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name
       value: ProtoMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681443154382787377, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
