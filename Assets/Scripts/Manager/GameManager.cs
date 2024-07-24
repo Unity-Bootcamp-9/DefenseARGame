@@ -45,6 +45,15 @@ public class GameManager : MonoBehaviour
         ManaChanged?.Invoke();
     }
 
+    private void RemoveObserverOfMana()
+    {
+        foreach (var skill in skills)
+        {
+            ManaChanged += skill.ChangeColor;
+            skill.ChangeColor();
+        }
+    }
+
     private void IncreaseMana()
     {
         _manaTimer += Time.deltaTime;
@@ -65,6 +74,14 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    private void Reset()
+    {
+        CurrentMana -= value;
+        ManaChanged?.Invoke();
+    }
+
+    #endregion
+
     private void Start()
     {
         objectSpawner = FindObjectOfType<ObjectSpawner>();
@@ -75,8 +92,15 @@ public class GameManager : MonoBehaviour
 
     public void InitGame()
     {
-        if (objectSpawner) objectSpawner.objectPrefabs
-                = new List<GameObject>() { mapPreviewPrefab };
+        RemoveObserverOfMana();
+    }
+
+    private void Update()
+    {
+        if (isPlaying)
+        {
+            IncreaseMana(); 
+        }
     }
 
     public void StartGame()
