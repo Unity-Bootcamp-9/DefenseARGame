@@ -85,7 +85,8 @@ public class TurretBehavior : MonoBehaviour
         StartCoroutine(AttackCo());
     }
 
-    public bool AttackCondition()
+    public bool AttackCondition
+        ()
     {
         if(target == null)
         {
