@@ -10,6 +10,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : Entity
 {
+    public Text text;
+
     private IObjectPool<MinionBehaviour> objectPool;
     public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
 
@@ -26,6 +28,7 @@ public class MinionBehaviour : Entity
     private int enemyLayer;
     private float detectionRange = 7f;
     private float attackRange = 1f;
+
 
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
@@ -48,6 +51,7 @@ public class MinionBehaviour : Entity
     public void Init(Transform mainTurretTransform)
     {
         defaultTarget = mainTurretTransform;
+        target = defaultTarget;
     }
 
     private void OnEnable()
@@ -76,6 +80,7 @@ public class MinionBehaviour : Entity
             agent.SetDestination(target.position);
         }
         transform.LookAt(target);
+        text.text = $"{target.name} : {gameObject.layer}";
     }
 
     public void Deactivate()
@@ -86,7 +91,6 @@ public class MinionBehaviour : Entity
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
-        Debug.Log(hp);
         if (hp <= 0)
         {
             minionCollider.enabled = false;
