@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1337658837572553012}
   - component: {fileID: 9199842697595339080}
   - component: {fileID: 5891547765027510848}
+  - component: {fileID: 5044843423264751675}
   m_Layer: 7
   m_Name: SM_capitol_moba_Blue
   m_TagString: Turret
@@ -138,6 +139,7 @@ MonoBehaviour:
   AttackTr: {fileID: 5410497451906596907}
   projectilePrefab: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
     type: 3}
+  hpBar: {fileID: 6097869018856165105}
 --- !u!208 &9199842697595339080
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 7, y: 8.5, z: 7}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 3.2, z: 0}
   m_TimeToStationary: 0.5
@@ -176,6 +178,33 @@ MonoBehaviour:
   minionsPperWave: 5
   enemyMainTurret: {fileID: 0}
   hpBar: {fileID: 590791615020344003}
+--- !u!54 &5044843423264751675
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596947200077733237}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3243159792822614983
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,6 +387,12 @@ MonoBehaviour:
 --- !u!224 &3319317976623155005 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7633996647933373593, guid: d7240eccbb7c8054395dc2dade6e4e4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179686706515176356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &6097869018856165105 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1404571186321319253, guid: d7240eccbb7c8054395dc2dade6e4e4d,
     type: 3}
   m_PrefabInstance: {fileID: 5179686706515176356}
   m_PrefabAsset: {fileID: 0}

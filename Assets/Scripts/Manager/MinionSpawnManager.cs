@@ -1,3 +1,4 @@
+using CsvHelper.Configuration.Attributes;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -19,6 +20,8 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
 
+    private int count = 0;
+
     private IObjectPool<MinionBehaviour> objectPool;
 
     private void Awake()
@@ -32,11 +35,14 @@ public class MinionSpawnManager : MonoBehaviour
     {
         MinionBehaviour minionInstance = Instantiate(minionPrefab);
         minionInstance.ObjectPool = objectPool;
+        minionInstance.name = count.ToString();
+        count++;
         return minionInstance;
     }
 
     private void OnReturnedToPool(MinionBehaviour minion)
     {
+        minion.transform.position = spawnPoint.position;
         minion.gameObject.SetActive(false);
     }
 

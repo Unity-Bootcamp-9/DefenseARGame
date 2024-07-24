@@ -23,11 +23,12 @@ public class MinionBehaviour : Entity
     [SerializeField]
     private Collider attackCollider;
     private Transform defaultTarget;
-
+    [SerializeField]
+    private Canvas hpBar;
     public bool isAttacking { get;  set; }
     private int enemyLayer;
     private float detectionRange = 7f;
-    private float attackRange = 1f;
+    private float attackRange = 1.5f;
 
 
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
@@ -51,7 +52,7 @@ public class MinionBehaviour : Entity
     public void Init(Transform mainTurretTransform)
     {
         defaultTarget = mainTurretTransform;
-        target = defaultTarget;
+        DefaultTargetSet();
     }
 
     private void OnEnable()
@@ -68,7 +69,7 @@ public class MinionBehaviour : Entity
     {
         if (target == null)
         {
-            target = defaultTarget;
+            DefaultTargetSet();
         }
 
         if (isAttacking)
@@ -83,9 +84,11 @@ public class MinionBehaviour : Entity
         text.text = $"{target.name} : {gameObject.layer}";
     }
 
-    public void Deactivate()
+
+
+    public void DefaultTargetSet()
     {
-        objectPool.Release(this);
+        target = defaultTarget;
     }
 
     public override void GetHit(int _damage)
@@ -93,6 +96,7 @@ public class MinionBehaviour : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            hpBar.enabled = false;
             minionCollider.enabled = false;
             attackCollider.enabled = false;
             Die();
@@ -113,6 +117,7 @@ public class MinionBehaviour : Entity
         else
         {
             animator.SetBool(hashInPursuit, false);
+            DefaultTargetSet();
         }
     }
 
@@ -154,6 +159,7 @@ public class MinionBehaviour : Entity
         {
             animator.SetTrigger(hashAttack);
         }
+
     }
 
     public void Die()
@@ -165,7 +171,7 @@ public class MinionBehaviour : Entity
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Deactivate();
+        objectPool.Release(this);
     }
 
     public void AttackRangeCollierTurnOn()

@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4243730351782104217}
   - component: {fileID: 6570013964218216025}
   - component: {fileID: 8859492150840193415}
+  - component: {fileID: 7180248011861557466}
   m_Layer: 6
   m_Name: SM_capitol_moba_Red
   m_TagString: Turret
@@ -168,6 +169,7 @@ MonoBehaviour:
   AttackTr: {fileID: 8991183992461038697}
   projectilePrefab: {fileID: 4338922768990403094, guid: a684b2828ce45014b8ddcfa1aaef6a6b,
     type: 3}
+  hpBar: {fileID: 2053190134197027667}
 --- !u!208 &6570013964218216025
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -180,7 +182,7 @@ NavMeshObstacle:
   m_Shape: 0
   m_Extents: {x: 7, y: 8.5, z: 7}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 3.2, z: 0}
   m_TimeToStationary: 0.5
@@ -206,6 +208,33 @@ MonoBehaviour:
   minionsPperWave: 5
   enemyMainTurret: {fileID: 0}
   hpBar: {fileID: 0}
+--- !u!54 &7180248011861557466
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7161237787725484302}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1080986511002363398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -324,6 +353,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7240eccbb7c8054395dc2dade6e4e4d, type: 3}
+--- !u!223 &2053190134197027667 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 1404571186321319253, guid: d7240eccbb7c8054395dc2dade6e4e4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1080986511002363398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3728844053983669753 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4377477294513376255, guid: d7240eccbb7c8054395dc2dade6e4e4d,

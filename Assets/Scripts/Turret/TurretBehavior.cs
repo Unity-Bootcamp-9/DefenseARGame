@@ -21,11 +21,14 @@ public class TurretBehavior : Entity
     public Transform AttackTr;
     public GameObject projectilePrefab;
     private GameObject projectileClone;
-
+    private Collider turretCollier;
+    [SerializeField]
+    private Canvas hpBar;
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        turretCollier = GetComponent<Collider>();
         isAttack = false;
         defaultTarget = null;
 
@@ -120,7 +123,7 @@ public class TurretBehavior : Entity
 
     public void ColliderOff()
     {
-        gameObject.GetComponentInChildren<Collider>().enabled = false;
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     public override void GetHit(int _damage)
@@ -128,6 +131,8 @@ public class TurretBehavior : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            hpBar.enabled = false;  
+            turretCollier.enabled = false;
             anim.SetTrigger(TurretBehavior.hastisDead);
         }
     }
