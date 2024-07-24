@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionsPperWave
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
         type: 3}
@@ -1027,7 +1027,7 @@ PrefabInstance:
     - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionsPperWave
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
         type: 3}
