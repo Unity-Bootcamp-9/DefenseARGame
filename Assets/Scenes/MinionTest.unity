@@ -135,6 +135,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &206632214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1739856290725164951, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &237852452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2512387470890420967, guid: 48cb3fb68c91eb94999fd99957eb0cae,
@@ -349,6 +355,12 @@ MonoBehaviour:
     m_ManualQueueValue: 0
     m_ManualQueueTargetFrame: 0
   m_BlockSpawnWhenInteractorHasSelection: 1
+--- !u!4 &677251136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1598179143334234803, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &702413256
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +570,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1219354643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1081250007817401641, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1323550131
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +714,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1877047594 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2802658010312083713, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2001374502 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6402244310720262706, guid: 48cb3fb68c91eb94999fd99957eb0cae,
@@ -908,12 +932,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 754274934282226142, guid: 50e928514e52d394296229555c53704d,
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 677251136}
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: 1890066896073877029, guid: 3a77a5ef394681545a0f6cda770dfc66,
+      objectReference: {fileID: 363000689054144057, guid: e3fe801e90966df429f96a61f32bf995,
         type: 3}
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: enemyMainTurret
+      value: 
+      objectReference: {fileID: 206632214}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -964,12 +998,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3483449005411246560, guid: 50e928514e52d394296229555c53704d,
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1877047594}
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: 363000689054144057, guid: e3fe801e90966df429f96a61f32bf995,
+      objectReference: {fileID: 1890066896073877029, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: enemyMainTurret
+      value: 
+      objectReference: {fileID: 1219354643}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name
