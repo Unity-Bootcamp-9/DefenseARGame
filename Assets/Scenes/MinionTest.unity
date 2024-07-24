@@ -948,6 +948,11 @@ PrefabInstance:
       propertyPath: enemyMainTurret
       value: 
       objectReference: {fileID: 206632214}
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionsPperWave
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1014,6 +1019,11 @@ PrefabInstance:
       propertyPath: enemyMainTurret
       value: 
       objectReference: {fileID: 1219354643}
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionsPperWave
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name

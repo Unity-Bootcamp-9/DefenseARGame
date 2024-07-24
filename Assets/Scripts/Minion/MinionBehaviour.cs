@@ -58,6 +58,7 @@ public class MinionBehaviour : Entity
         minionCollider = GetComponent<Collider>();
         minionCollider.enabled = true;
         attackCollider.enabled = false;
+        HPFilledImage.fillAmount = (float)hp / (float)maxHP;
     }
     public void Update()
     {
@@ -85,7 +86,7 @@ public class MinionBehaviour : Entity
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
-
+        Debug.Log(hp);
         if (hp <= 0)
         {
             minionCollider.enabled = false;

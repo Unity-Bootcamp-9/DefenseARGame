@@ -14,6 +14,11 @@ public class Entity : MonoBehaviour
     {
         HPFilledImage.fillAmount = 1;
     }
+    private void OnEnable()
+    {
+
+    }
+
 
     public virtual void GetHit(int _damage)
     {
