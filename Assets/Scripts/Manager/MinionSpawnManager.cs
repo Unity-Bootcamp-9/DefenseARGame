@@ -17,6 +17,7 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private float minionCreateDelay = 1f;
     [SerializeField] private int minionsPperWave = 5;
     [SerializeField] private Transform enemyMainTurret;
+    [SerializeField] private HPBar hpBar;
 
     private IObjectPool<MinionBehaviour> objectPool;
 
@@ -30,7 +31,9 @@ public class MinionSpawnManager : MonoBehaviour
     private MinionBehaviour CreateMinion()
     {
         MinionBehaviour minionInstance = Instantiate(minionPrefab);
-        minionInstance.ObjectPool = objectPool; 
+        minionInstance.ObjectPool = objectPool;
+        minionInstance.Init(enemyMainTurret);
+        //hpBar.Init(gameObject.layer, tag);
         return minionInstance;
     }
 
@@ -43,6 +46,7 @@ public class MinionSpawnManager : MonoBehaviour
     {
         minion.gameObject.SetActive(true);
         minion.Init(enemyMainTurret);
+        //hpBar.Init(gameObject.layer, tag);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
