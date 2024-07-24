@@ -30,7 +30,7 @@ public class Minion : Entity
         agent = GetComponent<NavMeshAgent>();
         minionBehaviour = GetComponent<MinionBehaviour>();
         collider = GetComponent<Collider>();
-
+        collider.enabled = true;
     }
 
 
