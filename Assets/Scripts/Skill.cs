@@ -1,3 +1,5 @@
+using System;
+using DTT.AreaOfEffectRegions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,6 +7,13 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [Header("스킬 정보")]
+    public string skillName = "메테오";
+    [Range(1, 10)] public int requireMana = 4;
+    [Range(1, 100)] public int damage = 50;
+    [Range(0.1f, 15f)] public float radius = 15;
+    private bool _isAiming;
+
     [Header("테두리 UI")]
     public Color activeColor = Color.white;
     private Color _readyColor = Color.clear;
@@ -19,6 +28,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     private GameObject _draggingObject;
     public Vector3 offset;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    private SRPCircleRegionProjector _circleRegion;
 
     private void Start()
     {
@@ -30,10 +40,24 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         _draggingObject = Instantiate(objectToSpawn);
         _draggingObject.SetActive(false);
+
+        _circleRegion = _draggingObject.GetComponent<SRPCircleRegionProjector>();
+        _circleRegion.Radius = radius;
+    }
+
+    /// <summary>
+    /// 아이콘을 현재 마나에 따라 흑백으로 전환
+    /// </summary>
+    public void ChangeColor()
+    {
+        _iconImage.material.SetFloat("_Grayscale",
+            GameManager.CurrentMana >= requireMana ? 0 : 1);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (GameManager.CurrentMana < requireMana) return;
+
         _edgeImage.color = activeColor;
 
         if (!objectToSpawn)
@@ -42,12 +66,12 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
             return;
         }
 
-        SetDraggedPosition(eventData);
+        _isAiming = true;
     }
 
     public void OnDrag(PointerEventData data)
     {
-        if (_draggingObject != null)
+        if (_draggingObject != null && _isAiming)
             SetDraggedPosition(data);
     }
 
@@ -57,12 +81,12 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (isHit)
         {
-            _draggingObject.transform.position = hit.point + offset;
-            _draggingObject.transform.rotation = hit.transform.rotation; 
+            _draggingObject.SetActive(true);
+            _draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
         }
 
-        // TBD-73에서 수정 예정
-        _draggingObject.SetActive(isHit);
+        _circleRegion.FillProgress = Convert.ToInt32(isHit);
+        _circleRegion.GenerateProjector();
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -71,5 +95,16 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (_draggingObject != null)
             _draggingObject.SetActive(false);
+
+        if (_circleRegion.FillProgress == 0)
+        {
+            Debug.Log("스킬 취소");
+        }
+        else
+        {
+            Debug.Log("스킬 발동");
+        }
+
+        _isAiming = false;
     }
 }
