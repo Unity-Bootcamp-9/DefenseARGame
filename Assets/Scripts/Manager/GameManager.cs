@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            ManaChanged += skill.ChangeColor;
+            ManaChanged -= skill.ChangeColor;
             skill.ChangeColor();
         }
     }
