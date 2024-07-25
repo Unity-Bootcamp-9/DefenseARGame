@@ -12,12 +12,12 @@ public class Managers : MonoBehaviour
     //private static DataManager dataManager = new();//
     private static UIManager uiManager = new();
     private static ResourceManager resourceManager = new();
-    private static GameManager gameManager = new();
+    private static GameManagerEx gameManager = new();
 
     //public static DataManager Data { get { Init(); return dataManager; } }
     public static UIManager UI { get { Init(); return uiManager; } }
     public static ResourceManager Resource { get { Init(); return resourceManager; } }
-    public static GameManager Game { get { Init(); return gameManager; } }
+    public static GameManagerEx Game { get { Init(); return gameManager; } }
 
     void Start()
     {

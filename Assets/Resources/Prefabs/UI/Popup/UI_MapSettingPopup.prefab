@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 1521265842830316715}
   - component: {fileID: 8385145654796309658}
   - component: {fileID: 117085848281208609}
+  - component: {fileID: 2500081022702100568}
   m_Layer: 5
   m_Name: UI_MapSettingPopup
   m_TagString: Untagged
@@ -238,6 +239,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2500081022702100568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6307825214652740781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c99efb7d62dfafe4ab50bd116d95f853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6400771700118129470
 GameObject:
   m_ObjectHideFlags: 0
