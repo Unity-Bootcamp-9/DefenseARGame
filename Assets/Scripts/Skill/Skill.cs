@@ -7,36 +7,43 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private GameManager gm;
+
+    [Header("UI")]
+    public Sprite iconSprite;
+    public Color activeColor = Color.white;
+    private Color _inactiveColor = Color.clear;
+    private Image _baseImage;
+    private Image _iconImage;
+
+    [Header("프로젝터")]
+    public GameObject objectToSpawn;
+    protected GameObject draggingObject;
+    public Vector3 offset;
+    public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    private SRPCircleRegionProjector _circleRegion;
+
     [Header("스킬 정보")]
     public string skillName = "메테오";
     [Range(1, 10)] public int requireMana = 4;
     [Range(1, 100)] public int damage = 50;
     [Range(0.1f, 15f)] public float radius = 9f;
-    [Range(1f, 5f)] public float duration = 5f;
+    [Range(1f, 5f), Tooltip("스킬이 피해를 가하는 지속 시간")]
+    public float duration = 4f;
     private bool _isAiming;
     private bool _isRayHit;
 
-    [Header("테두리 UI")]
-    public Color activeColor = Color.white;
-    private Color _readyColor = Color.clear;
-    private Image _edgeImage;
+    public void Init(GameManager gm)
+    {
+        this.gm = gm;
 
-    [Header("아이콘")]
-    public Sprite iconSprite;
-    private Image _iconImage;
-
-    [Header("오브젝트")]
-    public GameObject objectToSpawn;
-    public GameObject effectToSpawn;
-    private GameObject _draggingObject;
-    public Vector3 offset;
-    public LayerMask groundLayer = 1 << 8; // Ground 레이어
-    private SRPCircleRegionProjector _circleRegion;
+        gm.ManaChanged += ChangeColor;
+    }
 
     private void Awake()
     {
-        _edgeImage = GetComponent<Image>();
-        _edgeImage.color = _readyColor;
+        _baseImage = GetComponent<Image>();
+        _baseImage.color = _inactiveColor;
 
         _iconImage = transform.GetChild(0).GetComponent<Image>();
         if (_iconImage && iconSprite)
@@ -45,11 +52,16 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
             _iconImage.sprite = iconSprite;
         }
 
-        _draggingObject = Instantiate(objectToSpawn);
-        _draggingObject.SetActive(false);
+        draggingObject = Instantiate(objectToSpawn);
+        draggingObject.SetActive(false);
 
-        _circleRegion = _draggingObject.GetComponent<SRPCircleRegionProjector>();
+        _circleRegion = draggingObject.GetComponent<SRPCircleRegionProjector>();
         _circleRegion.Radius = radius;
+    }
+
+    private void OnDestroy()
+    {
+        gm.ManaChanged -= ChangeColor;
     }
 
     /// <summary>
@@ -58,14 +70,14 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public void ChangeColor()
     {
         _iconImage.material.SetFloat("_Grayscale",
-            GameManager.CurrentMana >= requireMana ? 0 : 1);
+            gm.CurrentMana >= requireMana ? 0 : 1);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (GameManager.CurrentMana < requireMana) return;
+        if (gm.CurrentMana < requireMana) return;
 
-        _edgeImage.color = activeColor;
+        _baseImage.color = activeColor;
 
         if (!objectToSpawn)
         {
@@ -78,7 +90,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     public void OnDrag(PointerEventData data)
     {
-        if (_draggingObject != null && _isAiming)
+        if (draggingObject != null && _isAiming)
             SetDraggedPosition(data);
     }
 
@@ -88,8 +100,8 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (_isRayHit)
         {
-            _draggingObject.SetActive(true);
-            _draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
+            draggingObject.SetActive(true);
+            draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
         }
 
         _circleRegion.FillProgress = Convert.ToInt32(_isRayHit);
@@ -100,13 +112,14 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (!_isAiming) return;
 
-        _edgeImage.color = _readyColor;
+        _baseImage.color = _inactiveColor;
 
-        if (_draggingObject != null) _draggingObject.SetActive(false);
+        if (draggingObject != null) draggingObject.SetActive(false);
 
         if (_isRayHit)
         {
-            SpawnEffect();
+            Activate();
+            gm.DecreaseMana(requireMana);
         }
         else
         {
@@ -116,15 +129,8 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         _isAiming = false;
     }
 
-    public void SpawnEffect()
+    protected virtual void Activate()
     {
-        ParticleSystem effect = Instantiate
-            (
-                effectToSpawn,
-                _draggingObject.transform.position - offset,
-                _draggingObject.transform.rotation
-            ).GetComponent<ParticleSystem>();
-
-        Destroy(effect.gameObject, effect ? effect.main.duration : duration);
+        Debug.Log("스킬 발동");
     }
 }

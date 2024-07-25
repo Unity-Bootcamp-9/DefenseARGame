@@ -20,13 +20,12 @@ public class GameManager : MonoBehaviour
     #region 스킬
 
     public const int MaxMana = 10;
-    public static int CurrentMana { get; private set; }
+    public int CurrentMana { get; private set; }
 
     private readonly float _manaRegenInterval = 2.0f;
     private float _manaTimer;
 
-    [Tooltip("스킬 아이콘")]
-    public Skill[] skills = new Skill[4];
+    private Skill[] skills;
 
     public event Action ManaChanged;
 
@@ -34,23 +33,16 @@ public class GameManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            ManaChanged += skill.ChangeColor;
-            skill.ChangeColor();
+            if (!skill) return;
+            skill.Init(this);
         }
 
         ManaChanged += () =>
         {
             Debug.Log($"Current Mana : {CurrentMana}/{MaxMana}");
         };
-    }
 
-    private void RemoveObserverOfMana()
-    {
-        foreach (var skill in skills)
-        {
-            ManaChanged -= skill.ChangeColor;
-            skill.ChangeColor();
-        }
+        ManaChanged?.Invoke();
     }
 
     private void IncreaseMana()
@@ -73,31 +65,18 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private void Reset()
+    private void Start()
     {
         objectSpawner = FindObjectOfType<ObjectSpawner>();
         skills = FindObjectsOfType<Skill>();
-    }
-
-    private void Start()
-    {
-        if (objectSpawner) objectSpawner.objectPrefabs
-                = new List<GameObject>() { mapPreviewPrefab };
 
         AddObserverOfMana();
     }
 
-    private void OnDisable()
+    public void InitGame()
     {
-        RemoveObserverOfMana();
-    }
-
-    private void Update()
-    {
-        if (isPlaying)
-        {
-            IncreaseMana(); 
-        }
+        if (objectSpawner) objectSpawner.objectPrefabs
+                = new List<GameObject>() { mapPreviewPrefab };
     }
 
     public void StartGame()
@@ -114,6 +93,14 @@ public class GameManager : MonoBehaviour
             Destroy(objectSpawner);
 
             isPlaying = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlaying)
+        {
+            IncreaseMana();
         }
     }
 }
