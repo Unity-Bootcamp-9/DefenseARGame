@@ -60,27 +60,26 @@ public class UI_LevelPopup : UI_Popup
     {
         Debug.Log("OnClickHardButton");
         // 아직 해금 안됨
-        //Managers.UI.ShowPopupUI<UI_BattlePopup>();
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
     }
 
     void OnClickMiddleButton()
     {
         Debug.Log("OnClickMiddleButton");
         // 아직 해금 안됨
-        //Managers.UI.ShowPopupUI<UI_BattlePopup>();
-
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
     }
 
     void OnClickLowButton()
     {
         Debug.Log("OnClickLowButton");
-        //Managers.UI.ShowPopupUI<UI_BattlePopup>();
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
     }
 
     public float MovingSpeed = 500.0f;
     public Vector3 upPos = new Vector3(0, 0, 0);
     public Vector3 downPos = new Vector3(0, -1000, 0);
-    public Transform selectSection;
+    public RectTransform selectSection;
 
     void GoUp()
     {
