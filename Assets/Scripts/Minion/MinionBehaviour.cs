@@ -5,8 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
-using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : Entity
 {
@@ -17,29 +15,36 @@ public class MinionBehaviour : Entity
 
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Collider attackCollider;
+    [SerializeField] private Transform defaultTarget;
+    [SerializeField] private GameSystemSubject subject;
+
     private List<Transform> enemyMinions = new List<Transform>();
+    public Transform target { get; private set; }
     private Collider minionCollider;
     private Animator animator;
-    public Transform target { get; private set; }
-    [SerializeField] private Transform defaultTarget;
     private NavMeshAgent agent;
+
     public bool isAttack { get;  set; }
     private float detectionRange = 10f;
     private float attackRange = 1.5f;
+    private bool isPlaying = true;
 
     private IObjectPool<MinionBehaviour> objectPool;
     public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
     
-    private void Start()
+    private void Awake()
     {
         isAttack = false;
         animator = GetComponent<Animator>();
         enemyLayerSet();
+        subject.RedWin += StopMinion;
+        subject.BlueWin += StopMinion;
+
     }
 
-    public void Init(Transform mainTurretTransform)
+    public void Init(Transform _mainTurretTransform)
     {
-        defaultTarget = mainTurretTransform;
+        defaultTarget = _mainTurretTransform;
         DefaultTargetSet();
     }
 
@@ -55,22 +60,30 @@ public class MinionBehaviour : Entity
     }
     public void Update()
     {
-        if (target == null)
+        if (isPlaying)
         {
-            DefaultTargetSet();
-        }
+            if (target == null)
+            {
+                DefaultTargetSet();
+            }
 
-        if (isAttack)
-        {
-            agent.SetDestination(transform.position);
+            if (isAttack)
+            {
+                agent.SetDestination(transform.position);
+            }
+            else
+            {
+                agent.SetDestination(target.position);
+            }
+            transform.LookAt(target);
         }
-        else
-        {
-            agent.SetDestination(target.position);
-        }
-        transform.LookAt(target);
     }
 
+
+    public void StopMinion()
+    {
+        isPlaying = false;
+    }
     public void DefaultTargetSet()
     {
         target = defaultTarget;

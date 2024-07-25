@@ -171,7 +171,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -210,6 +210,8 @@ MonoBehaviour:
   projectile: {fileID: 3856546453168079209}
   hpBar: {fileID: 2053190134197027667}
   spawnPoint: {fileID: 8991183992461038697}
+  isMainTurret: 0
+  subject: {fileID: 8179216811402202969, guid: 2ae54fd3ab5678540b8fd2462e3b207d, type: 3}
   moveSpeed: 7
 --- !u!114 &8859492150840193415
 MonoBehaviour:
@@ -234,7 +236,7 @@ MonoBehaviour:
   minionsPperWave: 5
   enemyMainTurret: {fileID: 0}
   hpBar: {fileID: 4671208952602537825}
-  objectPoolTransform: {fileID: 0}
+  subject: {fileID: 8179216811402202969, guid: 2ae54fd3ab5678540b8fd2462e3b207d, type: 3}
 --- !u!1001 &699122088730344319
 PrefabInstance:
   m_ObjectHideFlags: 0

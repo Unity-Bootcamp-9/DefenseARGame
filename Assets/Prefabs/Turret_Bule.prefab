@@ -192,7 +192,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -231,6 +231,8 @@ MonoBehaviour:
   projectile: {fileID: 9215655365973496469}
   hpBar: {fileID: 3373601315004636391}
   spawnPoint: {fileID: 7261126895764897963}
+  isMainTurret: 0
+  subject: {fileID: 8179216811402202969, guid: 2ae54fd3ab5678540b8fd2462e3b207d, type: 3}
   moveSpeed: 5
 --- !u!1001 &4444906085073697202
 PrefabInstance:

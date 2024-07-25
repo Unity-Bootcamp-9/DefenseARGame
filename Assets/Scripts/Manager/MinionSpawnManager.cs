@@ -19,8 +19,10 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private int minionsPperWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
+    [SerializeField] private GameSystemSubject subject;
 
     private int count = 0;
+    private bool isPlaying = true;
 
     private IObjectPool<MinionBehaviour> objectPool;
 
@@ -29,6 +31,8 @@ public class MinionSpawnManager : MonoBehaviour
         objectPool = new ObjectPool<MinionBehaviour>(CreateMinion, OnTakeFromPool,
                             OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
                             defaultCapacity,maxPoolSize);
+        subject.RedWin += StopSpawn;
+        subject.BlueWin += StopSpawn;
     }
 
     private MinionBehaviour CreateMinion()
@@ -38,6 +42,11 @@ public class MinionSpawnManager : MonoBehaviour
         minionInstance.name = count.ToString();
         count++;
         return minionInstance;
+    }
+
+    public void StopSpawn()
+    {
+        StopCoroutine(WaveSpawnRoutine(waveCreateDelay));
     }
 
     private void OnReturnedToPool(MinionBehaviour minion)
@@ -82,6 +91,11 @@ public class MinionSpawnManager : MonoBehaviour
         }
     }
 
+
+    public void GameEnd()
+    {
+        isPlaying = false;
+    }
 
 
 

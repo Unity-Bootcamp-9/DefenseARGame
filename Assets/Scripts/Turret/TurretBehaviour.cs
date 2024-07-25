@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
 
 public class TurretBehaviour : Entity
 {
-
     public static readonly int hashAttackStart = Animator.StringToHash("AttackStart");
     public static readonly int hastisDead = Animator.StringToHash("IsDead");
 
@@ -13,6 +13,8 @@ public class TurretBehaviour : Entity
     [SerializeField] private GameObject projectile;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private bool isMainTurret;
+    [SerializeField] private GameSystemSubject subject;
     public Transform target { get; private set; }
     private Animator animator;
     private Collider turretCollier;
@@ -21,6 +23,7 @@ public class TurretBehaviour : Entity
     private float detectionRange = 10f;
     public float moveSpeed = 7.0f;
     private bool isAttack = false;
+    private bool isPlaying = true;
 
 
 
@@ -32,11 +35,18 @@ public class TurretBehaviour : Entity
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
+        subject.RedWin += StopTurret;
+        subject.BlueWin += StopTurret;
+    }
+
+    private void StopTurret()
+    {
+        isPlaying = false;
     }
 
     private void FixedUpdate()
     {
-        if (isAttack)
+        if (isAttack && isPlaying)
         {
             Vector3 moveDir = target.transform.position - projectile.transform.position;
             projectileRigid.MovePosition(projectile.transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
@@ -52,18 +62,21 @@ public class TurretBehaviour : Entity
 
     public void TargetDetection()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
+        if(isPlaying)
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
-        if (colliders.Length >= 1)
-        {
-            animator.SetBool(hashAttackStart , true);
-            isAttack = true;
-            target = TargetSelection(colliders, transform);
-        }
-        else
-        {
-            isAttack = false;
-            animator.SetBool(hashAttackStart, false);
+            if (colliders.Length >= 1)
+            {
+                animator.SetBool(hashAttackStart , true);
+                isAttack = true;
+                target = TargetSelection(colliders, transform);
+            }
+            else
+            {
+                isAttack = false;
+                animator.SetBool(hashAttackStart, false);
+            }
         }
     }
 
@@ -107,6 +120,7 @@ public class TurretBehaviour : Entity
         }
     }
 
+
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
@@ -115,6 +129,14 @@ public class TurretBehaviour : Entity
             hpBar.enabled = false;
             turretCollier.enabled = false;
             animator.SetTrigger(hastisDead);
+            if (isMainTurret && gameObject.layer == redLayer)
+            {
+                subject.Victory();
+            }
+            else if (isMainTurret && gameObject.layer == blueLayer)
+            {
+                subject.Defead();
+            }
         }
     }
     private void OnDrawGizmos()
