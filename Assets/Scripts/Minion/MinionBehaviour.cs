@@ -10,44 +10,32 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class MinionBehaviour : Entity
 {
-    public Text text;
-
-    private IObjectPool<MinionBehaviour> objectPool;
-    public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
-
-    private Animator animator;
-    private List<Transform> enemyMinions = new List<Transform>();
-    public Transform target { get; private set; }
-    private NavMeshAgent agent;
-    private Collider minionCollider;
-    [SerializeField]
-    private Collider attackCollider;
-    private Transform defaultTarget;
-    [SerializeField]
-    private Canvas hpBar;
-    public bool isAttacking { get;  set; }
-    private int enemyLayer;
-    private float detectionRange = 7f;
-    private float attackRange = 1.5f;
-
-
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
+
+    public Text text;
+    [SerializeField] private Canvas hpBar;
+    [SerializeField] private Collider attackCollider;
+    private List<Transform> enemyMinions = new List<Transform>();
+    private Collider minionCollider;
+    private Animator animator;
+    public Transform target { get; private set; }
+    [SerializeField] private Transform defaultTarget;
+    private NavMeshAgent agent;
+    public bool isAttack { get;  set; }
+    private float detectionRange = 10f;
+    private float attackRange = 1.5f;
+
+    private IObjectPool<MinionBehaviour> objectPool;
+    public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
     
     private void Start()
     {
-        isAttacking = false;
+        isAttack = false;
         animator = GetComponent<Animator>();
-        if (gameObject.layer == 6)
-        {
-            enemyLayer = 7;
-        }
-        else if(gameObject.layer == 7)
-        {
-            enemyLayer = 6;
-        }
+        enemyLayerSet();
     }
 
     public void Init(Transform mainTurretTransform)
@@ -73,7 +61,7 @@ public class MinionBehaviour : Entity
             DefaultTargetSet();
         }
 
-        if (isAttacking)
+        if (isAttack)
         {
             agent.SetDestination(transform.position);
         }
@@ -82,27 +70,11 @@ public class MinionBehaviour : Entity
             agent.SetDestination(target.position);
         }
         transform.LookAt(target);
-        text.text = $"{target.name} : {gameObject.layer}";
     }
-
-
 
     public void DefaultTargetSet()
     {
         target = defaultTarget;
-    }
-
-    public override void GetHit(int _damage)
-    {
-        base.GetHit(_damage);
-        if (hp <= 0)
-        {
-            hpBar.enabled = false;
-            minionCollider.enabled = false;
-            attackCollider.enabled = false;
-            Die();
-            target = transform;
-        }
     }
 
     public void TargetDetection()
@@ -162,7 +134,19 @@ public class MinionBehaviour : Entity
         }
 
     }
-
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+        Debug.Log("미니언 피격");
+        if (hp <= 0)
+        {
+            hpBar.enabled = false;
+            minionCollider.enabled = false;
+            attackCollider.enabled = false;
+            Die();
+            target = transform;
+        }
+    }
     public void Die()
     {
         animator.SetTrigger(hashDie);
