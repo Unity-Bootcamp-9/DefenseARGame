@@ -48,12 +48,12 @@ public class GameManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            ManaChanged += skill.ChangeColor;
+            ManaChanged -= skill.ChangeColor;
             skill.ChangeColor();
         }
     }
 
-    private void AddMana()
+    private void IncreaseMana()
     {
         _manaTimer += Time.deltaTime;
 
@@ -63,6 +63,12 @@ public class GameManager : MonoBehaviour
             CurrentMana++;
             ManaChanged?.Invoke();
         }
+    }
+
+    public void DecreaseMana(int value)
+    {
+        CurrentMana -= value;
+        ManaChanged?.Invoke();
     }
 
     #endregion
@@ -90,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPlaying)
         {
-            AddMana(); 
+            IncreaseMana(); 
         }
     }
 
