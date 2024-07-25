@@ -19,6 +19,8 @@ public class TurretBehavior : Entity
 
     public Transform AttackTr;
     public GameObject projectilePrefab;
+    private GameObject projectileClone;
+
     private Collider turretCollier;
     [SerializeField]
     private Canvas hpBar;
@@ -33,11 +35,15 @@ public class TurretBehavior : Entity
         hp = 100;
         maxHP = hp;
         damage = 5;
+        SetProjectileObject(5, "projectile");
     }
-
+    public void SetProjectileObject(int _Count, string _Name)
+    {
+        projectileClone = Instantiate(projectilePrefab, AttackTr, false);
+    }
     public void DetectMinion()
     {
-        Collider?[] colls = Physics.OverlapSphere(gameObject.transform.position, detectionRange, 1 << layerMask);
+        Collider?[] colls = Physics.OverlapSphere(gameObject.transform.position, detectionRange, layerMask);
 
         if (colls.Length == 0)
         {
@@ -56,6 +62,7 @@ public class TurretBehavior : Entity
                     anim.SetBool(hashAttackStart, true);
 
                     target = coll.gameObject.transform;
+                    Debug.Log($"Update : {target.name}");
                 }
             }
         }
@@ -70,7 +77,7 @@ public class TurretBehavior : Entity
     {
         while(AttackCondition())
         {
-            projectilePrefab.SetActive(true);
+            projectileClone.SetActive(true);
             yield return new WaitForSeconds(2f);
         }
     }

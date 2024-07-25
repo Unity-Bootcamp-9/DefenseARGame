@@ -7,8 +7,6 @@ public class TurretDeadState : StateMachineBehaviour
 {
     TurretBehavior turretBehavior;
 
-
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         turretBehavior = animator.GetComponent<TurretBehavior>();
