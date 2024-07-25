@@ -223,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aff9c8fdd7220246a68ec1f7ff07dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionPrefab: {fileID: 0}
+  minionPrefab: {fileID: -8923051106224012394, guid: e3fe801e90966df429f96a61f32bf995,
+    type: 3}
   collectionCheck: 0
   defaultCapacity: 10
   maxPoolSize: 50

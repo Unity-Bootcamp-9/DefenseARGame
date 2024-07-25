@@ -19,7 +19,6 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private int minionsPperWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
-    [SerializeField] private Transform objectPoolTransform;
 
     private int count = 0;
 

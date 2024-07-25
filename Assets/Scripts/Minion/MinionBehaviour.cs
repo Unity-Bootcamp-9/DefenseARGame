@@ -137,7 +137,6 @@ public class MinionBehaviour : Entity
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
-        Debug.Log("미니언 피격");
         if (hp <= 0)
         {
             hpBar.enabled = false;
