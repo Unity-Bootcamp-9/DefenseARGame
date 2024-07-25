@@ -1054,8 +1054,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovingSpeed: 4000
-  upPos: {x: 0, y: 0, z: 0}
-  downPos: {x: 0, y: -880, z: 0}
+  upPos: {x: 0, y: 344, z: 0}
+  downPos: {x: 0, y: -700, z: 0}
   selectSection: {fileID: 7540492225909203483}
 --- !u!1 &7006576928419957125
 GameObject:

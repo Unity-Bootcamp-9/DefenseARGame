@@ -528,22 +528,17 @@ PrefabInstance:
     - target: {fileID: 1593738626723462561, guid: 4b9655a1e0b3f2b4f92a5592e90148e9,
         type: 3}
       propertyPath: upPos.y
-      value: 0
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1593738626723462561, guid: 4b9655a1e0b3f2b4f92a5592e90148e9,
         type: 3}
       propertyPath: downPos.y
-      value: -880
+      value: -700
       objectReference: {fileID: 0}
     - target: {fileID: 6296913057285142689, guid: 4b9655a1e0b3f2b4f92a5592e90148e9,
         type: 3}
       propertyPath: m_Name
       value: UI_LevelPopup
-      objectReference: {fileID: 0}
-    - target: {fileID: 6296913057285142689, guid: 4b9655a1e0b3f2b4f92a5592e90148e9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6601513788129469154, guid: 4b9655a1e0b3f2b4f92a5592e90148e9,
         type: 3}
