@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
-public class GameManagerEx : MonoBehaviour
+public class GameManagerEx
 {
     [Tooltip("맵 미리보기 UI 프리팹")]
     public GameObject mapPreviewPrefab;
@@ -67,15 +67,14 @@ public class GameManagerEx : MonoBehaviour
 
     #endregion
 
-    private void Reset()
-    {
-        objectSpawner = FindObjectOfType<ObjectSpawner>();
-        skills = FindObjectsOfType<Skill>();
-    }
 
-    private void Start()
+    private void Awake()
     {
-        
+        if (objectSpawner) objectSpawner.objectPrefabs
+                = new List<GameObject>() { mapPreviewPrefab };
+
+        AddObserverOfMana();
+
     }
 
     private void OnDisable()
@@ -93,22 +92,19 @@ public class GameManagerEx : MonoBehaviour
 
     public void StartGame()
     {
-        if (objectSpawner) objectSpawner.objectPrefabs
-                = new List<GameObject>() { mapPreviewPrefab };
-
-        AddObserverOfMana();
-
-        //
         Transform mapPreview = objectSpawner.transform.GetChild(0);
 
         if (!mapPreview) return;
 
         if (mapPrefab)
         {
+            // TODO : Resource Manager 써야 함
             GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
-            map.transform.localScale = mapPreview.localScale * 1e-2f;
+            map.transform.localScale = mapPreview.localScale;
             map.transform.Rotate(Vector3.up, -45f);
-            Destroy(objectSpawner);
+
+            // TODO : Resource Manager 써야 함.
+            Destroy(objectSpawner.gameObject);
 
             isPlaying = true;
         }
