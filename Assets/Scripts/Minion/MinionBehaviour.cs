@@ -15,7 +15,6 @@ public class MinionBehaviour : Entity
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
 
-    public Text text;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Collider attackCollider;
     private List<Transform> enemyMinions = new List<Transform>();
