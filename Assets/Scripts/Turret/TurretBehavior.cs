@@ -8,22 +8,20 @@ public class TurretBehavior : Entity
     public static readonly int hashAttackStart = Animator.StringToHash("attackStart");
     public static readonly int hastisDead = Animator.StringToHash("isDead");
     
-    public float detectionRange;
+    [SerializeField] private Canvas hpBar;
     private Animator anim;
+    public GameObject projectilePrefab;
+    private GameObject projectileClone;
     public Transform target;
+    public Transform AttackTr;
+    private Collider turretCollier;
 
     public bool isAttack;
     private int enemyMinionLayer;
-    public string enemyLayerName;
     private int layerMask;
+    public float detectionRange;
+    public string enemyLayerName;
 
-    public Transform AttackTr;
-    public GameObject projectilePrefab;
-    private GameObject projectileClone;
-
-    private Collider turretCollier;
-    [SerializeField]
-    private Canvas hpBar;
 
     private void Awake()
     {

@@ -34,7 +34,7 @@ public class MinionSpawnManager : MonoBehaviour
 
     private MinionBehaviour CreateMinion()
     {
-        MinionBehaviour minionInstance = Instantiate(minionPrefab, objectPoolTransform);
+        MinionBehaviour minionInstance = Instantiate(minionPrefab);
         minionInstance.ObjectPool = objectPool;
         minionInstance.name = count.ToString();
         count++;
@@ -62,7 +62,6 @@ public class MinionSpawnManager : MonoBehaviour
     {
         StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
     }
-
 
     IEnumerator WaveSpawnRoutine(float _waveCreateDelay)
     {

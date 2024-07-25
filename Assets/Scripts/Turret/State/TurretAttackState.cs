@@ -3,21 +3,21 @@ using UnityEngine;
 
 public class TurretAttackState : StateMachineBehaviour
 {
-    TurretBehavior turretBehavior;
+    RevisedTurretBehaviour turretBehavior;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior = animator.GetComponent<TurretBehavior>();
-        turretBehavior.isAttack = true;
-        turretBehavior.Attacking();
+        turretBehavior = animator.GetComponent<RevisedTurretBehaviour>();
+        turretBehavior.StartAttack();
     }
-
+    
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        turretBehavior.TargetDetection();
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior.isAttack = false;
+        turretBehavior.StopAttack();
     }
 }
