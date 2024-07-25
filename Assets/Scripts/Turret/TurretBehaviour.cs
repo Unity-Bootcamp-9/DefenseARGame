@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RevisedTurretBehaviour : Entity
+public class TurretBehaviour : Entity
 {
 
     public static readonly int hashAttackStart = Animator.StringToHash("AttackStart");
