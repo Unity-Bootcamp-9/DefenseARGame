@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class TurretAttackState : StateMachineBehaviour
 {
-    RevisedTurretBehaviour turretBehavior;
+    TurretBehaviour turretBehavior;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior = animator.GetComponent<RevisedTurretBehaviour>();
+        turretBehavior = animator.GetComponent<TurretBehaviour>();
         turretBehavior.StartAttack();
     }
     
