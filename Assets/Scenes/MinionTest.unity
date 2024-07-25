@@ -304,6 +304,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3568505613398379889, guid: 4bee4ad5f46db8f49956032434fbb167,
+        type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -475,6 +480,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6570013964218216025, guid: 0564b90cd24e5984b99fcb0952b00ae5,
+        type: 3}
+      propertyPath: m_CarveOnlyStationary
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7161237787725484302, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
       propertyPath: m_Name
@@ -489,7 +499,7 @@ PrefabInstance:
         type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: 1890066896073877029, guid: 3a77a5ef394681545a0f6cda770dfc66,
+      objectReference: {fileID: 1464537011522843755, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
     - target: {fileID: 8859492150840193415, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
@@ -574,6 +584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568505613398379889, guid: d67a4a569d3da2741ac03ad05067ca1d,
+        type: 3}
+      propertyPath: damage
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -715,6 +730,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3568505613398379889, guid: d67a4a569d3da2741ac03ad05067ca1d,
+        type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -784,6 +804,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6570013964218216025, guid: 78c53694dcb0aab4393fcabba614336d,
+        type: 3}
+      propertyPath: m_CarveOnlyStationary
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7161237787725484302, guid: 78c53694dcb0aab4393fcabba614336d,
         type: 3}
       propertyPath: m_Name
@@ -798,7 +823,7 @@ PrefabInstance:
         type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: 363000689054144057, guid: e3fe801e90966df429f96a61f32bf995,
+      objectReference: {fileID: -8923051106224012394, guid: e3fe801e90966df429f96a61f32bf995,
         type: 3}
     - target: {fileID: 8859492150840193415, guid: 78c53694dcb0aab4393fcabba614336d,
         type: 3}
@@ -889,6 +914,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3568505613398379889, guid: 4bee4ad5f46db8f49956032434fbb167,
+        type: 3}
+      propertyPath: damage
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1421,8 +1451,7 @@ PrefabInstance:
         type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: 363000689054144057, guid: e3fe801e90966df429f96a61f32bf995,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: enemyMainTurret
@@ -1446,7 +1475,7 @@ PrefabInstance:
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 21.21531
       objectReference: {fileID: 0}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
@@ -1456,7 +1485,7 @@ PrefabInstance:
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.96378
       objectReference: {fileID: 0}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
