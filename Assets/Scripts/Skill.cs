@@ -33,7 +33,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
     private SRPCircleRegionProjector _circleRegion;
 
-    private void Start()
+    private void Awake()
     {
         _edgeImage = GetComponent<Image>();
         _edgeImage.color = _readyColor;
@@ -111,15 +111,6 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         else
         {
             Debug.Log("스킬 취소");
-        }
-
-        if (_circleRegion.FillProgress == 0)
-        {
-            Debug.Log("스킬 취소");
-        }
-        else
-        {
-            Debug.Log("스킬 발동");
         }
 
         _isAiming = false;
