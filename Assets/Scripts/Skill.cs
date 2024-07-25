@@ -113,6 +113,15 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
             Debug.Log("스킬 취소");
         }
 
+        if (_circleRegion.FillProgress == 0)
+        {
+            Debug.Log("스킬 취소");
+        }
+        else
+        {
+            Debug.Log("스킬 발동");
+        }
+
         _isAiming = false;
     }
 
