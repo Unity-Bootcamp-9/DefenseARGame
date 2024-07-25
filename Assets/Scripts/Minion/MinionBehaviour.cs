@@ -35,6 +35,7 @@ public class MinionBehaviour : Entity
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
+    
     private void Start()
     {
         isAttacking = false;

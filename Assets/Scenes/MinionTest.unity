@@ -958,6 +958,11 @@ PrefabInstance:
       propertyPath: waveCreateDelay
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 648697252544031244, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: objectPoolTransform
+      value: 
+      objectReference: {fileID: 1104843973}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1039,6 +1044,11 @@ PrefabInstance:
       propertyPath: waveCreateDelay
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 2770961400396535196, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: objectPoolTransform
+      value: 
+      objectReference: {fileID: 1104843973}
     - target: {fileID: 2952015920300908716, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_IsTrigger
