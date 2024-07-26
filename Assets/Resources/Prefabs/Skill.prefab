@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6144853410010849443}
   - component: {fileID: 3014415939258831325}
   - component: {fileID: 167812194549749468}
-  - component: {fileID: 5048837476111737161}
+  - component: {fileID: -5097007923597324212}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5048837476111737161
+--- !u!114 &-5097007923597324212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,21 +86,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 2878454519776876411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d38dfd7acb84bc499e42152942fa0c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 37dd6094d8db7274e86667dd5a93a401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: "\uBA54\uD14C\uC624"
-  requireMana: 4
-  damage: 50
-  radius: 15
-  activeColor: {r: 1, g: 1, b: 1, a: 1}
   iconSprite: {fileID: 21300000, guid: 2d0997ac1b1fd664e98202450e7ea2d7, type: 3}
+  activeColor: {r: 1, g: 1, b: 1, a: 1}
   objectToSpawn: {fileID: 7409688834058636024, guid: 26b7b3213bcfddb4397d152d6a28e3f8,
     type: 3}
   offset: {x: 0, y: 9, z: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
+  skillName: "\uBA54\uD14C\uC624"
+  requireMana: 4
+  damage: 50
+  radius: 9
+  duration: 4
+  effectToSpawn: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c,
+    type: 3}
+  attackDelay: 1
+  attackRepeatRate: 1
 --- !u!1 &7468208254341150408
 GameObject:
   m_ObjectHideFlags: 0
