@@ -33,7 +33,7 @@ public class UI_TitlePopup : UI_Popup
 
         Managers.UI.ClosePopupUI(this); // UI_TitlePopup
 
-        //Managers.UI.ShowPopupUI<UI_LevelPopup>();
+        Managers.UI.ShowPopupUI<UI_LevelPopup>();
 
     }
 
