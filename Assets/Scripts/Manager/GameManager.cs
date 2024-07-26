@@ -20,13 +20,12 @@ public class GameManager : MonoBehaviour
     #region 스킬
 
     public const int MaxMana = 10;
-    public static int CurrentMana { get; private set; }
+    public int CurrentMana { get; private set; }
 
     private readonly float _manaRegenInterval = 2.0f;
     private float _manaTimer;
 
-    [Tooltip("스킬 아이콘")]
-    public Skill[] skills = new Skill[4];
+    private Skill[] skills;
 
     public event Action ManaChanged;
 
@@ -34,26 +33,19 @@ public class GameManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            ManaChanged += skill.ChangeColor;
-            skill.ChangeColor();
+            if (!skill) return;
+            skill.Init(this);
         }
 
         ManaChanged += () =>
         {
             Debug.Log($"Current Mana : {CurrentMana}/{MaxMana}");
         };
+
+        ManaChanged?.Invoke();
     }
 
-    private void RemoveObserverOfMana()
-    {
-        foreach (var skill in skills)
-        {
-            ManaChanged += skill.ChangeColor;
-            skill.ChangeColor();
-        }
-    }
-
-    private void AddMana()
+    private void IncreaseMana()
     {
         _manaTimer += Time.deltaTime;
 
@@ -65,33 +57,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #endregion
-
-    private void Reset()
+    public void DecreaseMana(int value)
     {
-        objectSpawner = FindObjectOfType<ObjectSpawner>();
-        skills = FindObjectsOfType<Skill>();
+        CurrentMana -= value;
+        ManaChanged?.Invoke();
     }
+
+    #endregion
 
     private void Start()
     {
-        if (objectSpawner) objectSpawner.objectPrefabs
-                = new List<GameObject>() { mapPreviewPrefab };
+        objectSpawner = FindObjectOfType<ObjectSpawner>();
+        skills = FindObjectsOfType<Skill>();
 
         AddObserverOfMana();
     }
 
-    private void OnDisable()
+    public void InitGame()
     {
-        RemoveObserverOfMana();
-    }
-
-    private void Update()
-    {
-        if (isPlaying)
-        {
-            AddMana(); 
-        }
+        if (objectSpawner) objectSpawner.objectPrefabs
+                = new List<GameObject>() { mapPreviewPrefab };
     }
 
     public void StartGame()
@@ -108,6 +93,14 @@ public class GameManager : MonoBehaviour
             Destroy(objectSpawner);
 
             isPlaying = true;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlaying)
+        {
+            IncreaseMana();
         }
     }
 }
