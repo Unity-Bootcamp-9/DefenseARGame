@@ -99,12 +99,12 @@ public class GameManagerEx
         if (mapPrefab)
         {
             // TODO : Resource Manager 써야 함
-            GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
+            /*GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
             map.transform.localScale = mapPreview.localScale;
-            map.transform.Rotate(Vector3.up, -45f);
+            map.transform.Rotate(Vector3.up, -45f);*/
 
             // TODO : Resource Manager 써야 함.
-            Destroy(objectSpawner.gameObject);
+            /*Destroy(objectSpawner.gameObject);*/
 
             isPlaying = true;
         }

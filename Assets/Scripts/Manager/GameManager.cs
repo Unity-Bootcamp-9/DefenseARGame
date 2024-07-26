@@ -74,14 +74,6 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    private void Reset()
-    {
-        CurrentMana -= value;
-        ManaChanged?.Invoke();
-    }
-
-    #endregion
-
     private void Start()
     {
         objectSpawner = FindObjectOfType<ObjectSpawner>();
@@ -117,14 +109,6 @@ public class GameManager : MonoBehaviour
             Destroy(objectSpawner);
 
             isPlaying = true;
-        }
-    }
-
-    private void Update()
-    {
-        if (isPlaying)
-        {
-            IncreaseMana();
         }
     }
 }
