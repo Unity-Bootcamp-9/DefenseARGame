@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     #region 스킬
 
     public const int MaxMana = 10;
-    public int CurrentMana { get; private set; }
+    public int CurrentMana { get; private set; } = 10;
 
     private readonly float _manaRegenInterval = 2.0f;
     private float _manaTimer;

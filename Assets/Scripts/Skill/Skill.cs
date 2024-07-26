@@ -21,17 +21,16 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     protected GameObject draggingObject;
     public Vector3 offset;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
-    private SRPCircleRegionProjector _circleRegion;
+    protected SRPCircleRegionProjector Circle;
 
     [Header("스킬 정보")]
     public string skillName = "메테오";
     [Range(1, 10)] public int requireMana = 4;
-    [Range(1, 100)] public int damage = 50;
-    [Range(0.1f, 15f)] public float radius = 9f;
+    [Range(1, 100)] public int damage = 10;
+    [Range(0.1f, 1f)] public float radius = 0.09f;
     [Range(1f, 5f), Tooltip("스킬이 피해를 가하는 지속 시간")]
-    public float duration = 4f;
     private bool _isAiming;
-    private bool _isRayHit;
+    private bool _isAble;
 
     public void Init(GameManager gm)
     {
@@ -55,13 +54,13 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         draggingObject = Instantiate(objectToSpawn);
         draggingObject.SetActive(false);
 
-        _circleRegion = draggingObject.GetComponent<SRPCircleRegionProjector>();
-        _circleRegion.Radius = radius;
+        Circle = draggingObject.GetComponent<SRPCircleRegionProjector>();
+        Circle.Radius = radius; // 생성된 맵의 사이즈에 따라 재조정 필요
     }
 
     private void OnDestroy()
     {
-        //gm.ManaChanged -= ChangeColor;
+        gm.ManaChanged -= ChangeColor;
     }
 
     /// <summary>
@@ -69,9 +68,9 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     /// </summary>
     public void ChangeColor()
     {
-/*        _iconImage.material.SetFloat("_Grayscale",
+        _iconImage.material.SetFloat("_Grayscale",
             gm.CurrentMana >= requireMana ? 0 : 1);
-*/    }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -88,24 +87,22 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         _isAiming = true;
     }
 
-    public void OnDrag(PointerEventData data)
+    public void OnDrag(PointerEventData eventData)
     {
         if (draggingObject != null && _isAiming)
-            SetDraggedPosition(data);
-    }
-
-    private void SetDraggedPosition(PointerEventData data)
-    {
-        _isRayHit = Physics.Raycast(Camera.main.ScreenPointToRay(data.position), out RaycastHit hit, 100f, groundLayer);
-
-        if (_isRayHit)
         {
-            draggingObject.SetActive(true);
-            draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
-        }
+            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 100f, groundLayer)
+                && !RectTransformUtility.RectangleContainsScreenPoint(_iconImage.rectTransform, eventData.position);
 
-        _circleRegion.FillProgress = Convert.ToInt32(_isRayHit);
-        _circleRegion.GenerateProjector();
+            if (_isAble)
+            {
+                draggingObject.SetActive(true);
+                draggingObject.transform.SetPositionAndRotation(hit.point + offset, hit.transform.rotation);
+            }
+
+            Circle.FillProgress = Convert.ToInt32(_isAble);
+            Circle.GenerateProjector();
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -116,7 +113,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
         if (draggingObject != null) draggingObject.SetActive(false);
 
-        if (_isRayHit)
+        if (_isAble)
         {
             Activate();
             gm.DecreaseMana(requireMana);
