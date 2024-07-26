@@ -205,7 +205,6 @@ GameObject:
   - component: {fileID: 639947741677559963}
   - component: {fileID: 5788211565893414597}
   - component: {fileID: 8750429483589875470}
-  - component: {fileID: 8938989057611233224}
   m_Layer: 7
   m_Name: MainTurret
   m_TagString: Turret
@@ -370,6 +369,7 @@ MonoBehaviour:
   destroyedTurret: {fileID: 3685199664770916449}
   hpBar: {fileID: 8101385937710609218}
   spawnPoint: {fileID: 5620954009364840426}
+  subject: {fileID: 0}
   moveSpeed: 7
 --- !u!114 &8750429483589875470
 MonoBehaviour:
@@ -394,19 +394,7 @@ MonoBehaviour:
   minionsPerWave: 5
   enemyMainTurret: {fileID: 0}
   hpBar: {fileID: 3224847612063309680}
---- !u!114 &8938989057611233224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7172609978900884115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 483ec4bdee1114642a0f95576f9e5075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEnd: 0
+  subject: {fileID: 0}
 --- !u!1001 &7139311084354901527
 PrefabInstance:
   m_ObjectHideFlags: 0

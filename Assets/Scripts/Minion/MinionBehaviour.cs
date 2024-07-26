@@ -119,7 +119,8 @@ public class MinionBehaviour : Entity
             target = turret;
         }
         enemyMinions.Clear();
-        
+        if(gameObject.layer == 7)
+            Debug.Log(target.name);
         return target;
     }
 

@@ -13,6 +13,7 @@ public class TurretBehaviour : Entity
     [SerializeField] private GameObject destroyedTurret;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Subject subject;
     public Transform target { get; private set; }
     private Animator animator;
     private Collider turretCollier;
@@ -35,7 +36,11 @@ public class TurretBehaviour : Entity
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
+        
+
+
     }
+
 
     private void FixedUpdate()
     {
@@ -117,6 +122,11 @@ public class TurretBehaviour : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            if(gameObject.CompareTag("MainTurret"))
+            {
+                subject.gameEnd = true;
+                
+            }
             projectile.SetActive(false);
             isDead = true;
             hpBar.enabled = false;

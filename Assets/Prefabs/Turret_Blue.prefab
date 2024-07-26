@@ -179,6 +179,7 @@ MonoBehaviour:
   destroyedTurret: {fileID: 3084174853274958972}
   hpBar: {fileID: 2696834964160255187}
   spawnPoint: {fileID: 7033370537332435148}
+  subject: {fileID: 0}
   moveSpeed: 5
 --- !u!1 &3084174853274958972
 GameObject:
@@ -208,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 3084174853274958972}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.43, y: 0, z: -12.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []

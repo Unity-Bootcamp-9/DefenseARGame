@@ -19,6 +19,7 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private int minionsPerWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
+    [SerializeField] private Subject subject;
 
     private int count = 0;
 
@@ -29,6 +30,13 @@ public class MinionSpawnManager : MonoBehaviour
         objectPool = new ObjectPool<MinionBehaviour>(CreateMinion, OnTakeFromPool,
                             OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
                             defaultCapacity,maxPoolSize);
+        subject.RedWin += StopSpawn;
+        subject.BlueWin += StopSpawn;
+    }
+
+    public void StopSpawn()
+    {
+        this.enabled = false;
     }
 
     private MinionBehaviour CreateMinion()
