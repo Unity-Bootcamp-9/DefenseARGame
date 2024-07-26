@@ -22,7 +22,8 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private Subject subject;
 
     private int count = 0;
-
+    private Coroutine waveSpawnRoutine;
+    private Coroutine minionSpawnRoutine;
     private IObjectPool<MinionBehaviour> objectPool;
 
     private void Awake()
@@ -36,7 +37,10 @@ public class MinionSpawnManager : MonoBehaviour
 
     public void StopSpawn()
     {
-        this.enabled = false;
+        if(waveSpawnRoutine != null)
+            StopCoroutine(waveSpawnRoutine);
+        if(minionSpawnRoutine != null)
+            StopCoroutine(minionSpawnRoutine);
     }
 
     private MinionBehaviour CreateMinion()
@@ -67,14 +71,15 @@ public class MinionSpawnManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
+        waveSpawnRoutine = StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
     }
+
 
     IEnumerator WaveSpawnRoutine(float _waveCreateDelay)
     {
         while (true)
         {
-            StartCoroutine(MinionSpawnRoutine(minionCreateDelay));
+            minionSpawnRoutine = StartCoroutine(MinionSpawnRoutine(minionCreateDelay));
             yield return new WaitForSeconds(_waveCreateDelay);
         }
     }
@@ -84,15 +89,9 @@ public class MinionSpawnManager : MonoBehaviour
         for(int i = 0; i < minionsPerWave; ++i)
         {
             MinionBehaviour minionObject = objectPool.Get();
-            minionObject.Init(enemyMainTurret);
+            minionObject.Init(enemyMainTurret, subject);
 
             yield return new WaitForSeconds(_minionCreateDelay);
         }
     }
-
-
-
-
-
-
 }

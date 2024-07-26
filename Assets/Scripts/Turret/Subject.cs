@@ -13,7 +13,7 @@ public class Subject : MonoBehaviour
     public const int BlueLayer = 7;
 
     public bool gameEnd = false;
-
+    public int winingTeam;
     public void Victory()
     {
         Debug.Log("승리");
@@ -26,13 +26,19 @@ public class Subject : MonoBehaviour
         RedWin?.Invoke();
     }
 
+    public void SetResult(int _winingTeam)
+    {
+        gameEnd =true;
+        winingTeam = _winingTeam;
+    }
+
     private void Update()
     {
         if (gameEnd)
         {
-            if (gameObject.layer == RedLayer)
+            if (winingTeam == RedLayer)
                 Victory();
-            else if (gameObject.layer == BlueLayer)
+            else if (winingTeam == BlueLayer)
                 Defeat();
         }
         gameEnd = false;

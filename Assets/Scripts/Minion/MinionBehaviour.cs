@@ -17,12 +17,14 @@ public class MinionBehaviour : Entity
 
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Collider attackCollider;
-    private List<Transform> enemyMinions = new List<Transform>();
+    [SerializeField] private Transform defaultTarget;
+    private List<Transform> enemyMinions = new List<Transform>(100);
     private Collider minionCollider;
     private Animator animator;
     public Transform target { get; private set; }
-    [SerializeField] private Transform defaultTarget;
     private NavMeshAgent agent;
+    private Subject subject;
+
     public bool isAttack { get;  set; }
     private float detectionRange = 10f;
     private float attackRange = 1.5f;
@@ -37,10 +39,20 @@ public class MinionBehaviour : Entity
         enemyLayerSet();
     }
 
-    public void Init(Transform mainTurretTransform)
+    public void Init(Transform mainTurretTransform , Subject _subject)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
+        subject = _subject;
+        subject.RedWin += StopMinion;
+        subject.BlueWin += StopMinion;
+    }
+
+    public void StopMinion()
+    {
+        agent.enabled = false;
+        animator.enabled = false;
+        this.enabled = false;
     }
 
     private void OnEnable()
@@ -119,8 +131,7 @@ public class MinionBehaviour : Entity
             target = turret;
         }
         enemyMinions.Clear();
-        if(gameObject.layer == 7)
-            Debug.Log(target.name);
+
         return target;
     }
 

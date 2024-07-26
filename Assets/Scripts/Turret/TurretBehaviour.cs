@@ -124,8 +124,8 @@ public class TurretBehaviour : Entity
         {
             if(gameObject.CompareTag("MainTurret"))
             {
-                subject.gameEnd = true;
-                
+
+                subject.SetResult(gameObject.layer);
             }
             projectile.SetActive(false);
             isDead = true;

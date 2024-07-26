@@ -139,7 +139,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   destroyedTurret: {fileID: 4624651332843733883}
   hpBar: {fileID: 339241163007402123}
   spawnPoint: {fileID: 6717904292888544850}
+  subject: {fileID: 0}
   moveSpeed: 5
 --- !u!1 &4624651332843733883
 GameObject:
