@@ -16,7 +16,7 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float waveCreateDelay = 30f;
     [SerializeField] private float minionCreateDelay = 1f;
-    [SerializeField] private int minionsPperWave = 5;
+    [SerializeField] private int minionsPerWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
 
@@ -73,7 +73,7 @@ public class MinionSpawnManager : MonoBehaviour
 
     IEnumerator MinionSpawnRoutine(float _minionCreateDelay)
     {
-        for(int i = 0; i < minionsPperWave; ++i)
+        for(int i = 0; i < minionsPerWave; ++i)
         {
             MinionBehaviour minionObject = objectPool.Get();
             minionObject.Init(enemyMainTurret);

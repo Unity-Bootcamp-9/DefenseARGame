@@ -49,6 +49,10 @@ public class TurretBehaviour : Entity
                 projectile.SetActive(false);
             }
         }
+        else
+        {
+            projectile.SetActive(false);
+        }
     }
 
     public void TargetDetection()
@@ -70,7 +74,6 @@ public class TurretBehaviour : Entity
 
     public Transform TargetSelection(Collider[] colliders, Transform thisTransform)
     {
-        Transform turret = null;
 
         foreach (Collider collider in colliders)
         {
@@ -89,7 +92,6 @@ public class TurretBehaviour : Entity
 
     public void StartAttack()
     {
-        
         StartCoroutine(Attack());
     }
 
@@ -113,6 +115,8 @@ public class TurretBehaviour : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            projectile.SetActive(false);
+            this.enabled = false;
             isDead = true;
             hpBar.enabled = false;
             turretCollier.enabled = false;
