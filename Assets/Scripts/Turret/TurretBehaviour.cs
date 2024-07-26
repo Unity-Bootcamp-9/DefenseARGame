@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class TurretBehaviour : Entity
 {
-
     public static readonly int hashAttackStart = Animator.StringToHash("AttackStart");
     public static readonly int hastisDead = Animator.StringToHash("IsDead");
 
@@ -18,6 +17,7 @@ public class TurretBehaviour : Entity
     private Collider turretCollier;
     private Rigidbody projectileRigid;
 
+    public bool isDead { get; private set; }
     private float detectionRange = 10f;
     public float moveSpeed = 7.0f;
     private bool isAttack = false;
@@ -26,7 +26,8 @@ public class TurretBehaviour : Entity
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        isDead = false;
+        animator = GetComponentInParent<Animator>();    
         turretCollier = GetComponent<Collider>();
         projectileRigid = projectile.GetComponent<Rigidbody>();
         projectile.transform.position = spawnPoint.transform.position;
@@ -112,6 +113,7 @@ public class TurretBehaviour : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            isDead = true;
             hpBar.enabled = false;
             turretCollier.enabled = false;
             animator.SetTrigger(hastisDead);
