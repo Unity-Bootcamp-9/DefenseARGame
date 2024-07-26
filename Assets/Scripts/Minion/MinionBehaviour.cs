@@ -39,10 +39,11 @@ public class MinionBehaviour : Entity
         enemyLayerSet();
     }
 
-    public void Init(Transform mainTurretTransform , Subject _subject)
+    public void Init(Transform mainTurretTransform , Subject _subject, Vector3 scale)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
+        transform.localScale = scale;
         subject = _subject;
         subject.RedWin += StopMinion;
         subject.BlueWin += StopMinion;

@@ -89,7 +89,7 @@ public class MinionSpawnManager : MonoBehaviour
         for(int i = 0; i < minionsPerWave; ++i)
         {
             MinionBehaviour minionObject = objectPool.Get();
-            minionObject.Init(enemyMainTurret, subject);
+            minionObject.Init(enemyMainTurret, subject, transform.root.transform.localScale);
 
             yield return new WaitForSeconds(_minionCreateDelay);
         }
