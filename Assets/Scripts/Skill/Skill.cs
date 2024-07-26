@@ -61,7 +61,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void OnDestroy()
     {
-        gm.ManaChanged -= ChangeColor;
+        //gm.ManaChanged -= ChangeColor;
     }
 
     /// <summary>
@@ -69,9 +69,9 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     /// </summary>
     public void ChangeColor()
     {
-        _iconImage.material.SetFloat("_Grayscale",
+/*        _iconImage.material.SetFloat("_Grayscale",
             gm.CurrentMana >= requireMana ? 0 : 1);
-    }
+*/    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {

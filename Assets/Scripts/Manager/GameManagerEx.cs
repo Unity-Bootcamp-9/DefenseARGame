@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
-public class GameManager : MonoBehaviour
+public class GameManagerEx
 {
     [Tooltip("맵 미리보기 UI 프리팹")]
     public GameObject mapPreviewPrefab;
@@ -20,12 +20,13 @@ public class GameManager : MonoBehaviour
     #region 스킬
 
     public const int MaxMana = 10;
-    public int CurrentMana { get; private set; }
+    public static int CurrentMana { get; private set; }
 
     private readonly float _manaRegenInterval = 2.0f;
     private float _manaTimer;
 
-    private Skill[] skills;
+    [Tooltip("스킬 아이콘")]
+    public Skill[] skills = new Skill[4];
 
     public event Action ManaChanged;
 
@@ -33,28 +34,26 @@ public class GameManager : MonoBehaviour
     {
         foreach (var skill in skills)
         {
-            if (!skill) return;
-            skill.Init(this);
+            ManaChanged += skill.ChangeColor;
+            skill.ChangeColor();
         }
 
         ManaChanged += () =>
         {
             Debug.Log($"Current Mana : {CurrentMana}/{MaxMana}");
         };
-
-        ManaChanged?.Invoke();
     }
 
     private void RemoveObserverOfMana()
     {
         foreach (var skill in skills)
         {
-            ManaChanged -= skill.ChangeColor;
+            ManaChanged += skill.ChangeColor;
             skill.ChangeColor();
         }
     }
 
-    private void IncreaseMana()
+    private void AddMana()
     {
         _manaTimer += Time.deltaTime;
 
@@ -66,23 +65,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DecreaseMana(int value)
-    {
-        CurrentMana -= value;
-        ManaChanged?.Invoke();
-    }
-
     #endregion
 
-    private void Start()
+
+    private void Awake()
     {
-        objectSpawner = FindObjectOfType<ObjectSpawner>();
-        skills = FindObjectsOfType<Skill>();
+        if (objectSpawner) objectSpawner.objectPrefabs
+                = new List<GameObject>() { mapPreviewPrefab };
 
         AddObserverOfMana();
+
     }
 
-    public void InitGame()
+    private void OnDisable()
     {
         RemoveObserverOfMana();
     }
@@ -91,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         if (isPlaying)
         {
-            IncreaseMana(); 
+            AddMana();
         }
     }
 
@@ -103,10 +98,13 @@ public class GameManager : MonoBehaviour
 
         if (mapPrefab)
         {
-            GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
-            map.transform.localScale = mapPreview.localScale * 1e-2f;
-            map.transform.Rotate(Vector3.up, -45f);
-            Destroy(objectSpawner);
+            // TODO : Resource Manager 써야 함
+            /*GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
+            map.transform.localScale = mapPreview.localScale;
+            map.transform.Rotate(Vector3.up, -45f);*/
+
+            // TODO : Resource Manager 써야 함.
+            /*Destroy(objectSpawner.gameObject);*/
 
             isPlaying = true;
         }
