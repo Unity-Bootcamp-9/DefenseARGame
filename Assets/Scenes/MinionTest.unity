@@ -414,6 +414,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1073702678 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2802658010312083713, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075000274
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,6 +569,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1158570205 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1598179143334234803, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1297526797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,6 +1062,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 298369198775953371, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884374070390093416, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 66
+      objectReference: {fileID: 0}
+    - target: {fileID: 884374070390093416, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 884374070390093416, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180312644274771037, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -66
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180312644274771037, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1180312644274771037, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1100,16 +1147,88 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2659901988462967229, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 2659901988462967229, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987921523477961361, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1073702678}
+    - target: {fileID: 3987921523477961361, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionsPerWave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3987921523477961361, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: enemyMainTurret
+      value: 
+      objectReference: {fileID: 5605147220162040891}
+    - target: {fileID: 5871718617162823499, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name
       value: ProtoMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837837691273852555, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionsPerWave
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023567019414777858, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1158570205}
+    - target: {fileID: 8023567019414777858, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: minionsPerWave
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8023567019414777858, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: enemyMainTurret
+      value: 
+      objectReference: {fileID: 5605147220162040892}
+    - target: {fileID: 8483814366078332319, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_Name
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483814366078332319, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainTurret
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e928514e52d394296229555c53704d, type: 3}
+--- !u!4 &5605147220162040891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1180312644274771037, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5605147220162040892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 884374070390093416, guid: 50e928514e52d394296229555c53704d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5605147220162040890}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

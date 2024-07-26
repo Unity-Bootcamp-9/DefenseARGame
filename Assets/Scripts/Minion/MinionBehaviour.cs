@@ -104,7 +104,7 @@ public class MinionBehaviour : Entity
             {
                 enemyMinions.Add(collider.transform);
             }
-            else if (collider.CompareTag("Turret"))
+            else if (collider.CompareTag("Turret") || collider.CompareTag("MainTurret"))
             {
                 turret = collider.transform;
             }
