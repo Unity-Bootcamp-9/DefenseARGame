@@ -10,6 +10,7 @@ public class TurretBehaviour : Entity
 
     private List<Transform> enemyMinions = new List<Transform>();
     [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject destroyedTurret;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
     public Transform target { get; private set; }
@@ -27,6 +28,7 @@ public class TurretBehaviour : Entity
     private void Awake()
     {
         isDead = false;
+        destroyedTurret.SetActive(false);
         animator = GetComponentInParent<Animator>();    
         turretCollier = GetComponent<Collider>();
         projectileRigid = projectile.GetComponent<Rigidbody>();
@@ -116,11 +118,12 @@ public class TurretBehaviour : Entity
         if (hp <= 0)
         {
             projectile.SetActive(false);
-            this.enabled = false;
             isDead = true;
             hpBar.enabled = false;
             turretCollier.enabled = false;
             animator.SetTrigger(hastisDead);
+            destroyedTurret.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
     private void OnDrawGizmos()

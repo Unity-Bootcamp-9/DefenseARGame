@@ -27,7 +27,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: {x: 1.266, y: -47.759, z: -3.443}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -38,7 +38,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Turret
+    path: DestroyedTurret
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -53,7 +53,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: {x: 0, y: -4.73, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -64,19 +64,10 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: Turret
+    path: DestroyedTurret
   m_ScaleCurves: []
   m_FloatCurves: []
-  m_PPtrCurves:
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 2100000, guid: 8bf0fd4c591eba346a9345a44e27be4f, type: 2}
-    attribute: m_Materials.Array.data[3]
-    path: Turret
-    classID: 23
-    script: {fileID: 0}
-    flags: 2
+  m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -85,7 +76,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3461249555
+      path: 4253321892
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -94,7 +85,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3461249555
+      path: 4253321892
       attribute: 4
       script: {fileID: 0}
       typeID: 4
@@ -102,23 +93,13 @@ AnimationClip:
       isPPtrCurve: 0
       isIntCurve: 0
       isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 3461249555
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 23
-      customType: 21
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
-    pptrCurveMapping:
-    - {fileID: 2100000, guid: 8bf0fd4c591eba346a9345a44e27be4f, type: 2}
+    pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 5.0666666
+    m_StopTime: 4.016667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -148,7 +129,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -160,7 +141,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -178,7 +159,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: -4.73
         inSlope: 0
         outSlope: 0
@@ -190,7 +171,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -208,7 +189,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: 0
         inSlope: 0
         outSlope: 0
@@ -220,7 +201,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -238,7 +219,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: 1.266
         inSlope: 0
         outSlope: 0
@@ -250,7 +231,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -268,7 +249,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: -47.759
         inSlope: 0
         outSlope: 0
@@ -280,7 +261,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -298,7 +279,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5.0666666
+        time: 4.016667
         value: -3.443
         inSlope: 0
         outSlope: 0
@@ -310,7 +291,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -323,7 +304,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -335,7 +316,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -347,7 +328,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Turret
+    path: DestroyedTurret
     classID: 4
     script: {fileID: 0}
     flags: 0
