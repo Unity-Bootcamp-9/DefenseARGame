@@ -8,12 +8,9 @@ public class UI_ResultVictoryPopup : UI_Popup
     enum Objects
     {
         VictoryImages,
-
-
     }
     enum Buttons
     {
-        PlayAgainButton,
         ContinueButton,
     }
 
@@ -24,17 +21,8 @@ public class UI_ResultVictoryPopup : UI_Popup
 
         BindButton(typeof(Buttons));
 
-        GetButton((int)Buttons.PlayAgainButton).gameObject.BindEvent(OnClickPlayAgainButton);
         GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
         return true;
-    }
-
-    void OnClickPlayAgainButton()
-    {
-        Debug.Log("OnClickPlayAgainButton");
-        Managers.UI.ClosePopupUI(this);
-
-        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
     }
 
     void OnClickContinueButton()
