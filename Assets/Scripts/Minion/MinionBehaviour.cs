@@ -154,6 +154,7 @@ public class MinionBehaviour : Entity
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
+        hpBar.enabled = true;
         objectPool.Release(this);
     }
 
