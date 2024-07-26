@@ -1,4 +1,6 @@
 using System;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 using static Define;
 
@@ -18,14 +20,13 @@ public class UI_LevelPopup : UI_Popup
         LowButton,
     }
 
-    enum SelectState
-    {
-        Default,
-        BeforeSelect,
-        AfterSelect
-    }
+    public float MovingSpeed = 100.0f;
+    public Vector3 upPos = new Vector3(800, 400, 0);
+    public Vector3 downPos = new Vector3(800, -7000, 0);
+    public RectTransform selectSection;
 
-    SelectState selectState = SelectState.Default;
+    bool up;
+    bool down;
 
     public override bool Init()
     {
@@ -47,13 +48,15 @@ public class UI_LevelPopup : UI_Popup
     void OnClickLevelSelectButton()
     {
         Debug.Log("OnClickLevelSelectButton");
-        selectState = SelectState.AfterSelect;
+        down = false;
+        up = true;
     }
 
     void OnClickBlankSpaceButton()
     {
         Debug.Log("OnClickBlankSpaceButton");
-        selectState = SelectState.BeforeSelect;
+        down = true;
+        up = false;
     }
 
     void OnClickHardButton()
@@ -80,52 +83,13 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
     }
 
-    public float MovingSpeed = 500.0f;
-    public Vector3 upPos = new Vector3(0, 0, 0);
-    public Vector3 downPos = new Vector3(0, -1000, 0);
-    public Transform selectSection;
-
-    void GoUp()
-    {
-        if (selectSection.position.y > upPos.y)
-        {
-            SelectState selectState = SelectState.Default;
-            return;
-        }
-        else
-        {
-            selectSection.position += MovingSpeed * Vector3.up * Time.deltaTime;
-        }
-    }
-
-    void GoDown()
-    {
-        if (selectSection.position.y < downPos.y)
-        {
-            SelectState selectState = SelectState.Default;
-            return;
-        }
-        else
-        {
-            selectSection.position += MovingSpeed * Vector3.down * Time.deltaTime;
-        }
-    }
+    void GoUp() => selectSection.position = Vector3.MoveTowards(selectSection.position, upPos, MovingSpeed);
+    void GoDown() => selectSection.position = Vector3.MoveTowards(selectSection.position, downPos, MovingSpeed);
 
     void Update()
     {
-        switch (selectState)
-        {
-            case SelectState.BeforeSelect:
-                GoDown();
-                break;
-            case SelectState.AfterSelect:
-                GoUp();
-                break;
-            case SelectState.Default:
-                break;
-            default:
-                break;
-        }
+        if (up) GoUp();
+        else if(down) GoDown();
     }
 
 

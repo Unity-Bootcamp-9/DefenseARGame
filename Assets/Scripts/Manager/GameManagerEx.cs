@@ -64,17 +64,14 @@ public class GameManagerEx
             ManaChanged?.Invoke();
         }
     }
-
     #endregion
 
-
-    private void Awake()
+    private void Start()
     {
         if (objectSpawner) objectSpawner.objectPrefabs
                 = new List<GameObject>() { mapPreviewPrefab };
 
         AddObserverOfMana();
-
     }
 
     private void OnDisable()
@@ -92,21 +89,23 @@ public class GameManagerEx
 
     public void StartGame()
     {
-        Transform mapPreview = objectSpawner.transform.GetChild(0);
 
+        /*Transform mapPreview = objectSpawner.transform.GetChild(0);
         if (!mapPreview) return;
 
         if (mapPrefab)
         {
             // TODO : Resource Manager 써야 함
-            /*GameObject map = Instantiate(mapPrefab, mapPreview.position, mapPreview.rotation);
+            GameObject map = Managers.Resource.Instantiate(mapPrefab);
+            map.transform.position = mapPreview.position;
+            map.transform.rotation = mapPreview.rotation;
             map.transform.localScale = mapPreview.localScale;
-            map.transform.Rotate(Vector3.up, -45f);*/
+            map.transform.Rotate(Vector3.up, -45f);
 
             // TODO : Resource Manager 써야 함.
-            /*Destroy(objectSpawner.gameObject);*/
+            //objectSpawner.gameObject.SetActive = false;
 
             isPlaying = true;
-        }
+        }*/
     }
 }
