@@ -9,12 +9,12 @@ public class UI_BattlePopup : UI_Popup
         PlayTimeText
     }
 
-    enum Buttons
+    enum Images
     {
-        Skill1Button,
-        Skill2Button,
-        Skill3Button,
-        Skill4Button,
+        Skill1Image,
+        Skill2Image,
+        Skill3Image,
+        Skill4Image,
     }
 
     enum States
@@ -30,35 +30,34 @@ public class UI_BattlePopup : UI_Popup
             return false;
 
         BindText(typeof(Texts));
-        BindImage(typeof(Buttons));
-        BindButton(typeof(Buttons));
+        BindImage(typeof(Images));
 
-        GetButton((int)Buttons.Skill1Button).gameObject.BindEvent(OnClickSkill1Button);
-        GetButton((int)Buttons.Skill2Button).gameObject.BindEvent(OnClickSkill2Button);
-        GetButton((int)Buttons.Skill3Button).gameObject.BindEvent(OnClickSkill3Button);
-        GetButton((int)Buttons.Skill4Button).gameObject.BindEvent(OnClickSkill4Button);
+        GetImage((int)Images.Skill1Image).gameObject.BindEvent(OnClickSkill1Image);
+        GetImage((int)Images.Skill2Image).gameObject.BindEvent(OnClickSkill2Image);
+        GetImage((int)Images.Skill3Image).gameObject.BindEvent(OnClickSkill3Image);
+        GetImage((int)Images.Skill4Image).gameObject.BindEvent(OnClickSkill4Image);
 
         return true;
     }
 
-    void OnClickSkill1Button()
+    void OnClickSkill1Image()
     {
-        Debug.Log("OnClickSkill1Button");
+        Debug.Log("OnClickSkill1Image");
     }
 
-    void OnClickSkill2Button()
+    void OnClickSkill2Image()
     {
-        Debug.Log("OnClickSkill2Button");
+        Debug.Log("OnClickSkill2Image");
     }
 
-    void OnClickSkill3Button()
+    void OnClickSkill3Image()
     {
-        Debug.Log("OnClickSkill3Button");
+        Debug.Log("OnClickSkill3Image");
     }
 
-    void OnClickSkill4Button()
+    void OnClickSkill4Image()
     {
-        Debug.Log("OnClickSkill4Button");
+        Debug.Log("OnClickSkill4Image");
     }
 
     States state = States.Default;
@@ -67,10 +66,7 @@ public class UI_BattlePopup : UI_Popup
     private void Update()
     {
         time += Time.deltaTime;
-        if (time > 3)
-        {
-            state = States.Victory;
-        }
+        
         switch (state)
         {
             case States.Defeat:
