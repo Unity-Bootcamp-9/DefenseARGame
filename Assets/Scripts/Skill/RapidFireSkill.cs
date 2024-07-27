@@ -5,7 +5,7 @@ public class RapidFireSkill : Skill
 {
     [Header("스킬 상세")]
     public GameObject effectToSpawn;
-    [Range(1f, 5f)] public float duration = 3f;
+    [Range(1f, 5f), Tooltip("스킬이 피해를 가하는 지속 시간")] public float duration = 3f;
     [Range(0.1f, 5f), Tooltip("첫 공격까지의 대기 시간")] public float attackDelay = 1f;
     [Range(0.1f, 5f), Tooltip("다음 공격까지의 대기 시간")] public float attackRepeatRate = 0.5f;
 

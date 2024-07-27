@@ -32,7 +32,7 @@ public class GameManagerEx
 
         GameObject map = Managers.Resource.Instantiate("MAP/ProtoMap");
         map.transform.SetPositionAndRotation(mapPreview.position, mapPreview.rotation);
-        map.transform.localScale = mapPreview.localScale * 1e-2f;
+        map.transform.localScale = mapPreview.localScale;
 
         Object.Destroy(mapPreview.gameObject);
         _objectSpawner.gameObject.SetActive(false);
