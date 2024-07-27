@@ -25,7 +25,6 @@ public class GameManagerEx
 
     public void StartGame()
     {
-
         Transform mapPreview = _objectSpawner.transform.GetChild(0);
 
         if (!mapPreview) return;
