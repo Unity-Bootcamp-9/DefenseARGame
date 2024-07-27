@@ -1593,7 +1593,7 @@ PrefabInstance:
     - target: {fileID: 2878454519776876411, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
       propertyPath: m_Name
-      value: Skill (2)
+      value: Skill3Image
       objectReference: {fileID: 0}
     - target: {fileID: 6144853410010849443, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
@@ -1717,7 +1717,7 @@ PrefabInstance:
     - target: {fileID: 2878454519776876411, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
       propertyPath: m_Name
-      value: Skill
+      value: Skill1Image
       objectReference: {fileID: 0}
     - target: {fileID: 6144853410010849443, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
@@ -1841,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 2878454519776876411, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
       propertyPath: m_Name
-      value: Skill (1)
+      value: Skill2Image
       objectReference: {fileID: 0}
     - target: {fileID: 6144853410010849443, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
@@ -1965,7 +1965,7 @@ PrefabInstance:
     - target: {fileID: 2878454519776876411, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
       propertyPath: m_Name
-      value: Skill (3)
+      value: Skill4Image
       objectReference: {fileID: 0}
     - target: {fileID: 6144853410010849443, guid: 593d8e08aa1e87542a6f089904d5ad50,
         type: 3}
