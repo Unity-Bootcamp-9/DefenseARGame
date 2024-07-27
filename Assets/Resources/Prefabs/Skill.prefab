@@ -99,13 +99,13 @@ MonoBehaviour:
     m_Bits: 256
   skillName: "\uBA54\uD14C\uC624"
   requireMana: 4
-  damage: 50
-  radius: 9
-  duration: 4
+  damage: 10
+  radius: 0.09
   effectToSpawn: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c,
     type: 3}
+  duration: 3
   attackDelay: 1
-  attackRepeatRate: 1
+  attackRepeatRate: 0.5
 --- !u!1 &7468208254341150408
 GameObject:
   m_ObjectHideFlags: 0

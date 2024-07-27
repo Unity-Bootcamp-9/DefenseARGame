@@ -7,7 +7,7 @@ public class TurretDetectionState : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        turretBehavior = animator.GetComponent<TurretBehaviour>();
+        turretBehavior = animator.GetComponentInChildren<TurretBehaviour>();    
 
     }
 

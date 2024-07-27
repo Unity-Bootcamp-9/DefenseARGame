@@ -17,12 +17,14 @@ public class MinionBehaviour : Entity
 
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Collider attackCollider;
-    private List<Transform> enemyMinions = new List<Transform>();
+    [SerializeField] private Transform defaultTarget;
+    private List<Transform> enemyMinions = new List<Transform>(100);
     private Collider minionCollider;
     private Animator animator;
     public Transform target { get; private set; }
-    [SerializeField] private Transform defaultTarget;
     private NavMeshAgent agent;
+    private Subject subject;
+
     public bool isAttack { get;  set; }
     private float detectionRange = 10f;
     private float attackRange = 1.5f;
@@ -37,10 +39,21 @@ public class MinionBehaviour : Entity
         enemyLayerSet();
     }
 
-    public void Init(Transform mainTurretTransform)
+    public void Init(Transform mainTurretTransform , Subject _subject, Vector3 scale)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
+        transform.localScale = scale;
+        subject = _subject;
+        subject.RedWin += StopMinion;
+        subject.BlueWin += StopMinion;
+    }
+
+    public void StopMinion()
+    {
+        agent.enabled = false;
+        animator.enabled = false;
+        this.enabled = false;
     }
 
     private void OnEnable()
@@ -49,6 +62,7 @@ public class MinionBehaviour : Entity
         maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionCollider = GetComponent<Collider>();
+        hpBar.enabled = true;
         minionCollider.enabled = true;
         attackCollider.enabled = false;
         HPFilledImage.fillAmount = (float)hp / (float)maxHP;
@@ -104,7 +118,7 @@ public class MinionBehaviour : Entity
             {
                 enemyMinions.Add(collider.transform);
             }
-            else if (collider.CompareTag("Turret"))
+            else if (collider.CompareTag("Turret") || collider.CompareTag("MainTurret"))
             {
                 turret = collider.transform;
             }
@@ -119,7 +133,7 @@ public class MinionBehaviour : Entity
             target = turret;
         }
         enemyMinions.Clear();
-        
+
         return target;
     }
 

@@ -5,8 +5,9 @@ public class RapidFireSkill : Skill
 {
     [Header("스킬 상세")]
     public GameObject effectToSpawn;
+    [Range(1f, 5f)] public float duration = 3f;
     [Range(0.1f, 5f), Tooltip("첫 공격까지의 대기 시간")] public float attackDelay = 1f;
-    [Range(0.1f, 5f), Tooltip("다음 공격까지의 대기 시간")] public float attackRepeatRate = 1f;
+    [Range(0.1f, 5f), Tooltip("다음 공격까지의 대기 시간")] public float attackRepeatRate = 0.5f;
 
     protected override void Activate()
     {
@@ -17,6 +18,8 @@ public class RapidFireSkill : Skill
                 draggingObject.transform.rotation
             ).GetComponent<ParticleSystem>();
 
+        effect.transform.localScale = Vector3.one * (Circle.Radius / 9);
+
         Destroy(effect.gameObject, effect.main.duration);
 
         StartCoroutine(RepeatShooting(effect.transform.position, attackDelay, attackRepeatRate));
@@ -26,22 +29,18 @@ public class RapidFireSkill : Skill
     {
         yield return new WaitForSeconds(time);
 
-        float tick = time;
-
-        do
+        for (float i = 0; i <= duration - time; i += repeatRate)
         {
-            tick += repeatRate;
-
             Collider[] targets = new Collider[10];
-            int count = Physics.OverlapSphereNonAlloc(position, radius / 2, targets, 1 << 6);
+            int targetAmount = Physics.OverlapSphereNonAlloc(position, radius / 2, targets, 1 << 6);
 
-            for (int i = 0; i < count; i++)
+            for (int j = 0; j < targetAmount; j++)
             {
-                if (!targets[i].CompareTag("Minion")) continue;
-                targets[i].GetComponent<MinionBehaviour>().GetHit((int)(damage / duration));
+                if (!targets[j].CompareTag("Minion")) continue;
+                targets[j].GetComponent<MinionBehaviour>().GetHit(damage);
             }
 
             yield return new WaitForSeconds(repeatRate);
-        } while (tick < duration);
+        }
     }
 }
