@@ -16,6 +16,7 @@ public class UI_BattlePopup : UI_Popup
         Skill2Image,
         Skill3Image,
         Skill4Image,
+        Steminas,
     }
 
     enum States
@@ -40,10 +41,12 @@ public class UI_BattlePopup : UI_Popup
         sec = 0;
 
         GetText((int)Texts.PlayTimeText).text = "00:00";
+
         GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<RapidFireSkill>();
         GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<RapidFireSkill>();
         GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<RapidFireSkill>();
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<RapidFireSkill>();
+        GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
 
         return true;
     }

@@ -25,10 +25,10 @@ public class UI_MapSettingPopup : UI_Popup
     void OnClickMapSettingButton()
     {
         Debug.Log("OnClickMapSettingButton");
-        Managers.UI.ClosePopupUI(this);
-        Managers.Game.StartGame();
-        Managers.UI.ShowPopupUI<UI_BattlePopup>();
-
+        if (Managers.Game.StartGame())
+        {
+            Managers.UI.ClosePopupUI(this);
+            Managers.UI.ShowPopupUI<UI_BattlePopup>();
+        }
     }
-
 }

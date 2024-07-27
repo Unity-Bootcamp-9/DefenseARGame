@@ -9,6 +9,11 @@ public class RapidFireSkill : Skill
     [Range(0.1f, 5f), Tooltip("첫 공격까지의 대기 시간")] public float attackDelay = 1f;
     [Range(0.1f, 5f), Tooltip("다음 공격까지의 대기 시간")] public float attackRepeatRate = 0.5f;
 
+    private void Start()
+    {
+        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/{skillName}");
+    }
+
     protected override void Activate()
     {
         ParticleSystem effect = Instantiate

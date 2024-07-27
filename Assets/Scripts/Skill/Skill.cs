@@ -7,7 +7,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Mana mana;
+    private Mana _mana;
+    public Mana mana
+    {
+        get => _mana;
+        set
+        {
+            if (!_mana) _mana = value;
+        }
+    }
 
     [Header("UI")]
     public Sprite iconSprite;
@@ -51,18 +59,18 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void OnDestroy()
     {
-        mana.ManaChanged -= ChangeColor;
+        _mana.ManaChanged -= ChangeColor;
     }
 
     /// <summary>
     /// 아이콘을 현재 마나에 따라 흑백으로 전환
     /// </summary>
     public void ChangeColor() =>
-        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(mana.CurrentMana < requireMana));
+        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(_mana.CurrentMana < requireMana));
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (mana.CurrentMana < requireMana) return;
+        if (_mana.CurrentMana < requireMana) return;
 
         _baseImage.color = activeColor;
 
@@ -73,7 +81,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (draggingObject != null && _isAiming)
         {
-            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 100f, groundLayer)
+            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, groundLayer)
                 && !RectTransformUtility.RectangleContainsScreenPoint(_iconImage.rectTransform, eventData.position);
 
             if (_isAble)
@@ -98,7 +106,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            mana.UpdateMana(-requireMana);
+            _mana.UpdateMana(-requireMana);
         }
         else
         {

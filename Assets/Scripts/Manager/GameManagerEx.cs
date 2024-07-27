@@ -23,11 +23,11 @@ public class GameManagerEx
         }
     }
 
-    public void StartGame()
+    public bool StartGame()
     {
-        Transform mapPreview = _objectSpawner.transform.GetChild(0);
+        if (_objectSpawner.transform.childCount == 0) return false;
 
-        if (!mapPreview) return;
+        Transform mapPreview = _objectSpawner.transform.GetChild(0);
 
         GameObject map = Managers.Resource.Instantiate("MAP/ProtoMap");
         map.transform.SetPositionAndRotation(mapPreview.position, mapPreview.rotation);
@@ -35,5 +35,7 @@ public class GameManagerEx
 
         Object.Destroy(mapPreview.gameObject);
         _objectSpawner.gameObject.SetActive(false);
+
+        return true;
     }
 }

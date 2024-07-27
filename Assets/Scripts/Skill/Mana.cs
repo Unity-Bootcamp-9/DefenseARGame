@@ -25,9 +25,12 @@ public class Mana : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             Image image = transform.GetChild(i).GetComponent<Image>();
+
+            int index = i;
+
             ManaChanged += () =>
             {
-                image.color = CurrentMana > i ? Color.cyan : Color.gray;
+                image.color = CurrentMana > index ? Color.cyan : Color.gray;
             };
         }
         
@@ -48,13 +51,13 @@ public class Mana : MonoBehaviour
         ManaChanged?.Invoke();
     }
 
-    private void Start()
-    {
-        _elapsedTime = Time.time;
-    }
-
     private void Update()
     {
+        if (CurrentMana >= MaxMana)
+        {
+            _elapsedTime = Time.time;
+        }
+
         if (Time.time - _elapsedTime >= regenRate)
         {
             UpdateMana(1);
