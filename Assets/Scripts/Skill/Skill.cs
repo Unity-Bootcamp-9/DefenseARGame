@@ -7,8 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private GameManager gm;
-
     [Header("UI")]
     public Sprite iconSprite;
     public Color activeColor = Color.white;
@@ -32,13 +30,6 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     private bool _isAiming;
     private bool _isAble;
 
-    public void Init(GameManager gm)
-    {
-        this.gm = gm;
-
-        gm.ManaChanged += ChangeColor;
-    }
-
     private void Awake()
     {
         _baseImage = GetComponent<Image>();
@@ -60,7 +51,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void OnDestroy()
     {
-        gm.ManaChanged -= ChangeColor;
+        /*gm.ManaChanged -= ChangeColor;*/
     }
 
     /// <summary>
@@ -68,13 +59,13 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     /// </summary>
     public void ChangeColor()
     {
-        _iconImage.material.SetFloat("_Grayscale",
-            gm.CurrentMana >= requireMana ? 0 : 1);
+        /*_iconImage.material.SetFloat("_Grayscale",
+            gm.CurrentMana >= requireMana ? 0 : 1);*/
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (gm.CurrentMana < requireMana) return;
+        //if (gm.CurrentMana < requireMana) return;
 
         _baseImage.color = activeColor;
 
@@ -116,7 +107,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            gm.DecreaseMana(requireMana);
+            //gm.DecreaseMana(requireMana);
         }
         else
         {

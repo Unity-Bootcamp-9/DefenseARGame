@@ -14,12 +14,15 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxPoolSize = 50;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float startDelay = 5f;
     [SerializeField] private float waveCreateDelay = 30f;
     [SerializeField] private float minionCreateDelay = 1f;
     [SerializeField] private int minionsPerWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
     [SerializeField] private Subject subject;
+
+
 
     private int count = 0;
     private Coroutine waveSpawnRoutine;
@@ -71,12 +74,14 @@ public class MinionSpawnManager : MonoBehaviour
 
     private void Start()
     {
-        waveSpawnRoutine = StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
+        waveSpawnRoutine = StartCoroutine(WaveSpawnRoutine(waveCreateDelay, startDelay));
     }
 
 
-    IEnumerator WaveSpawnRoutine(float _waveCreateDelay)
+    IEnumerator WaveSpawnRoutine(float _waveCreateDelay , float _startDelay)
     {
+        yield return new WaitForSeconds(_startDelay);
+
         while (true)
         {
             minionSpawnRoutine = StartCoroutine(MinionSpawnRoutine(minionCreateDelay));

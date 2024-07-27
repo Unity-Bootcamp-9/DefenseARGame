@@ -117,7 +117,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1365089636395513002}
-  - component: {fileID: 3710463972252941082}
   - component: {fileID: 2355954054710349137}
   m_Layer: 0
   m_Name: ProtoMap
@@ -151,37 +150,6 @@ Transform:
   - {fileID: 6431072271445679077}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3710463972252941082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7347241025638969366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.13333334
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
-  m_BuildHeightMesh: 0
 --- !u!114 &2355954054710349137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072799c029dc49349bd112aa7b1b7ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 1934382135481845861}
 --- !u!1 &9217704545952837913
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,6 +175,7 @@ GameObject:
   - component: {fileID: 4564763401406623659}
   - component: {fileID: 4160227067629957900}
   - component: {fileID: 1315362807822813333}
+  - component: {fileID: 1934382135481845861}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -300,6 +270,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1934382135481845861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9217704545952837913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.13333334
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 0}
+  m_BuildHeightMesh: 0
 --- !u!1001 &72497618625111096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,7 +451,7 @@ PrefabInstance:
     - target: {fileID: 2753962671781916758, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
       propertyPath: m_Name
-      value: Turret
+      value: MainTurret
       objectReference: {fileID: 0}
     - target: {fileID: 2753962671781916758, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
@@ -469,6 +470,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3379499723897570802, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
+      propertyPath: m_TagString
+      value: MainTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 3379499723897570802, guid: 0564b90cd24e5984b99fcb0952b00ae5,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -482,6 +488,11 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2802658010312083713}
+    - target: {fileID: 3856811699068097402, guid: 0564b90cd24e5984b99fcb0952b00ae5,
+        type: 3}
+      propertyPath: startDelay
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3856811699068097402, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
       propertyPath: minionsPerWave
@@ -942,6 +953,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3801766762167818766, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}
+      propertyPath: m_TagString
+      value: MainTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801766762167818766, guid: 5395a7560fd578a47868c4ce0dc16f80,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -955,6 +971,11 @@ PrefabInstance:
       propertyPath: subject
       value: 
       objectReference: {fileID: 4142996030918743271}
+    - target: {fileID: 7172609978900884115, guid: 5395a7560fd578a47868c4ce0dc16f80,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainTurret
+      objectReference: {fileID: 0}
     - target: {fileID: 7172609978900884115, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -977,9 +998,14 @@ PrefabInstance:
       objectReference: {fileID: 1598179143334234803}
     - target: {fileID: 8750429483589875470, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}
+      propertyPath: startDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8750429483589875470, guid: 5395a7560fd578a47868c4ce0dc16f80,
+        type: 3}
       propertyPath: minionPrefab
       value: 
-      objectReference: {fileID: -8923051106224012394, guid: a5ae1263d0539724188a049e94acf8e8,
+      objectReference: {fileID: 1464537011522843755, guid: 0f8381a3034255948b449d35b3b7c1f3,
         type: 3}
     - target: {fileID: 8750429483589875470, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}

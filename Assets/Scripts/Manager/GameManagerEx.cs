@@ -1,38 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 
 public class GameManagerEx
 {
-    [Tooltip("미리보기를 생성할 오브젝트 스포너")]
-    public ObjectSpawner objectSpawner;
+    private ObjectSpawner _objectSpawner;
 
-    [Tooltip("게임 시작 여부")]
-    public bool isPlaying;
-
-    public GameManagerEx()
+    public void Init()
     {
-        objectSpawner = Utils.GetOrAddComponent<ObjectSpawner>(new GameObject("Object Spawner"));
-        if (objectSpawner) objectSpawner.objectPrefabs
-                = new List<GameObject>() { Managers.Resource.Load<GameObject>("Prefabs/MAP/MapPreview") };
+        _objectSpawner = Utils.GetOrAddComponent<ObjectSpawner>(Managers.Resource.Instantiate("MAP/Object Spawner"));
+
+        if (_objectSpawner)
+        {
+            _objectSpawner.objectPrefabs = new List<GameObject>()
+            {
+                Managers.Resource.Load<GameObject>("Prefabs/MAP/MapPreview")
+            };
+
+            _objectSpawner.GetComponent<ARInteractorSpawnTrigger>().arInteractor = Object.FindObjectOfType<XRRayInteractor>();
+        }
     }
 
     public void StartGame()
     {
-
-        Transform mapPreview = objectSpawner.transform.GetChild(0);
+        Transform mapPreview = _objectSpawner.transform.GetChild(0);
 
         if (!mapPreview) return;
 
-        // TODO : Resource Manager 써야 함
         GameObject map = Managers.Resource.Instantiate("MAP/ProtoMap");
         map.transform.SetPositionAndRotation(mapPreview.position, mapPreview.rotation);
-        map.transform.localScale = mapPreview.localScale;
-        map.transform.Rotate(Vector3.up, -45f);
+        map.transform.localScale = mapPreview.localScale * 1e-2f;
 
-        // TODO : Resource Manager 써야 함.
-        //objectSpawner.gameObject.SetActive = false;
-
-        isPlaying = true;
+        Object.Destroy(mapPreview.gameObject);
+        _objectSpawner.gameObject.SetActive(false);
     }
 }

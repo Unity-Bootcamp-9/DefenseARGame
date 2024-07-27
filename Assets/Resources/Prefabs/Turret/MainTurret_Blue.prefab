@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 6161929565430464918}
   m_Layer: 7
   m_Name: MainTurret_Blue
-  m_TagString: Untagged
+  m_TagString: MainTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8750429483589875470}
   m_Layer: 7
   m_Name: MainTurret
-  m_TagString: Turret
+  m_TagString: MainTurret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,6 +389,7 @@ MonoBehaviour:
   defaultCapacity: 10
   maxPoolSize: 50
   spawnPoint: {fileID: 0}
+  startDelay: 5
   waveCreateDelay: 30
   minionCreateDelay: 1
   minionsPerWave: 5

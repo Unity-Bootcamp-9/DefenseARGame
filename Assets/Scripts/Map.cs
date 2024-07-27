@@ -6,11 +6,10 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
 
-    NavMeshSurface map;
+    [SerializeField] private NavMeshSurface map;
 
     private void Awake()
     {
-        map = GetComponent<NavMeshSurface>();
         map.BuildNavMesh();
     }
 
