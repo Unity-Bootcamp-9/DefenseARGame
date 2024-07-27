@@ -1116,6 +1116,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtoMap
       objectReference: {fileID: 0}
+    - target: {fileID: 8515360069586266887, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 0eeda7648bfe9fb4599b0dc385dfd1fc,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

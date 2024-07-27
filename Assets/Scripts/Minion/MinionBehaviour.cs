@@ -62,6 +62,7 @@ public class MinionBehaviour : Entity
         maxHP = hp;
         agent = GetComponent<NavMeshAgent>();
         minionCollider = GetComponent<Collider>();
+        hpBar.enabled = true;
         minionCollider.enabled = true;
         attackCollider.enabled = false;
         HPFilledImage.fillAmount = (float)hp / (float)maxHP;
@@ -167,7 +168,6 @@ public class MinionBehaviour : Entity
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
-        hpBar.enabled = true;
         objectPool.Release(this);
     }
 
