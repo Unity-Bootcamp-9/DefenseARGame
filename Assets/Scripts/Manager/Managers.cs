@@ -35,7 +35,7 @@ public class Managers : MonoBehaviour
             Instance = Utils.GetOrAddComponent<Managers>(go);
             DontDestroyOnLoad(go);
 
-            //dataManager.Init();
+            gameManager.Init();
 
             Application.targetFrameRate = 60;
         }
