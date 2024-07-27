@@ -7,8 +7,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private GameManager gm;
-
     [Header("UI")]
     public Sprite iconSprite;
     public Color activeColor = Color.white;
@@ -32,13 +30,6 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public float duration = 4f;
     private bool _isAiming;
     private bool _isRayHit;
-
-    public void Init(GameManager gm)
-    {
-        this.gm = gm;
-
-        gm.ManaChanged += ChangeColor;
-    }
 
     private void Awake()
     {
@@ -75,7 +66,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (gm.CurrentMana < requireMana) return;
+        //if (gm.CurrentMana < requireMana) return;
 
         _baseImage.color = activeColor;
 
@@ -119,7 +110,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isRayHit)
         {
             Activate();
-            gm.DecreaseMana(requireMana);
+            //gm.DecreaseMana(requireMana);
         }
         else
         {
