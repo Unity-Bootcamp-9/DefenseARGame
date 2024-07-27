@@ -11,6 +11,8 @@ public class Map : MonoBehaviour
     private void Awake()
     {
         map.BuildNavMesh();
+
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = Color.clear;
     }
 
 
