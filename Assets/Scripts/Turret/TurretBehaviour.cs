@@ -5,19 +5,21 @@ using UnityEngine;
 
 public class TurretBehaviour : Entity
 {
-
     public static readonly int hashAttackStart = Animator.StringToHash("AttackStart");
     public static readonly int hastisDead = Animator.StringToHash("IsDead");
 
     private List<Transform> enemyMinions = new List<Transform>();
     [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject destroyedTurret;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Subject subject;
     public Transform target { get; private set; }
     private Animator animator;
     private Collider turretCollier;
     private Rigidbody projectileRigid;
 
+    public bool isDead { get; private set; }
     private float detectionRange = 10f;
     public float moveSpeed = 7.0f;
     private bool isAttack = false;
@@ -26,13 +28,19 @@ public class TurretBehaviour : Entity
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        isDead = false;
+        destroyedTurret.SetActive(false);
+        animator = GetComponentInParent<Animator>();    
         turretCollier = GetComponent<Collider>();
         projectileRigid = projectile.GetComponent<Rigidbody>();
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
+        
+
+
     }
+
 
     private void FixedUpdate()
     {
@@ -47,6 +55,10 @@ public class TurretBehaviour : Entity
                 projectile.transform.position = spawnPoint.transform.position;
                 projectile.SetActive(false);
             }
+        }
+        else
+        {
+            projectile.SetActive(false);
         }
     }
 
@@ -69,7 +81,6 @@ public class TurretBehaviour : Entity
 
     public Transform TargetSelection(Collider[] colliders, Transform thisTransform)
     {
-        Transform turret = null;
 
         foreach (Collider collider in colliders)
         {
@@ -88,7 +99,6 @@ public class TurretBehaviour : Entity
 
     public void StartAttack()
     {
-        
         StartCoroutine(Attack());
     }
 
@@ -112,9 +122,18 @@ public class TurretBehaviour : Entity
         base.GetHit(_damage);
         if (hp <= 0)
         {
+            if(gameObject.CompareTag("MainTurret"))
+            {
+
+                subject.SetResult(gameObject.layer);
+            }
+            projectile.SetActive(false);
+            isDead = true;
             hpBar.enabled = false;
             turretCollier.enabled = false;
             animator.SetTrigger(hastisDead);
+            destroyedTurret.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
     private void OnDrawGizmos()

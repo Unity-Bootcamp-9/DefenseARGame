@@ -16,12 +16,14 @@ public class MinionSpawnManager : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float waveCreateDelay = 30f;
     [SerializeField] private float minionCreateDelay = 1f;
-    [SerializeField] private int minionsPperWave = 5;
+    [SerializeField] private int minionsPerWave = 5;
     [SerializeField] private Transform enemyMainTurret;
     [SerializeField] private HPBar hpBar;
+    [SerializeField] private Subject subject;
 
     private int count = 0;
-
+    private Coroutine waveSpawnRoutine;
+    private Coroutine minionSpawnRoutine;
     private IObjectPool<MinionBehaviour> objectPool;
 
     private void Awake()
@@ -29,6 +31,16 @@ public class MinionSpawnManager : MonoBehaviour
         objectPool = new ObjectPool<MinionBehaviour>(CreateMinion, OnTakeFromPool,
                             OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
                             defaultCapacity,maxPoolSize);
+        subject.RedWin += StopSpawn;
+        subject.BlueWin += StopSpawn;
+    }
+
+    public void StopSpawn()
+    {
+        if(waveSpawnRoutine != null)
+            StopCoroutine(waveSpawnRoutine);
+        if(minionSpawnRoutine != null)
+            StopCoroutine(minionSpawnRoutine);
     }
 
     private MinionBehaviour CreateMinion()
@@ -59,32 +71,27 @@ public class MinionSpawnManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
+        waveSpawnRoutine = StartCoroutine(WaveSpawnRoutine(waveCreateDelay));
     }
+
 
     IEnumerator WaveSpawnRoutine(float _waveCreateDelay)
     {
         while (true)
         {
-            StartCoroutine(MinionSpawnRoutine(minionCreateDelay));
+            minionSpawnRoutine = StartCoroutine(MinionSpawnRoutine(minionCreateDelay));
             yield return new WaitForSeconds(_waveCreateDelay);
         }
     }
 
     IEnumerator MinionSpawnRoutine(float _minionCreateDelay)
     {
-        for(int i = 0; i < minionsPperWave; ++i)
+        for(int i = 0; i < minionsPerWave; ++i)
         {
             MinionBehaviour minionObject = objectPool.Get();
-            minionObject.Init(enemyMainTurret);
+            minionObject.Init(enemyMainTurret, subject, transform.root.transform.localScale);
 
             yield return new WaitForSeconds(_minionCreateDelay);
         }
     }
-
-
-
-
-
-
 }
