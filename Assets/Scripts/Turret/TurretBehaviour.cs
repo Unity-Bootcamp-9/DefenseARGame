@@ -8,7 +8,7 @@ public class TurretBehaviour : Entity
     public static readonly int hashAttackStart = Animator.StringToHash("AttackStart");
     public static readonly int hastisDead = Animator.StringToHash("IsDead");
 
-    private List<Transform> enemyMinions = new List<Transform>();
+    private List<Transform> enemyMinions = new List<Transform>(100);
     [SerializeField] private GameObject projectile;
     [SerializeField] private GameObject destroyedTurret;
     [SerializeField] private Canvas hpBar;

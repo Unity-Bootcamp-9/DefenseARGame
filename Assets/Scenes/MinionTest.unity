@@ -1050,12 +1050,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 570357160460781833, guid: 50e928514e52d394296229555c53704d,
-        type: 3}
-      propertyPath: minionPrefab
-      value: 
-      objectReference: {fileID: -8923051106224012394, guid: a5ae1263d0539724188a049e94acf8e8,
-        type: 3}
     - target: {fileID: 1365089636395513002, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1106,22 +1100,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3987921523477961361, guid: 50e928514e52d394296229555c53704d,
+    - target: {fileID: 2094085136489911444, guid: 50e928514e52d394296229555c53704d,
         type: 3}
-      propertyPath: minionsPerWave
-      value: 5
+      propertyPath: m_TagString
+      value: MainTurret
       objectReference: {fileID: 0}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name
       value: ProtoMap
       objectReference: {fileID: 0}
-    - target: {fileID: 8515360069586266887, guid: 50e928514e52d394296229555c53704d,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 0eeda7648bfe9fb4599b0dc385dfd1fc,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
