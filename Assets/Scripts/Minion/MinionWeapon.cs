@@ -18,7 +18,7 @@ public class MinionWeapon : MonoBehaviour
         {
             enemyLayer = 6;
         }
-        damage = 10;
+        damage = 20;
     }
 
     private void OnTriggerEnter(Collider other)

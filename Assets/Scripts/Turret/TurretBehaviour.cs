@@ -14,6 +14,7 @@ public class TurretBehaviour : Entity
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Subject subject;
+    [SerializeField] private float projectileSpeed;
     public Transform target { get; private set; }
     private Animator animator;
     private Collider turretCollier;
@@ -21,9 +22,8 @@ public class TurretBehaviour : Entity
 
     public bool isDead { get; private set; }
     private float detectionRange = 10f;
-    public float moveSpeed = 7.0f;
     private bool isAttack = false;
-
+    private IEnumerator attackCoroutine;
 
 
     private void Awake()
@@ -36,8 +36,6 @@ public class TurretBehaviour : Entity
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
-        
-
 
     }
 
@@ -46,8 +44,8 @@ public class TurretBehaviour : Entity
     {
         if (isAttack)
         {
-            Vector3 moveDir = target.transform.position - projectile.transform.position;
-            projectileRigid.MovePosition(projectile.transform.position + moveDir * moveSpeed * Time.fixedDeltaTime);
+            Vector3 moveDir = (target.transform.position - projectile.transform.position).normalized;
+            projectileRigid.MovePosition(projectile.transform.position + moveDir * projectileSpeed * Time.fixedDeltaTime);
          
             if (Vector3.Distance(projectile.transform.position, target.position) < 0.8f)
             {
@@ -91,7 +89,11 @@ public class TurretBehaviour : Entity
         }
 
         enemyMinions = enemyMinions.OrderBy(enemyMinion => Vector3.Distance(enemyMinion.position, thisTransform.position)).ToList<Transform>();
-        target = enemyMinions[0];
+
+        if (enemyMinions.Count > 0)
+        {
+            target = enemyMinions[0];
+        }
         enemyMinions.Clear();
 
         return target;
@@ -99,20 +101,21 @@ public class TurretBehaviour : Entity
 
     public void StartAttack()
     {
-        StartCoroutine(Attack());
+        attackCoroutine = Attack();
+        StartCoroutine(attackCoroutine);
     }
 
     public void StopAttack()
     {
-        StopCoroutine(Attack());
+        StopCoroutine(attackCoroutine);
     }
 
     IEnumerator Attack()
     {
         while (true)
         {
-            projectile.transform.position = spawnPoint.transform.position;
             projectile.SetActive(true);
+            projectile.transform.position = spawnPoint.transform.position;
             yield return new WaitForSeconds(2f);
         }
     }
