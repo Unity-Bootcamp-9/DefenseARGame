@@ -60,7 +60,7 @@ ModelImporter:
       - time: 0.2654321
         functionName: AttackRangeCollierTurnOn
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: d8a1834c00eb9134f98236f34daba2bf,
+        objectReferenceParameter: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7,
           type: 3}
         floatParameter: 0
         intParameter: 0
@@ -68,7 +68,7 @@ ModelImporter:
       - time: 0.52469134
         functionName: AttackRangeCollierTurnOff
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: d8a1834c00eb9134f98236f34daba2bf,
+        objectReferenceParameter: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7,
           type: 3}
         floatParameter: 0
         intParameter: 0

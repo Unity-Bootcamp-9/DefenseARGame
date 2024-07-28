@@ -4,51 +4,90 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 using UnityEngine.UI;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class MinionBehaviour : MonoBehaviour
+public class MinionBehaviour : Entity
 {
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
 
-    private float detectionRange = 7f;
-    private float attackRange = 1f;
+    [SerializeField] private Canvas hpBar;
+    [SerializeField] private Collider attackCollider;
+    [SerializeField] private Transform defaultTarget;
+    private List<Transform> enemyMinions = new List<Transform>(100);
+    private Collider minionCollider;
     private Animator animator;
-    private int enemyLayer;
-    [SerializeField]
-    private Transform defaultTarger;
-    private List<Transform> enemyMinions = new List<Transform>();
     public Transform target { get; private set; }
-    public bool isAttacking { get; private set; }
+    private NavMeshAgent agent;
+    private Subject subject;
 
+    public bool isAttack { get;  set; }
+    private float detectionRange = 10f;
+    private float attackRange = 1.5f;
+
+    private IObjectPool<MinionBehaviour> objectPool;
+    public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
+    
     private void Start()
     {
-        isAttacking = false;
+        isAttack = false;
         animator = GetComponent<Animator>();
-        target = defaultTarger;
-        if (gameObject.layer == 6)
-        {
-            enemyLayer = 7;
-        }
-        else if(gameObject.layer == 7)
-        {
-            enemyLayer = 6;
-        }
+        enemyLayerSet();
     }
-        
-    private void Update()
+
+    public void Init(Transform mainTurretTransform , Subject _subject, Vector3 scale)
     {
-        if(target == null)
+        defaultTarget = mainTurretTransform;
+        DefaultTargetSet();
+        transform.localScale = scale;
+        subject = _subject;
+        subject.RedWin += StopMinion;
+        subject.BlueWin += StopMinion;
+    }
+
+    public void StopMinion()
+    {
+        agent.enabled = false;
+        animator.enabled = false;
+        this.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        hp = 100;
+        maxHP = hp;
+        agent = GetComponent<NavMeshAgent>();
+        minionCollider = GetComponent<Collider>();
+        hpBar.enabled = true;
+        minionCollider.enabled = true;
+        attackCollider.enabled = false;
+        HPFilledImage.fillAmount = (float)hp / (float)maxHP;
+    }
+    public void Update()
+    {
+        if (target == null)
         {
-            target = defaultTarger;
+            DefaultTargetSet();
         }
-        if (target.gameObject.name != null)
+
+        if (isAttack)
         {
-            Debug.Log($"target : {target.gameObject.name}");
+            agent.SetDestination(transform.position);
         }
+        else
+        {
+            agent.SetDestination(target.position);
+        }
+        transform.LookAt(target);
+    }
+
+    public void DefaultTargetSet()
+    {
+        target = defaultTarget;
     }
 
     public void TargetDetection()
@@ -64,7 +103,7 @@ public class MinionBehaviour : MonoBehaviour
         else
         {
             animator.SetBool(hashInPursuit, false);
-            target = defaultTarger;
+            DefaultTargetSet();
         }
     }
 
@@ -79,7 +118,7 @@ public class MinionBehaviour : MonoBehaviour
             {
                 enemyMinions.Add(collider.transform);
             }
-            else if (collider.CompareTag("Turret"))
+            else if (collider.CompareTag("Turret") || collider.CompareTag("MainTurret"))
             {
                 turret = collider.transform;
             }
@@ -94,7 +133,7 @@ public class MinionBehaviour : MonoBehaviour
             target = turret;
         }
         enemyMinions.Clear();
-        
+
         return target;
     }
 
@@ -106,21 +145,40 @@ public class MinionBehaviour : MonoBehaviour
         {
             animator.SetTrigger(hashAttack);
         }
-    }
-    public void SetIsAttacking(bool _isAttacking)
-    {
-        isAttacking = _isAttacking;
-    }
 
+    }
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+        if (hp <= 0)
+        {
+            hpBar.enabled = false;
+            minionCollider.enabled = false;
+            attackCollider.enabled = false;
+            Die();
+            target = transform;
+        }
+    }
     public void Die()
     {
         animator.SetTrigger(hashDie);
         StartCoroutine(Deactivate(2f));
     }
+
     IEnumerator Deactivate(float delay)
     {
         yield return new WaitForSeconds(delay);
-        gameObject.SetActive(false);
+        objectPool.Release(this);
+    }
+
+    public void AttackRangeCollierTurnOn()
+    {
+        attackCollider.enabled = true; 
+    }
+
+    public void AttackRangeCollierTurnOff()
+    {
+        attackCollider.enabled = false;
     }
 
     private void OnDrawGizmos()

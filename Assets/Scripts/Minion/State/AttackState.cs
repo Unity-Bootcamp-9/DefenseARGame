@@ -9,12 +9,13 @@ public class AttackState : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         minionBehaviour = animator.GetComponent<MinionBehaviour>();
-        minionBehaviour.SetIsAttacking(true);
+        minionBehaviour.isAttack = true;
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour.SetIsAttacking(false);
+        minionBehaviour.isAttack = false;
+
     }
 
 }
