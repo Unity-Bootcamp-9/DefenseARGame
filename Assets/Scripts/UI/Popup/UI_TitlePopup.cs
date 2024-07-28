@@ -4,11 +4,6 @@ using static Define;
 
 public class UI_TitlePopup : UI_Popup
 {
-/*    enum Texts
-    {
-        TouchToStartText,
-    }
-*/
     enum Buttons
     {
         BackGroundButton,
@@ -31,7 +26,7 @@ public class UI_TitlePopup : UI_Popup
     {
         Debug.Log("OnClickBackGroundButton");
 
-        Managers.UI.ClosePopupUI(this); // UI_TitlePopup
+        Managers.UI.ClosePopupUI(this);
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
 
