@@ -7,6 +7,16 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private Mana _mana;
+    public Mana mana
+    {
+        get => _mana;
+        set
+        {
+            if (!_mana) _mana = value;
+        }
+    }
+
     [Header("UI")]
     public Sprite iconSprite;
     public Color activeColor = Color.white;
@@ -15,18 +25,16 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     private Image _iconImage;
 
     [Header("프로젝터")]
-    public GameObject objectToSpawn;
-    protected GameObject draggingObject;
-    public Vector3 offset;
+    public Vector3 offset = Vector3.up * 9f;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    protected GameObject draggingObject;
     protected SRPCircleRegionProjector Circle;
 
     [Header("스킬 정보")]
-    public string skillName = "메테오";
+    public string skillName = "Meteor";
     [Range(1, 10)] public int requireMana = 4;
     [Range(1, 100)] public int damage = 10;
-    [Range(0.1f, 1f)] public float radius = 0.09f;
-    [Range(1f, 5f), Tooltip("스킬이 피해를 가하는 지속 시간")]
+    [Range(1f, 15f)] public float radius = 9f;
     private bool _isAiming;
     private bool _isAble;
 
@@ -39,41 +47,32 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_iconImage && iconSprite)
         {
             _iconImage.material = Instantiate(_iconImage.material);
-            _iconImage.sprite = iconSprite;
+            _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{skillName}");
         }
 
-        draggingObject = Instantiate(objectToSpawn);
+        draggingObject = Managers.Resource.Instantiate($"Skill/Circle 1 Region");
         draggingObject.SetActive(false);
 
         Circle = draggingObject.GetComponent<SRPCircleRegionProjector>();
-        Circle.Radius = radius; // 생성된 맵의 사이즈에 따라 재조정 필요
+        Circle.Radius = radius;
     }
 
     private void OnDestroy()
     {
-        /*gm.ManaChanged -= ChangeColor;*/
+        _mana.ManaChanged -= ChangeColor;
     }
 
     /// <summary>
     /// 아이콘을 현재 마나에 따라 흑백으로 전환
     /// </summary>
-    public void ChangeColor()
-    {
-        /*_iconImage.material.SetFloat("_Grayscale",
-            gm.CurrentMana >= requireMana ? 0 : 1);*/
-    }
+    public void ChangeColor() =>
+        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(_mana.CurrentMana < requireMana));
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //if (gm.CurrentMana < requireMana) return;
+        if (_mana.CurrentMana < requireMana) return;
 
         _baseImage.color = activeColor;
-
-        if (!objectToSpawn)
-        {
-            Debug.Log("드래그 중");
-            return;
-        }
 
         _isAiming = true;
     }
@@ -82,7 +81,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (draggingObject != null && _isAiming)
         {
-            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 100f, groundLayer)
+            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, groundLayer)
                 && !RectTransformUtility.RectangleContainsScreenPoint(_iconImage.rectTransform, eventData.position);
 
             if (_isAble)
@@ -107,7 +106,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            //gm.DecreaseMana(requireMana);
+            _mana.UpdateMana(-requireMana);
         }
         else
         {

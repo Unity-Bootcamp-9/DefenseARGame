@@ -1105,10 +1105,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: MainTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 2323655912590800741, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
         type: 3}
       propertyPath: m_Name
       value: ProtoMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347241025638969366, guid: 50e928514e52d394296229555c53704d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
