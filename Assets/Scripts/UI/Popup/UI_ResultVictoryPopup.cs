@@ -31,6 +31,8 @@ public class UI_ResultVictoryPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
+
+        Managers.Game.FinishGame();
     }
 
 }
