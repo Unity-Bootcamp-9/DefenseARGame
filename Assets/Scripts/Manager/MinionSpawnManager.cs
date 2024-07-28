@@ -48,7 +48,7 @@ public class MinionSpawnManager : MonoBehaviour
 
     private MinionBehaviour CreateMinion()
     {
-        MinionBehaviour minionInstance = Instantiate(minionPrefab);
+        MinionBehaviour minionInstance = Instantiate(minionPrefab, transform.parent);
         minionInstance.ObjectPool = objectPool;
         minionInstance.name = count.ToString();
         count++;

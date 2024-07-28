@@ -27,6 +27,8 @@ public class UI_ResultDefeatPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
+
+        Managers.Game.FinishGame();
     }
 
 }

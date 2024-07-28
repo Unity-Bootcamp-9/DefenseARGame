@@ -65,7 +65,7 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
 
-        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
+        Managers.Game.ReadyGame();
     }
 
     void OnClickMiddleButton()
@@ -75,8 +75,7 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
 
-        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
-
+        Managers.Game.ReadyGame();
     }
 
     void OnClickLowButton()
@@ -85,7 +84,7 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
 
-        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
+        Managers.Game.ReadyGame();
     }
 
     void GoUp() => selectSection.position = Vector3.MoveTowards(selectSection.position, upPos, MovingSpeed);
