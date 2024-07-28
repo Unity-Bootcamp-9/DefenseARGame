@@ -14,6 +14,8 @@ public class Map : MonoBehaviour
         //map = GetComponent<NavMeshSurface>();
         map.RemoveData();
         map.BuildNavMesh();
+
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = Color.clear;
     }
 
 

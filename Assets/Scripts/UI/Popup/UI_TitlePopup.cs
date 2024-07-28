@@ -29,7 +29,6 @@ public class UI_TitlePopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
-
     }
 
 }
