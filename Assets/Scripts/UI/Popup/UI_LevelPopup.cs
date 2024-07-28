@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using TMPro;
 using UnityEngine;
 using static Define;
@@ -65,6 +64,8 @@ public class UI_LevelPopup : UI_Popup
         // 아직 해금 안됨
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
     }
 
     void OnClickMiddleButton()
@@ -74,6 +75,8 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
 
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
+
     }
 
     void OnClickLowButton()
@@ -81,6 +84,8 @@ public class UI_LevelPopup : UI_Popup
         Debug.Log("OnClickLowButton");
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
     }
 
     void GoUp() => selectSection.position = Vector3.MoveTowards(selectSection.position, upPos, MovingSpeed);
