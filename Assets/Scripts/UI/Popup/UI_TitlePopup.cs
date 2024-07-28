@@ -34,8 +34,6 @@ public class UI_TitlePopup : UI_Popup
         Managers.UI.ClosePopupUI(this); // UI_TitlePopup
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
-
-        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
     }
 
 }
