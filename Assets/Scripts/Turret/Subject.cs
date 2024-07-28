@@ -18,17 +18,23 @@ public class Subject : MonoBehaviour
     {
         Debug.Log("승리");
         BlueWin?.Invoke();
+        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_ResultVictoryPopup>();
+        winingTeam = 0;
     }
 
     public void Defeat()
     {
         Debug.Log("패배");
         RedWin?.Invoke();
+        Managers.UI.ClosePopupUI();
+        Managers.UI.ShowPopupUI<UI_ResultDefeatPopup>();
+        winingTeam = 0;
     }
 
     public void SetResult(int _winingTeam)
     {
-        gameEnd =true;
+        gameEnd = true;
         winingTeam = _winingTeam;
     }
 
