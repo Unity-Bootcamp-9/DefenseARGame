@@ -24,9 +24,10 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     private Image _baseImage;
     private Image _iconImage;
 
-    [Header("프로젝터")]
+    [Header("오브젝트")]
     public Vector3 offset = Vector3.up * 9f;
     public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    public GameObject effectToSpawn;
     protected GameObject draggingObject;
     protected SRPCircleRegionProjector Circle;
 
