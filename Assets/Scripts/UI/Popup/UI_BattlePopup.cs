@@ -42,7 +42,7 @@ public class UI_BattlePopup : UI_Popup
         GetText((int)Texts.PlayTimeText).text = "00:00";
 
         GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<MeteorSkill>();
-        GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<Skill>();
+        GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<MonsoonSkill>();
         GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<Skill>();
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<Skill>();
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
