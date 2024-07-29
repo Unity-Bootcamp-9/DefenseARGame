@@ -57,16 +57,8 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.2654321
-        functionName: AttackRangeCollierTurnOn
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7,
-          type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.52469134
-        functionName: AttackRangeCollierTurnOff
+      - time: 0.3919881
+        functionName: Attack
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: c1ede94458365b545adfe6f20b433aa7,
           type: 3}

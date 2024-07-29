@@ -16,7 +16,6 @@ public class MinionBehaviour : Entity
     public static readonly int hashDie = Animator.StringToHash("Die");
 
     [SerializeField] private Canvas hpBar;
-    [SerializeField] private Collider attackCollider;
     [SerializeField] private Transform defaultTarget;
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 1.5f;
@@ -57,13 +56,11 @@ public class MinionBehaviour : Entity
 
     private void OnEnable()
     {
-        hp = 100;
-        maxHP = hp;
+        hp = maxHP;
         agent = GetComponent<NavMeshAgent>();
         minionCollider = GetComponent<Collider>();
         hpBar.enabled = true;
         minionCollider.enabled = true;
-        attackCollider.enabled = false;
         HPFilledImage.fillAmount = (float)hp / (float)maxHP;
     }
     public void Update()
@@ -91,6 +88,7 @@ public class MinionBehaviour : Entity
 
     public void TargetDetection()
     {
+        
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
         if (colliders.Length >= 1)
@@ -142,7 +140,7 @@ public class MinionBehaviour : Entity
         Collider attackTarget= colliders.FirstOrDefault(collider => collider.transform == target);
         if (attackTarget != null)
         {
-            animator.SetTrigger(hashAttack);
+            animator.SetBool(hashAttack, true);
         }
 
     }
@@ -153,7 +151,6 @@ public class MinionBehaviour : Entity
         {
             hpBar.enabled = false;
             minionCollider.enabled = false;
-            attackCollider.enabled = false;
             Die();
             target = transform;
         }
@@ -170,14 +167,13 @@ public class MinionBehaviour : Entity
         objectPool.Release(this);
     }
 
-    public void AttackRangeCollierTurnOn()
-    {
-        attackCollider.enabled = true; 
-    }
 
-    public void AttackRangeCollierTurnOff()
+    public void Attack()
     {
-        attackCollider.enabled = false;
+        if(target.GetComponent<Entity>() != null)
+        {
+            target.GetComponent<Entity>().GetHit(damage);
+        }
     }
 
     private void OnDrawGizmos()

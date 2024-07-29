@@ -15,7 +15,7 @@ public class TurretBehaviour : Entity
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Subject subject;
     [SerializeField] private float projectileSpeed;
-    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float detectionRange;
 
     public Transform target { get; private set; }
     private Animator animator;
@@ -36,6 +36,7 @@ public class TurretBehaviour : Entity
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
+        hp = maxHP;
     }
 
     private void FixedUpdate()
@@ -62,10 +63,11 @@ public class TurretBehaviour : Entity
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
+
         if (colliders.Length >= 1)
         {
-            animator.SetBool(hashAttackStart , true);
             target = TargetSelection(colliders, transform);
+            animator.SetBool(hashAttackStart , true);
             isAttack = true;
         }
         else
