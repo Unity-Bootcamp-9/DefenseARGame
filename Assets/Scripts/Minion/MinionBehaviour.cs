@@ -18,6 +18,8 @@ public class MinionBehaviour : Entity
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Collider attackCollider;
     [SerializeField] private Transform defaultTarget;
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float attackRange = 1.5f;
     private List<Transform> enemyMinions = new List<Transform>(100);
     private Collider minionCollider;
     private Animator animator;
@@ -26,8 +28,6 @@ public class MinionBehaviour : Entity
     private Subject subject;
 
     public bool isAttack { get;  set; }
-    private float detectionRange = 10f;
-    private float attackRange = 1.5f;
 
     private IObjectPool<MinionBehaviour> objectPool;
     public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
@@ -39,11 +39,10 @@ public class MinionBehaviour : Entity
         enemyLayerSet();
     }
 
-    public void Init(Transform mainTurretTransform , Subject _subject, Vector3 scale)
+    public void Init(Transform mainTurretTransform , Subject _subject)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
-        transform.localScale = scale;
         subject = _subject;
         subject.RedWin += StopMinion;
         subject.BlueWin += StopMinion;
