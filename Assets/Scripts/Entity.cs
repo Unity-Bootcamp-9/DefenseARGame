@@ -6,20 +6,20 @@ using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
     [SerializeField] protected Image HPFilledImage;
-    [SerializeField] protected int hp;
-    [SerializeField] protected int maxHP;
     [SerializeField] protected int damage;
+    [SerializeField] protected int maxHP;
+    public int hp { get; protected set; }
     protected int enemyLayer;
 
     public const int redLayer = 6;
     public const int blueLayer = 7;
 
-    public void Awake()
+    protected virtual void Awake()
     {
         HPFilledImage.fillAmount = 1;
     }
 
-    public void enemyLayerSet()
+    protected void enemyLayerSet()
     {
         if (gameObject.layer == redLayer)
         {

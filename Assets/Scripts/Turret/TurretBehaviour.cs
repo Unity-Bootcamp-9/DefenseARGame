@@ -15,18 +15,18 @@ public class TurretBehaviour : Entity
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Subject subject;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private float detectionRange;
+
     public Transform target { get; private set; }
     private Animator animator;
     private Collider turretCollier;
     private Rigidbody projectileRigid;
 
     public bool isDead { get; private set; }
-    private float detectionRange = 10f;
     private bool isAttack = false;
     private IEnumerator attackCoroutine;
 
-
-    private void Awake()
+    protected override void Awake()
     {
         isDead = false;
         destroyedTurret.SetActive(false);
@@ -36,9 +36,8 @@ public class TurretBehaviour : Entity
         projectile.transform.position = spawnPoint.transform.position;
         projectile.SetActive(false);
         enemyLayerSet();
-
+        hp = maxHP;
     }
-
 
     private void FixedUpdate()
     {
@@ -59,16 +58,17 @@ public class TurretBehaviour : Entity
             projectile.SetActive(false);
         }
     }
-
+    
     public void TargetDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
+
         if (colliders.Length >= 1)
         {
+            target = TargetSelection(colliders, transform);
             animator.SetBool(hashAttackStart , true);
             isAttack = true;
-            target = TargetSelection(colliders, transform);
         }
         else
         {
