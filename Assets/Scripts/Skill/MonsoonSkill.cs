@@ -4,8 +4,12 @@ using static UnityEngine.GraphicsBuffer;
 
 public class MonsoonSkill : Skill
 {
+    //public float radius = 1.38f;  // 반경
+    public float pushForce = 100f; // 밀어내는 힘
+    //public float duration = 3f;   // 지속 시간
+
     private const float duration = 1.3f;
-    private SphereCollider monsoonCollider;
+    private readonly Collider[] targets = new Collider[10];
 
     private void Start()
     {
@@ -13,7 +17,6 @@ public class MonsoonSkill : Skill
         requireMana = 2;
         damage = 10;
         effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/Monsoon");
-        monsoonCollider = effectToSpawn.GetComponent<SphereCollider>();
     }
 
     protected override void Activate()
@@ -25,73 +28,58 @@ public class MonsoonSkill : Skill
                 draggingObject.transform.rotation
             );
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.38f, 1 << 6);
-        TargetSelection(colliders, transform);
+        StartCoroutine(Attack(effect.transform.position, duration));
+        //StartCoroutine(ActivateUltimate());
     }
 
-    IEnumerator colliderBigging()
+    IEnumerator Attack(Vector3 position, float time)
     {
-        float detectionRange = 0;
+        yield return null;
 
-        while (detectionRange < 1.38f)    //monsoonCollider.radius < 1.38
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, 3f, targets, 1 << 6);
+
+        for (int j = 0; j < targetAmount; j++)
         {
-            yield return new WaitForSeconds(0.2f);
-            detectionRange += 0.1f;
-        }
-        detectionRange = 0;
-    }
-
-    public void TargetSelection(Collider[] colliders, Transform thisTransform)
-    {
-
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag("Minion"))
+            if (targets[j].CompareTag("Minion"))
             {
-                Debug.Log("TargetSelection");
-                Vector3 vTargetPos = collider.gameObject.transform.position;
-                Vector3 vPos = transform.position;
-                Vector3 vDist = vTargetPos - vPos;
-                Vector3 vDir = vDist.normalized;
-                float fDist = vDist.magnitude;
-                //vTargetPos += -vDir * 3f * 0.1f;    // 이걸 또 코루틴?
-                MonsoonStart(vTargetPos, vDir);
+                //targets[j].transform.position = Vector3.zero;
+                Rigidbody rb = targets[j].GetComponent<Rigidbody>();
+
+                Debug.Log(rb.gameObject.transform.name);
+
+                // 오브젝트의 forward 방향의 반대 방향
+                Vector3 pushDirection = -targets[j].transform.forward;
+
+                // 반대 방향으로 밀어내기
+                rb.AddForce(pushDirection * 100f * Time.deltaTime, ForceMode.Impulse);
 
             }
         }
-/*
-        enemyMinions = enemyMinions.OrderBy(enemyMinion => Vector3.Distance(enemyMinion.position, thisTransform.position)).ToList<Transform>();
+    }
 
-        if (enemyMinions.Count > 0)
+    private IEnumerator ActivateUltimate()
+    {
+        float startTime = Time.time;
+
+        while (Time.time < startTime + duration)
         {
-            target = enemyMinions[0];
+            // 반경 내의 모든 Collider를 감지
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, 1 << 6);
+
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("Minion"))
+                {
+                    Rigidbody rb = col.GetComponent<Rigidbody>();
+                    // 오브젝트에서 잔나의 위치를 뺀 벡터
+                    Vector3 direction = col.transform.position - transform.position;
+
+                    // 반대 방향으로 밀어내기
+                    rb.AddForce(direction.normalized * pushForce * Time.deltaTime, ForceMode.Impulse);
+                }
+            }
+
+            yield return null; // 다음 프레임까지 대기
         }
-        enemyMinions.Clear();
-*/
     }
-
-
-    IEnumerator MonsoonCo(Vector3 vTargetPos, Vector3 vDir)
-    {
-        while (true)
-        {
-            Debug.Log("hello");
-            vTargetPos += -vDir * 3f * 0.1f;    // 이걸 또 코루틴?
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    private void MonsoonStart(Vector3 vTargetPos, Vector3 vDir)
-    {
-        Debug.Log("MonsoonStart");
-
-        StartCoroutine(MonsoonCo(vTargetPos, vDir));
-    }
-
-/*    private void Update()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1.38f, 1 << 6);
-
-        TargetSelection(colliders, transform);
-    }
-*/}
+}
