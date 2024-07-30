@@ -151,6 +151,7 @@ public class MinionBehaviour : Entity
         {
             hpBar.enabled = false;
             minionCollider.enabled = false;
+            agent.SetDestination(transform.position);
             Die();
             target = transform;
         }

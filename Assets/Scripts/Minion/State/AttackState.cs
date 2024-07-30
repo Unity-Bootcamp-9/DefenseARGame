@@ -5,12 +5,11 @@ using UnityEngine;
 public class AttackState : StateMachineBehaviour
 {
     private MinionBehaviour minionBehaviour;
-    private Entity target;
-    private float transitionDelay = 0.25f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         minionBehaviour = animator.GetComponent<MinionBehaviour>();
+        minionBehaviour.isAttack = true;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,8 +19,6 @@ public class AttackState : StateMachineBehaviour
             if(minionBehaviour.target.GetComponent<Entity>().hp <= 0  )
             {
                 animator.SetBool(MinionBehaviour.hashAttack, false);
-                
-
             }
         }
     }
