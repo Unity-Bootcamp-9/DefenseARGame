@@ -41,7 +41,7 @@ public class GameManagerEx
 
         Transform mapPreview = _objectSpawner.transform.GetChild(0);
 
-        _map = Managers.Resource.Instantiate("MAP/ProtoMap");
+        _map = Managers.Resource.Instantiate("MAP/FinalMap");
         _map.transform.SetPositionAndRotation(mapPreview.position, mapPreview.rotation);
         _map.transform.localScale = mapPreview.localScale;
 
