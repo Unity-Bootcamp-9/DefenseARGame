@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class MonsoonSkill : Skill
 {
@@ -16,6 +15,7 @@ public class MonsoonSkill : Skill
         skillName = "Monsoon";
         requireMana = 2;
         damage = 10;
+        radius = 3f;
         effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/Monsoon");
     }
 
@@ -29,7 +29,6 @@ public class MonsoonSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
-        //StartCoroutine(ActivateUltimate());
     }
 
     IEnumerator Attack(Vector3 position, float time)
@@ -42,43 +41,19 @@ public class MonsoonSkill : Skill
         {
             if (targets[j].CompareTag("Minion"))
             {
-                //targets[j].transform.position = Vector3.zero;
-                Rigidbody rb = targets[j].GetComponent<Rigidbody>();
-
-                Debug.Log(rb.gameObject.transform.name);
-
-                // 오브젝트의 forward 방향의 반대 방향
-                Vector3 pushDirection = -targets[j].transform.forward;
-
-                // 반대 방향으로 밀어내기
-                rb.AddForce(pushDirection * 100f * Time.deltaTime, ForceMode.Impulse);
-
+                Debug.Log(targets[j].gameObject.transform.name);
+                StartCoroutine(MoveObjects(targets[j]));
             }
         }
     }
-
-    private IEnumerator ActivateUltimate()
+    IEnumerator MoveObjects(Collider coll)
     {
-        float startTime = Time.time;
-
-        while (Time.time < startTime + duration)
+        float time = 0;
+        while (time < 3)
         {
-            // 반경 내의 모든 Collider를 감지
-            Collider[] colliders = Physics.OverlapSphere(transform.position, radius, 1 << 6);
-
-            foreach (Collider col in colliders)
-            {
-                if (col.CompareTag("Minion"))
-                {
-                    Rigidbody rb = col.GetComponent<Rigidbody>();
-                    // 오브젝트에서 잔나의 위치를 뺀 벡터
-                    Vector3 direction = col.transform.position - transform.position;
-
-                    // 반대 방향으로 밀어내기
-                    rb.AddForce(direction.normalized * pushForce * Time.deltaTime, ForceMode.Impulse);
-                }
-            }
-
+            time += Time.deltaTime;
+            Vector3 direction = (coll.gameObject.transform.position - effectToSpawn.gameObject.transform.position).normalized; // 반대 방향
+            coll.gameObject.transform.position += direction * 10f * Time.deltaTime;
             yield return null; // 다음 프레임까지 대기
         }
     }
