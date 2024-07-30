@@ -24,7 +24,6 @@ public class MinionBehaviour : Entity
     private Animator animator;
     public Transform target { get; private set; }
     private NavMeshAgent agent;
-    private Subject subject;
 
     public bool isAttack { get;  set; }
 
@@ -38,11 +37,10 @@ public class MinionBehaviour : Entity
         enemyLayerSet();
     }
 
-    public void Init(Transform mainTurretTransform , Subject _subject)
+    public void Init(Transform mainTurretTransform , Subject subject)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
-        subject = _subject;
         subject.RedWin += StopMinion;
         subject.BlueWin += StopMinion;
     }
@@ -69,7 +67,6 @@ public class MinionBehaviour : Entity
         {
             DefaultTargetSet();
         }
-
         if (isAttack)
         {
             agent.SetDestination(transform.position);
