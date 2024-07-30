@@ -7,7 +7,7 @@ public class Mana : MonoBehaviour
     private const int MaxMana = 10;
     private const int MinMana = 0;
     public int CurrentMana { get; private set; } = MaxMana;
-    public float regenRate = 2f;
+    private const float regenRate = 0.5f;
     private float _elapsedTime;
 
     public event Action ManaChanged;
@@ -18,7 +18,7 @@ public class Mana : MonoBehaviour
 
         foreach (Skill skill in skills)
         {
-            skill.mana = this;
+            skill.Mana = this;
             ManaChanged += skill.ChangeColor;
         }
 

@@ -48,7 +48,7 @@ public class MinionSpawnManager : MonoBehaviour
 
     private MinionBehaviour CreateMinion()
     {
-        MinionBehaviour minionInstance = Instantiate(minionPrefab, transform.parent);
+        MinionBehaviour minionInstance = Instantiate(minionPrefab, spawnPoint, false);
         minionInstance.ObjectPool = objectPool;
         minionInstance.name = count.ToString();
         count++;
@@ -72,7 +72,7 @@ public class MinionSpawnManager : MonoBehaviour
         Destroy(minion.gameObject);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         waveSpawnRoutine = StartCoroutine(WaveSpawnRoutine(waveCreateDelay, startDelay));
     }
