@@ -10,6 +10,7 @@ public class SeekState : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         minionBehaviour = animator.GetComponent<MinionBehaviour>();
+        minionBehaviour.isAttack = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -17,13 +18,4 @@ public class SeekState : StateMachineBehaviour
         minionBehaviour.TargetDetection();
         minionBehaviour.AttackDetection();
     }
-
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
-
-
-
-
 }

@@ -138,8 +138,12 @@ public class MinionBehaviour : Entity
         if (attackTarget != null)
         {
             animator.SetBool(hashAttack, true);
+            isAttack = true;
         }
-
+        else
+        {
+            isAttack = false;
+        }
     }
     public override void GetHit(int _damage)
     {

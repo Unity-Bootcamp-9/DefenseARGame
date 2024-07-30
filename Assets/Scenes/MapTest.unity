@@ -450,10 +450,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 173794236577893788, guid: 214d3457d9b9458499f2f39b63dc9b00,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2921197242630001994, guid: 214d3457d9b9458499f2f39b63dc9b00,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 8.6
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3189889978510202808, guid: 214d3457d9b9458499f2f39b63dc9b00,
         type: 3}
@@ -527,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 1168571502743437610, guid: 5424d0846a1c5574cbe1ef029c2a857b,
         type: 3}
       propertyPath: m_StoppingDistance
-      value: 8.6
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1781928853473732505, guid: 5424d0846a1c5574cbe1ef029c2a857b,
         type: 3}
@@ -676,7 +681,7 @@ PrefabInstance:
     - target: {fileID: 1464537011522843755, guid: 0f8381a3034255948b449d35b3b7c1f3,
         type: 3}
       propertyPath: damage
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1464537011522843755, guid: 0f8381a3034255948b449d35b3b7c1f3,
         type: 3}
@@ -883,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 1464537011522843755, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
       propertyPath: damage
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1464537011522843755, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
@@ -898,7 +903,7 @@ PrefabInstance:
     - target: {fileID: 8313599717752252194, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652547698040864152, guid: 3a77a5ef394681545a0f6cda770dfc66,
         type: 3}
@@ -1454,7 +1459,7 @@ PrefabInstance:
     - target: {fileID: 6702593760600664179, guid: 8dd303b26218cf747ac9816359ccf4fa,
         type: 3}
       propertyPath: damage
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6897267798177023078, guid: 8dd303b26218cf747ac9816359ccf4fa,
         type: 3}
@@ -1464,7 +1469,7 @@ PrefabInstance:
     - target: {fileID: 7057689872714128243, guid: 8dd303b26218cf747ac9816359ccf4fa,
         type: 3}
       propertyPath: damage
-      value: 0
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8288805702168222833, guid: 8dd303b26218cf747ac9816359ccf4fa,
         type: 3}
