@@ -9,12 +9,12 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 {
     public Mana Mana { get; set; }
 
-    protected string skillName = "";
-    protected string skillName_KR = "";
-    protected string description = "";
-    protected int requireMana;
-    protected int damage;
-    protected float radius;
+    public string SkillName { get; protected set; }
+    public string SkillName_KR { get; protected set; }
+    public string Description { get; protected set; }
+    public int RequireMana { get; protected set; }
+    public int Damage { get; protected set; }
+    public float Radius { get; protected set; }
     private bool _isAiming;
     private bool _isAble;
 
@@ -38,16 +38,16 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_iconImage)
         {
             _iconImage.material = Instantiate(_iconImage.material);
-            _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{skillName}");
+            _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{SkillName}");
         }
 
         draggingObject = Managers.Resource.Instantiate($"Skill/Circle 1 Region");
         draggingObject.SetActive(false);
 
-        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/{skillName}");
+        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/{SkillName}");
 
         Circle = draggingObject.GetComponent<SRPCircleRegionProjector>();
-        Circle.Radius = radius;
+        Circle.Radius = Radius;
     }
 
     private void Awake()
@@ -65,11 +65,11 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     /// 아이콘을 현재 마나에 따라 흑백으로 전환
     /// </summary>
     public void ChangeColor() =>
-        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(Mana.CurrentMana < requireMana));
+        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(Mana.CurrentMana < RequireMana));
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (Mana.CurrentMana < requireMana) return;
+        if (Mana.CurrentMana < RequireMana) return;
 
         _baseImage.color = _activeColor;
 
@@ -105,7 +105,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            Mana.UpdateMana(-requireMana);
+            Mana.UpdateMana(-RequireMana);
         }
         else
         {

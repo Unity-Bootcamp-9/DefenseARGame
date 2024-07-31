@@ -9,12 +9,12 @@ public class HealSkill : Skill
 
     public override void Init()
     {
-        skillName = "Heal";
-        skillName_KR = "회복";
-        description = "";
-        requireMana = 7;
-        damage = 30;
-        radius = 9f;
+        SkillName = "Heal";
+        SkillName_KR = "회복";
+        Description = "";
+        RequireMana = 7;
+        Damage = 30;
+        Radius = 9f;
         base.Init();
     }
 
@@ -34,12 +34,12 @@ public class HealSkill : Skill
     {
         yield return new WaitForSeconds(time);
         
-        int targetAmount = Physics.OverlapSphereNonAlloc(position, radius / 2, targets, 1 << 7);
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 7);
 
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<MinionBehaviour>().GetHit(-damage);
+            targets[j].GetComponent<MinionBehaviour>().GetHit(-Damage);
         }
     }
 }

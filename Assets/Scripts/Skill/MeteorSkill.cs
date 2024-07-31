@@ -9,12 +9,12 @@ public class MeteorSkill : Skill
 
     public override void Init()
     {
-        skillName = "Meteor";
-        skillName_KR = "메테오";
-        description = "";
-        requireMana = 4;
-        damage = 50;
-        radius = 9f;
+        SkillName = "Meteor";
+        SkillName_KR = "메테오";
+        Description = "";
+        RequireMana = 4;
+        Damage = 50;
+        Radius = 9f;
         base.Init();
     }
 
@@ -34,12 +34,12 @@ public class MeteorSkill : Skill
     {
         yield return new WaitForSeconds(time);
         
-        int targetAmount = Physics.OverlapSphereNonAlloc(position, radius / 2, targets, 1 << 6);
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 6);
 
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<MinionBehaviour>().GetHit(damage);
+            targets[j].GetComponent<MinionBehaviour>().GetHit(Damage);
         }
     }
 }
