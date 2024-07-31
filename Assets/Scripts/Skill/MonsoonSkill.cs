@@ -45,10 +45,10 @@ public class MonsoonSkill : Skill
     IEnumerator MoveObjects(Collider coll, Vector3 eventPositon)
     {
         float time = 0;
-        MinionBehaviour isSturnCheck = coll.gameObject.GetComponent<MinionBehaviour>();
-        if (!isSturnCheck.isSturn) 
+        MinionBehaviour isStunCheck = coll.gameObject.GetComponent<MinionBehaviour>();
+        if (!isStunCheck.isStun) 
         {
-            isSturnCheck.isSturn = true;
+            isStunCheck.isStun = true;
             while (time < 0.5f)
             {
                 time += Time.deltaTime;
@@ -56,7 +56,7 @@ public class MonsoonSkill : Skill
                 coll.gameObject.transform.position += direction * 16f * Time.deltaTime;
                 yield return null; // 다음 프레임까지 대기
             }
-            isSturnCheck.isSturn = false;
+            isStunCheck.isStun = false;
         }
     }
 }
