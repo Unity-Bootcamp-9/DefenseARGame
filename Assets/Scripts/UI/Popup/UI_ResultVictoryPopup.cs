@@ -22,6 +22,9 @@ public class UI_ResultVictoryPopup : UI_Popup
         BindButton(typeof(Buttons));
 
         GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
+
+        Managers.Sound.Clear();
+
         return true;
     }
 
