@@ -1,18 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using static GoalManager;
 
 public class MonsoonSkill : Skill
 {
     private readonly Collider[] targets = new Collider[10];
 
-    private void Start()
+    public override void Init()
     {
-        skillName = "Monsoon";
-        requireMana = 4;
-        damage = 10;
-        radius = 3f;
-        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/Monsoon");
+        SkillName = "Monsoon";
+        SkillName_KR = "순풍";
+        Description = "";
+        RequireMana = 3;
+        Damage = 0;
+        Radius = 3f;
+        base.Init();
     }
 
     protected override void Activate()
@@ -37,7 +38,6 @@ public class MonsoonSkill : Skill
         {
             if (targets[j].CompareTag("Minion"))
             {
-                //Debug.Log(effectToSpawn.gameObject.transform.position);
                 StartCoroutine(MoveObjects(targets[j], position));
             }
         }
@@ -49,7 +49,6 @@ public class MonsoonSkill : Skill
         if (!isSturnCheck.isSturn) 
         {
             isSturnCheck.isSturn = true;
-            Debug.Log(isSturnCheck.isSturn);
             while (time < 0.5f)
             {
                 time += Time.deltaTime;
