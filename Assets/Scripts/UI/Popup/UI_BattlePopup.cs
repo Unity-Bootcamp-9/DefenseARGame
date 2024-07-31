@@ -48,6 +48,9 @@ public class UI_BattlePopup : UI_Popup
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
 
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
+        
+        Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Bgm, "BGM");
 
         return true;
     }

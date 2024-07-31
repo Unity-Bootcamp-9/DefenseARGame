@@ -18,6 +18,8 @@ public class UI_ResultDefeatPopup : UI_Popup
 
         GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
 
+        Managers.Sound.Clear();
+
         return true;
     }
 
