@@ -10,8 +10,7 @@ public class GameManagerEx
     private ObjectSpawner _objectSpawner;
     private GameObject _map;
 
-    private Mana _mana;
-    public Mana Mana => _mana;
+    public PlayData PlayData { get; set; }
 
     public void Init()
     {
@@ -72,6 +71,8 @@ public class GameManagerEx
             _map.transform.SetPositionAndRotation(mapPreview.position, mapPreview.rotation);
             _map.transform.localScale = mapPreview.localScale;
             _map.transform.Rotate(Vector3.up, -45f);
+
+            PlayData = new PlayData(10, 0, 0);
         }
 
         Managers.Resource.Load<Material>("Materials/M_Plane").color = Color.clear;
