@@ -19,6 +19,11 @@ public class UI_BattlePopup : UI_Popup
         Steminas,
     }
 
+    enum Buttons
+    {
+        PauseButton,
+    }
+
     float sec;
     int min;
 
@@ -29,6 +34,8 @@ public class UI_BattlePopup : UI_Popup
 
         BindText(typeof(Texts));
         BindImage(typeof(Images));
+        BindButton(typeof(Buttons));
+
         min = 0;
         sec = 0;
 
@@ -39,6 +46,8 @@ public class UI_BattlePopup : UI_Popup
         GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<Skill>();
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<Skill>();
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
+
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
 
         return true;
     }
@@ -56,4 +65,10 @@ public class UI_BattlePopup : UI_Popup
 
     }
 
+    private void OnClickPauseButton()
+    {
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+        Managers.Game.PauseGame();
+    }
 }

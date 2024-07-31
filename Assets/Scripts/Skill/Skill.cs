@@ -7,15 +7,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Mana _mana;
-    public Mana mana
-    {
-        get => _mana;
-        set
-        {
-            if (!_mana) _mana = value;
-        }
-    }
+    public Mana Mana { get; set; }
 
     [Header("UI")]
     public Sprite iconSprite;
@@ -26,7 +18,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     [Header("오브젝트")]
     public Vector3 offset = Vector3.up * 9f;
-    public LayerMask groundLayer = 1 << 8; // Ground 레이어
+    public LayerMask groundLayer = 1 << 8 | 1 << 9; // Ground 레이어
     public GameObject effectToSpawn;
     protected GameObject draggingObject;
     protected SRPCircleRegionProjector Circle;
@@ -60,18 +52,19 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 
     private void OnDestroy()
     {
-        _mana.ManaChanged -= ChangeColor;
+        Mana.ManaChanged -= ChangeColor;
+        Destroy(draggingObject);
     }
 
     /// <summary>
     /// 아이콘을 현재 마나에 따라 흑백으로 전환
     /// </summary>
     public void ChangeColor() =>
-        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(_mana.CurrentMana < requireMana));
+        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(Mana.CurrentMana < requireMana));
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_mana.CurrentMana < requireMana) return;
+        if (Mana.CurrentMana < requireMana) return;
 
         _baseImage.color = activeColor;
 
@@ -107,7 +100,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            _mana.UpdateMana(-requireMana);
+            Mana.UpdateMana(-requireMana);
         }
         else
         {
