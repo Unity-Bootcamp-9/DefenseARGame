@@ -1,19 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using static GoalManager;
 
 public class MonsoonSkill : Skill
 {
-    //public float radius = 1.38f;  // 반경
-    public float pushForce = 100f; // 밀어내는 힘
-    //public float duration = 3f;   // 지속 시간
-
-    private const float duration = 1.3f;
     private readonly Collider[] targets = new Collider[10];
 
     private void Start()
     {
         skillName = "Monsoon";
-        requireMana = 2;
+        requireMana = 4;
         damage = 10;
         radius = 3f;
         effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/Monsoon");
@@ -28,10 +24,10 @@ public class MonsoonSkill : Skill
                 draggingObject.transform.rotation
             );
 
-        StartCoroutine(Attack(effect.transform.position, duration));
+        StartCoroutine(Attack(effect.transform.position));
     }
 
-    IEnumerator Attack(Vector3 position, float time)
+    IEnumerator Attack(Vector3 position)
     {
         yield return null;
 
@@ -41,20 +37,27 @@ public class MonsoonSkill : Skill
         {
             if (targets[j].CompareTag("Minion"))
             {
-                Debug.Log(targets[j].gameObject.transform.name);
-                StartCoroutine(MoveObjects(targets[j]));
+                //Debug.Log(effectToSpawn.gameObject.transform.position);
+                StartCoroutine(MoveObjects(targets[j], position));
             }
         }
     }
-    IEnumerator MoveObjects(Collider coll)
+    IEnumerator MoveObjects(Collider coll, Vector3 eventPositon)
     {
         float time = 0;
-        while (time < 3)
+        MinionBehaviour isSturnCheck = coll.gameObject.GetComponent<MinionBehaviour>();
+        if (!isSturnCheck.isSturn) 
         {
-            time += Time.deltaTime;
-            Vector3 direction = (coll.gameObject.transform.position - effectToSpawn.gameObject.transform.position).normalized; // 반대 방향
-            coll.gameObject.transform.position += direction * 10f * Time.deltaTime;
-            yield return null; // 다음 프레임까지 대기
+            isSturnCheck.isSturn = true;
+            Debug.Log(isSturnCheck.isSturn);
+            while (time < 0.5f)
+            {
+                time += Time.deltaTime;
+                Vector3 direction = (coll.gameObject.transform.position - eventPositon).normalized; // 반대 방향
+                coll.gameObject.transform.position += direction * 16f * Time.deltaTime;
+                yield return null; // 다음 프레임까지 대기
+            }
+            isSturnCheck.isSturn = false;
         }
     }
 }

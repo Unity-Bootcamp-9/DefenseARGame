@@ -24,6 +24,7 @@ public class MinionBehaviour : Entity
     private Animator animator;
     public Transform target { get; private set; }
     private NavMeshAgent agent;
+    public bool isSturn;
 
     public bool isAttack { get;  set; }
 
@@ -33,6 +34,7 @@ public class MinionBehaviour : Entity
     private void Start()
     {
         isAttack = false;
+        isSturn = false;
         animator = GetComponent<Animator>();
         enemyLayerSet();
     }
