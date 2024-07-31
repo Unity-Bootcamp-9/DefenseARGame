@@ -1,19 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public class MeteorSkill : Skill
+public class HealSkill : Skill
 {
-    private const float duration = 1.3f;
+    private const float duration = 2f;
 
     private readonly Collider[] targets = new Collider[10];
 
     public override void Init()
     {
-        SkillName = "Meteor";
-        SkillName_KR = "메테오";
+        SkillName = "Heal";
+        SkillName_KR = "회복";
         Description = "";
-        RequireMana = 4;
-        Damage = 50;
+        RequireMana = 7;
+        Damage = 30;
         Radius = 9f;
         base.Init();
     }
@@ -27,19 +27,19 @@ public class MeteorSkill : Skill
                 draggingObject.transform.rotation
             );
 
-        StartCoroutine(Attack(effect.transform.position, duration));
+        StartCoroutine(Heal(effect.transform.position, duration));
     }
 
-    IEnumerator Attack(Vector3 position, float time)
+    IEnumerator Heal(Vector3 position, float time)
     {
         yield return new WaitForSeconds(time);
         
-        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 6);
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 7);
 
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<MinionBehaviour>().GetHit(Damage);
+            targets[j].GetComponent<MinionBehaviour>().GetHit(-Damage);
         }
     }
 }
