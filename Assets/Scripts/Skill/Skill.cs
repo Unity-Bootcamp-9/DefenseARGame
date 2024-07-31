@@ -9,35 +9,33 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
 {
     public Mana Mana { get; set; }
 
-    [Header("UI")]
-    public Sprite iconSprite;
-    public Color activeColor = Color.white;
+    protected string skillName = "";
+    protected string skillName_KR = "";
+    protected string description = "";
+    protected int requireMana;
+    protected int damage;
+    protected float radius;
+    private bool _isAiming;
+    private bool _isAble;
+
+    private Color _activeColor = Color.white;
     private Color _inactiveColor = Color.clear;
     private Image _baseImage;
     private Image _iconImage;
 
-    [Header("오브젝트")]
-    public Vector3 offset = Vector3.up * 9f;
-    public LayerMask groundLayer = 1 << 8 | 1 << 9; // Ground 레이어
-    public GameObject effectToSpawn;
     protected GameObject draggingObject;
+    protected GameObject effectToSpawn;
     protected SRPCircleRegionProjector Circle;
+    protected Vector3 offset = Vector3.up * 9f;
+    private LayerMask _groundLayer = 1 << 8 | 1 << 9; // Ground 레이어
 
-    [Header("스킬 정보")]
-    public string skillName = "Meteor";
-    [Range(1, 10)] public int requireMana = 4;
-    [Range(1, 100)] public int damage = 10;
-    [Range(1f, 15f)] public float radius = 9f;
-    private bool _isAiming;
-    private bool _isAble;
-
-    private void Awake()
+    public virtual void Init()
     {
         _baseImage = GetComponent<Image>();
         _baseImage.color = _inactiveColor;
 
         _iconImage = transform.GetChild(0).GetComponent<Image>();
-        if (_iconImage && iconSprite)
+        if (_iconImage)
         {
             _iconImage.material = Instantiate(_iconImage.material);
             _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{skillName}");
@@ -46,8 +44,15 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         draggingObject = Managers.Resource.Instantiate($"Skill/Circle 1 Region");
         draggingObject.SetActive(false);
 
+        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/{skillName}");
+
         Circle = draggingObject.GetComponent<SRPCircleRegionProjector>();
         Circle.Radius = radius;
+    }
+
+    private void Awake()
+    {
+        Init();
     }
 
     private void OnDestroy()
@@ -66,7 +71,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (Mana.CurrentMana < requireMana) return;
 
-        _baseImage.color = activeColor;
+        _baseImage.color = _activeColor;
 
         _isAiming = true;
     }
@@ -75,7 +80,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (draggingObject != null && _isAiming)
         {
-            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, groundLayer)
+            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, _groundLayer)
                 && !RectTransformUtility.RectangleContainsScreenPoint(_iconImage.rectTransform, eventData.position);
 
             if (_isAble)
