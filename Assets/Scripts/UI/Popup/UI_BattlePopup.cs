@@ -26,6 +26,7 @@ public class UI_BattlePopup : UI_Popup
 
     float sec;
     int min;
+    Mana _mana;
 
     public override bool Init()
     {
@@ -36,8 +37,8 @@ public class UI_BattlePopup : UI_Popup
         BindImage(typeof(Images));
         BindButton(typeof(Buttons));
 
-        min = 0;
-        sec = 0;
+        min = Managers.Game.PlayData.minute;
+        sec = Managers.Game.PlayData.second;
 
         GetText((int)Texts.PlayTimeText).text = "00:00";
 
@@ -45,7 +46,10 @@ public class UI_BattlePopup : UI_Popup
         GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<MonsoonSkill>();
         GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<Skill>();
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<HealSkill>();
-        GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
+
+        _mana = GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>();
+        _mana.FindListener();
+        _mana.UpdateMana(-10 + Managers.Game.PlayData.currentMana);
 
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
         
@@ -72,6 +76,8 @@ public class UI_BattlePopup : UI_Popup
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
         Managers.Game.PauseGame();
+        Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
     }
 }
