@@ -34,7 +34,7 @@ public class MinionBehaviour : Entity
     private void Start()
     {
         isAttack = false;
-        isSturn = false;
+        isStun = false;
         animator = GetComponent<Animator>();
         enemyLayerSet();
     }
