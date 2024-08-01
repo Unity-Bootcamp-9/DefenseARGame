@@ -39,8 +39,12 @@ public class UI_BattlePopup : UI_Popup
 
     float sec;
     int min;
+
+
     private float[] _pressTimes;
     private bool[] _isPressing;
+
+    Mana _mana;
 
     public override bool Init()
     {
@@ -54,6 +58,9 @@ public class UI_BattlePopup : UI_Popup
 
         _pressTimes = new float[Enum.GetValues(typeof(Images)).Length];
         _isPressing = new bool[Enum.GetValues(typeof(Images)).Length];
+
+        min = Managers.Game.PlayData.minute;
+        sec = Managers.Game.PlayData.second;
 
         RefreshUI();
 
@@ -70,8 +77,15 @@ public class UI_BattlePopup : UI_Popup
         GetText((int)Texts.PlayTimeText).text = "00:00";
 
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
+        
+        _mana = GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>();
+        _mana.FindListener();
+        _mana.UpdateMana(-10 + Managers.Game.PlayData.currentMana);
 
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
+        
+        Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Bgm, "BGM");
 
         SetTooltipInfo();
 
@@ -123,7 +137,9 @@ public class UI_BattlePopup : UI_Popup
     {
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
         Managers.Game.PauseGame();
+        Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
     }
 
     void OnPointerDownImage(int index)
