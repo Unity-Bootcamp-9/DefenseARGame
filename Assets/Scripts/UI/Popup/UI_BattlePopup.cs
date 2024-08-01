@@ -6,7 +6,6 @@ using static Define;
 
 public class UI_BattlePopup : UI_Popup
 {
-    // enum을 정의할 때, 0번째부터 3번째 까지는 반드시 Tooltip 관련 오브젝트 이름을 순서대로 정의해주세요.
     enum GameObjects
     {
         ToolTip1,
@@ -35,16 +34,13 @@ public class UI_BattlePopup : UI_Popup
 
     enum Buttons
     {
-        Skill1Image,
-        Skill2Image,
-        Skill3Image,
-        Skill4Image,
         PauseButton,
     }
 
     float sec;
     int min;
-    bool isOnClick;
+    private float[] _pressTimes;
+    private bool[] _isPressing;
 
     public override bool Init()
     {
@@ -55,6 +51,9 @@ public class UI_BattlePopup : UI_Popup
         BindImage(typeof(Images));
         BindButton(typeof(Buttons));
         BindObject(typeof(GameObjects));
+
+        _pressTimes = new float[Enum.GetValues(typeof(Images)).Length];
+        _isPressing = new bool[Enum.GetValues(typeof(Images)).Length];
 
         RefreshUI();
 
@@ -78,18 +77,18 @@ public class UI_BattlePopup : UI_Popup
 
         min = 0;
         sec = 0;
-        isOnClick = false;
     }
 
     private void SetTooltipInfo()
     {
         Skill skill;
-        for(int i  = 0; i < 4; i++)
+        for (int i = 0; i < 4; i++)
         {
+            int index = i; // 클로저 문제 해결을 위해 지역 변수 사용
             skill = GetImage(i).gameObject.GetOrAddComponent<Skill>();
             GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n피해량 : {skill.Damage}\n스킬 범위 : {skill.Radius}";
-            GetButton(i).gameObject.BindEvent(OnPressImage, Define.UIEvent.Pressed);
-            GetButton(i).gameObject.BindEvent(OnPointerUpImage, Define.UIEvent.PointerUp);
+            GetImage(i).gameObject.BindEvent(() => OnPointerDownImage(index), Define.UIEvent.PointerDown);
+            GetImage(i).gameObject.BindEvent(() => OnPointerUpImage(index), Define.UIEvent.PointerUp);
             GetObject(i).SetActive(false);
         }
     }
@@ -105,6 +104,19 @@ public class UI_BattlePopup : UI_Popup
             min++;
         }
 
+        // 누르고 있는 시간 체크
+        for (int i = 0; i < 4; i++)
+        {
+            if (_isPressing[i])
+            {
+                _pressTimes[i] += Time.deltaTime;
+                if (_pressTimes[i] >= 1.0f)
+                {
+                    GetObject(i).gameObject.SetActive(true);
+                    _isPressing[i] = false;
+                }
+            }
+        }
     }
 
     private void OnClickPauseButton()
@@ -114,26 +126,17 @@ public class UI_BattlePopup : UI_Popup
         Managers.Game.PauseGame();
     }
 
-    float time = 0;
-
-    int index = -1;
-
-    void OnPressImage()
+    void OnPointerDownImage(int index)
     {
-        time = 0;
-        if (time > 1f)
-        {
-            GetObject(index).SetActive(true);
-        }
-        else
-        {
-            time += Time.deltaTime;
-        }
-    }
-    void OnPointerUpImage()
-    {
-        gameObject.SetActive(false);
+        Debug.Log("OnPointerDownImage");
+        _isPressing[index] = true;
+        _pressTimes[index] = 0;
     }
 
-    // 손 떼면 온클릭 false로 바꾸고 툴팁 오프
+    void OnPointerUpImage(int index)
+    {
+        Debug.Log("OnPointerUpImage");
+        GetObject(index).SetActive(false);
+        _isPressing[index] = false;
+    }
 }
