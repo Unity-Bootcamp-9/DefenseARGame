@@ -9,7 +9,7 @@ using UnityEngine.Pool;
 
 public class MinionSpawnManager : MonoBehaviour
 {
-    [SerializeField] private MinionBehaviour minionPrefab;
+    [SerializeField] private Minion minionPrefab;
     [SerializeField] private bool collectionCheck = false;
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxPoolSize = 50;
@@ -27,11 +27,11 @@ public class MinionSpawnManager : MonoBehaviour
     private int count = 0;
     private Coroutine waveSpawnRoutine;
     private Coroutine minionSpawnRoutine;
-    private IObjectPool<MinionBehaviour> objectPool;
+    private IObjectPool<Minion> objectPool;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<MinionBehaviour>(CreateMinion, OnTakeFromPool,
+        objectPool = new ObjectPool<Minion>(CreateMinion, OnTakeFromPool,
                             OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
                             defaultCapacity,maxPoolSize);
         subject.RedWin += StopSpawn;
@@ -46,28 +46,28 @@ public class MinionSpawnManager : MonoBehaviour
             StopCoroutine(minionSpawnRoutine);
     }
 
-    private MinionBehaviour CreateMinion()
+    private Minion CreateMinion()
     {
-        MinionBehaviour minionInstance = Instantiate(minionPrefab, spawnPoint, false);
+        Minion minionInstance = Instantiate(minionPrefab, spawnPoint, false);
         minionInstance.ObjectPool = objectPool;
         minionInstance.name = count.ToString();
         count++;
         return minionInstance;
     }
 
-    private void OnReturnedToPool(MinionBehaviour minion)
+    private void OnReturnedToPool(Minion minion)
     {
         minion.transform.position = spawnPoint.position;
         minion.gameObject.SetActive(false);
     }
 
-    private void OnTakeFromPool(MinionBehaviour minion)
+    private void OnTakeFromPool(Minion minion)
     {
         minion.gameObject.SetActive(true);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
 
-    private void OnDestroyPoolObject(MinionBehaviour minion)
+    private void OnDestroyPoolObject(Minion minion)
     {
         Destroy(minion.gameObject);
     }
@@ -93,7 +93,7 @@ public class MinionSpawnManager : MonoBehaviour
     {
         for(int i = 0; i < minionsPerWave; ++i)
         {
-            MinionBehaviour minionObject = objectPool.Get();
+            Minion minionObject = objectPool.Get();
             minionObject.Init(enemyMainTurret, subject);
 
             yield return new WaitForSeconds(_minionCreateDelay);

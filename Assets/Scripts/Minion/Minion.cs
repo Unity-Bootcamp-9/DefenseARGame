@@ -1,45 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Pool;
-using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
 
-public class MinionBehaviour : Entity
+public class Minion : Entity
 {
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
     public static readonly int hashDie = Animator.StringToHash("Die");
 
-    [SerializeField] private Canvas hpBar;
-    [SerializeField] private Transform defaultTarget;
-    [SerializeField] private float detectionRange = 10f;
-    [SerializeField] private float attackRange = 1.5f;
-    private List<Transform> enemyMinions = new List<Transform>(100);
-    private Collider minionCollider;
-    private Animator animator;
-    public Transform target { get; private set; }
-    private NavMeshAgent agent;
+    [SerializeField] protected Canvas hpBar;
+    [SerializeField] protected Transform defaultTarget;
+    [SerializeField] protected float detectionRange;
+    [SerializeField] protected float attackRange;
+    protected List<Transform> enemyMinions = new List<Transform>(100);
+    protected Collider minionCollider;
+    protected Animator animator;
+    public Transform target { get; protected set; }
+    protected NavMeshAgent agent;
     public bool isStun;
+    public bool isAttack { get; set; }
 
-    public bool isAttack { get;  set; }
+    protected IObjectPool<Minion> objectPool;
+    public IObjectPool<Minion> ObjectPool { set => objectPool = value; }
 
-    private IObjectPool<MinionBehaviour> objectPool;
-    public IObjectPool<MinionBehaviour> ObjectPool { set => objectPool = value; }
-    
-    private void Start()
-    {
-        isAttack = false;
-        isStun = false;
-        animator = GetComponent<Animator>();
-        enemyLayerSet();
-    }
-
-    public void Init(Transform mainTurretTransform , Subject subject)
+    public void Init(Transform mainTurretTransform, Subject subject)
     {
         defaultTarget = mainTurretTransform;
         DefaultTargetSet();
@@ -54,32 +42,6 @@ public class MinionBehaviour : Entity
         this.enabled = false;
     }
 
-    private void OnEnable()
-    {
-        hp = maxHP;
-        agent = GetComponent<NavMeshAgent>();
-        minionCollider = GetComponent<Collider>();
-        hpBar.enabled = true;
-        minionCollider.enabled = true;
-        HPFilledImage.fillAmount = (float)hp / (float)maxHP;
-    }
-    public void Update()
-    {
-        if (target == null)
-        {
-            DefaultTargetSet();
-        }
-        if (isAttack)
-        {
-            agent.SetDestination(transform.position);
-        }
-        else
-        {
-            agent.SetDestination(target.position);
-        }
-        transform.LookAt(target);
-    }
-
     public void DefaultTargetSet()
     {
         target = defaultTarget;
@@ -87,7 +49,7 @@ public class MinionBehaviour : Entity
 
     public void TargetDetection()
     {
-        
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
         if (colliders.Length >= 1)
@@ -119,7 +81,7 @@ public class MinionBehaviour : Entity
                 turret = collider.transform;
             }
         }
-        if(enemyMinions.Count > 0)
+        if (enemyMinions.Count > 0)
         {
             enemyMinions = enemyMinions.OrderBy(enemyMinion => Vector3.Distance(enemyMinion.position, thisTransform.position)).ToList<Transform>();
             target = enemyMinions[0];
@@ -136,7 +98,7 @@ public class MinionBehaviour : Entity
     public void AttackDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange, 1 << enemyLayer);
-        Collider attackTarget= colliders.FirstOrDefault(collider => collider.transform == target);
+        Collider attackTarget = colliders.FirstOrDefault(collider => collider.transform == target);
         if (attackTarget != null)
         {
             animator.SetBool(hashAttack, true);
@@ -147,6 +109,7 @@ public class MinionBehaviour : Entity
             isAttack = false;
         }
     }
+
     public override void GetHit(int _damage)
     {
         base.GetHit(_damage);
@@ -154,7 +117,7 @@ public class MinionBehaviour : Entity
         {
             hpBar.enabled = false;
             minionCollider.enabled = false;
-            agent.SetDestination(transform.position);
+            agent.enabled = false;
             Die();
             target = transform;
         }
@@ -171,15 +134,6 @@ public class MinionBehaviour : Entity
         objectPool.Release(this);
     }
 
-
-    public void Attack()
-    {
-        if(target.GetComponent<Entity>() != null)
-        {
-            target.GetComponent<Entity>().GetHit(damage);
-        }
-    }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
@@ -188,5 +142,4 @@ public class MinionBehaviour : Entity
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
     }
-
 }

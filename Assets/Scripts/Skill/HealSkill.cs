@@ -39,7 +39,7 @@ public class HealSkill : Skill
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<MinionBehaviour>().GetHit(-Damage);
+            targets[j].GetComponent<Minion>().GetHit(-Damage);
         }
     }
 }
