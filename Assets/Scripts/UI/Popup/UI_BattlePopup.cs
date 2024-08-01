@@ -12,6 +12,7 @@ public class UI_BattlePopup : UI_Popup
         ToolTip2,
         ToolTip3,
         ToolTip4,
+        AfterPause,
     }
 
     enum Texts
@@ -35,11 +36,13 @@ public class UI_BattlePopup : UI_Popup
     enum Buttons
     {
         PauseButton,
+        MapSettingButton,
+        BackToMainButton,
+        ContinueButton,
     }
 
     float sec;
     int min;
-
 
     private float[] _pressTimes;
     private bool[] _isPressing;
@@ -69,12 +72,12 @@ public class UI_BattlePopup : UI_Popup
 
     private void RefreshUI()
     {
+        GetText((int)Texts.PlayTimeText).text = "00:00";
+
         GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<MeteorSkill>();
         GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<MonsoonSkill>();
         GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<MonsoonSkill>(); // 임시
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<HealSkill>();
-
-        GetText((int)Texts.PlayTimeText).text = "00:00";
 
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
         
@@ -83,11 +86,16 @@ public class UI_BattlePopup : UI_Popup
         _mana.UpdateMana(-10 + Managers.Game.PlayData.currentMana);
 
         GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
-        
-        Managers.Sound.Clear();
-        Managers.Sound.Play(Sound.Bgm, "BGM");
+        GetButton((int)Buttons.MapSettingButton).gameObject.BindEvent(OnClickMapSettingButton);
+        GetButton((int)Buttons.BackToMainButton).gameObject.BindEvent(OnClickBackToMainButton);
+        GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
 
         SetTooltipInfo();
+
+        GetObject((int)GameObjects.AfterPause).SetActive(false);
+
+        Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Bgm, "BGM");
 
         min = 0;
         sec = 0;
@@ -135,11 +143,8 @@ public class UI_BattlePopup : UI_Popup
 
     private void OnClickPauseButton()
     {
-        Managers.UI.ClosePopupUI(this);
-        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
-
-        Managers.Game.PauseGame();
-        Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
+        Time.timeScale = 0f;
+        GetObject((int)GameObjects.AfterPause).SetActive(true);
     }
 
     void OnPointerDownImage(int index)
@@ -155,4 +160,31 @@ public class UI_BattlePopup : UI_Popup
         GetObject(index).SetActive(false);
         _isPressing[index] = false;
     }
+
+    private void OnClickMapSettingButton()
+    {
+        Time.timeScale = 1.0f;
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
+        Managers.Game.PauseGame();
+        Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
+    }
+
+    private void OnClickContinueButton()
+    {
+        Time.timeScale = 1.0f;
+        GetObject((int)GameObjects.AfterPause).SetActive(false);
+    }
+
+    private void OnClickBackToMainButton()
+    {
+        Time.timeScale = 1.0f;
+        Managers.Game.FinishGame();
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
+
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_LevelPopup>();
+    }
+
 }
