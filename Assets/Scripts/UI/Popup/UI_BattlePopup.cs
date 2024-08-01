@@ -76,7 +76,7 @@ public class UI_BattlePopup : UI_Popup
 
         GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<MeteorSkill>();
         GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<MonsoonSkill>();
-        GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<MonsoonSkill>(); // 임시
+        GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<IceSkill>(); // 임시
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<HealSkill>();
 
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
