@@ -24,6 +24,8 @@ public class UI_LevelPopup : UI_Popup
         Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
 
         Managers.Game.ReadyGame();
+
+        Managers.Sound.Play(Define.Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

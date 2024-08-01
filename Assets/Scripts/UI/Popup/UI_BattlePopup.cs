@@ -145,6 +145,8 @@ public class UI_BattlePopup : UI_Popup
     {
         Time.timeScale = 0f;
         GetObject((int)GameObjects.AfterPause).SetActive(true);
+
+        Managers.Sound.Play(Sound.Effect, "Select_UI_Bell_Bright_01");
     }
 
     void OnPointerDownImage(int index)

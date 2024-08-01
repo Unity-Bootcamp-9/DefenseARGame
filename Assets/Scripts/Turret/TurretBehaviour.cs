@@ -137,6 +137,8 @@ public class TurretBehaviour : Entity
             animator.SetTrigger(hastisDead);
             destroyedTurret.SetActive(true);
             gameObject.SetActive(false);
+
+            Managers.Sound.Play(Define.Sound.Effect, "Sus4_Rock_Large_Debris_01_Mono");
         }
     }
     private void OnDrawGizmos()

@@ -30,6 +30,8 @@ public class IceSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
+
+        Managers.Sound.Play(Define.Sound.Effect, "Nunchaku Attack_Skill_Bass_02");
     }
     IEnumerator Attack(Vector3 position, float time)
     {
@@ -40,6 +42,7 @@ public class IceSkill : Skill
         }
         TakeDamage(position, Damage / 2);
 
+        Managers.Sound.Play(Define.Sound.Effect, "Gaint Sword_Skill_Knight_Hit_02");
     }
 
     private void TakeDamage(Vector3 position, int damage)
