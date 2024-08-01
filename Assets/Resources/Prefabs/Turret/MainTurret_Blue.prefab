@@ -226,7 +226,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5620954009364840426}
-  - {fileID: 562329404902882484}
+  - {fileID: 7309058488525667121}
   - {fileID: 784341130252450446}
   m_Father: {fileID: 457109769113375569}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -361,16 +361,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdeeab6cce459442b84cbf02d173afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPFilledImage: {fileID: 6893887272990891496}
-  hp: 2000
-  maxHP: 2000
   damage: 50
-  projectile: {fileID: 4843015503663077734}
+  maxHP: 2000
+  HPFilledImage: {fileID: 6893887272990891496}
+  projectile: {fileID: 7306290160681916101}
   destroyedTurret: {fileID: 3685199664770916449}
   hpBar: {fileID: 8101385937710609218}
   spawnPoint: {fileID: 5620954009364840426}
   subject: {fileID: 0}
-  moveSpeed: 7
+  projectileSpeed: 0
+  detectionRange: 0
 --- !u!114 &8750429483589875470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aff9c8fdd7220246a68ec1f7ff07dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minionPrefab: {fileID: -8923051106224012394, guid: e3fe801e90966df429f96a61f32bf995,
+  minionPrefab: {fileID: 4356200990312683843, guid: 0f8381a3034255948b449d35b3b7c1f3,
     type: 3}
   collectionCheck: 0
   defaultCapacity: 10
@@ -573,7 +573,7 @@ Canvas:
     type: 3}
   m_PrefabInstance: {fileID: 7139311084354901527}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &9152206927894864752
+--- !u!1001 &7305222439140369155
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -581,63 +581,47 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3023633686959117093}
     m_Modifications:
-    - target: {fileID: 4338922768990403094, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 1254724754748870, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_Name
-      value: RevisedProjectile
+      value: Projectile 7 fire
       objectReference: {fileID: 0}
-    - target: {fileID: 4338922768990403094, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 22.745043
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 8.599993
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 26.949844
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-        type: 3}
+    - target: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -645,16 +629,16 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e47cdb559886fc245826aeeaa33d07cf, type: 3}
---- !u!4 &562329404902882484 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8705141595008458692, guid: e47cdb559886fc245826aeeaa33d07cf,
-    type: 3}
-  m_PrefabInstance: {fileID: 9152206927894864752}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4843015503663077734 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 72c8dd04c681dd44ba389bde484e785f, type: 3}
+--- !u!1 &7306290160681916101 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4338922768990403094, guid: e47cdb559886fc245826aeeaa33d07cf,
+  m_CorrespondingSourceObject: {fileID: 1254724754748870, guid: 72c8dd04c681dd44ba389bde484e785f,
     type: 3}
-  m_PrefabInstance: {fileID: 9152206927894864752}
+  m_PrefabInstance: {fileID: 7305222439140369155}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7309058488525667121 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4399021083629618, guid: 72c8dd04c681dd44ba389bde484e785f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7305222439140369155}
   m_PrefabAsset: {fileID: 0}

@@ -44,13 +44,13 @@ public class TurretBehaviour : Entity
         if (isAttack)
         {
             Vector3 moveDir = (target.transform.position - projectile.transform.position).normalized;
-            projectileRigid.MovePosition(projectile.transform.position + moveDir * projectileSpeed * Time.fixedDeltaTime);
+            projectileRigid.velocity = moveDir * projectileSpeed;
          
             if (Vector3.Distance(projectile.transform.position, target.position) < 0.8f)
             {
                 target.gameObject.GetComponent<Entity>().GetHit(damage);
-                projectile.transform.position = spawnPoint.transform.position;
                 projectile.SetActive(false);
+                projectile.transform.position = spawnPoint.transform.position;
             }
         }
         else
