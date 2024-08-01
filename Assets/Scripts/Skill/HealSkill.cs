@@ -13,7 +13,7 @@ public class HealSkill : Skill
         SkillName_KR = "회복";
         Description = "";
         RequireMana = 7;
-        Damage = 30;
+        Damage = -30;   // tooltip 개발 : 30 -> -30 수정
         Radius = 9f;
         base.Init();
     }
@@ -39,7 +39,7 @@ public class HealSkill : Skill
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<Minion>().GetHit(-Damage);
+            targets[j].GetComponent<Minion>().GetHit(Damage);   // tooltip 개발 : -Damage -> Damage 수정
         }
     }
 }

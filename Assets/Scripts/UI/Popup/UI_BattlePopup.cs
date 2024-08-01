@@ -108,7 +108,18 @@ public class UI_BattlePopup : UI_Popup
         {
             int index = i; // 클로저 문제 해결을 위해 지역 변수 사용
             skill = GetImage(i).gameObject.GetOrAddComponent<Skill>();
-            GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n피해량 : {skill.Damage}\n스킬 범위 : {skill.Radius}";
+            if (skill.Damage > 0)
+            {
+                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n피해량 : {skill.Damage}\n스킬 범위 : {skill.Radius}";
+            }
+            else if(skill.Damage < 0)
+            {
+                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n회복량 : {-skill.Damage}\n스킬 범위 : {skill.Radius}";
+            }
+            else
+            {
+                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n스킬 범위 : {skill.Radius}";
+            }
             GetImage(i).gameObject.BindEvent(() => OnPointerDownImage(index), Define.UIEvent.PointerDown);
             GetImage(i).gameObject.BindEvent(() => OnPointerUpImage(index), Define.UIEvent.PointerUp);
             GetObject(i).SetActive(false);
