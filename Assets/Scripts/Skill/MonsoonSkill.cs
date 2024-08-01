@@ -45,7 +45,7 @@ public class MonsoonSkill : Skill
     IEnumerator MoveObjects(Collider coll, Vector3 eventPositon)
     {
         float time = 0;
-        MinionBehaviour isStunCheck = coll.gameObject.GetComponent<MinionBehaviour>();
+        Minion isStunCheck = coll.gameObject.GetComponent<Minion>();
         if (!isStunCheck.isStun) 
         {
             isStunCheck.isStun = true;

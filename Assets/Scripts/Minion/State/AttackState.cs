@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class AttackState : StateMachineBehaviour
 {
-    private MinionBehaviour minionBehaviour;
+    private Minion minion;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour = animator.GetComponent<MinionBehaviour>();
+        minion = animator.GetComponent<Minion>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(minionBehaviour.target.GetComponent<Entity>() != null)
+        if(minion.target.GetComponent<Entity>() != null)
         {
-            if(minionBehaviour.target.GetComponent<Entity>().hp <= 0  )
+            if(minion.target.GetComponent<Entity>().hp <= 0  )
             {
-                animator.SetBool(MinionBehaviour.hashAttack, false);
+                animator.SetBool(Minion.hashAttack, false);
             }
         }
     }

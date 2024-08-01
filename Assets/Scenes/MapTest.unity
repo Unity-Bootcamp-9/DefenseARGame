@@ -1437,6 +1437,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6723989668970296311, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: minionPrefab
+      value: 
+      objectReference: {fileID: 1316854999660148589, guid: 214d3457d9b9458499f2f39b63dc9b00,
+        type: 3}
+    - target: {fileID: 6723989668970296311, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: waveCreateDelay
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305392371777633289, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: minionPrefab
+      value: 
+      objectReference: {fileID: 4308127308084298241, guid: 5424d0846a1c5574cbe1ef029c2a857b,
+        type: 3}
+    - target: {fileID: 7305392371777633289, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: waveCreateDelay
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

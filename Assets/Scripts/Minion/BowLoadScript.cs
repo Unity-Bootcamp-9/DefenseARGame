@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 //  Archer Animations - BowLoadScript                                    //
 //  Kevin Iglesias - https://www.keviniglesias.com/     			     //
 //  Contact Support: support@keviniglesias.com                           //
@@ -22,23 +22,23 @@ namespace KevinIglesias {
 	{
 	   
 		public Transform bow;
-        
         //Retargeters
 		public Transform arrowHandRetargeter;
         public Transform bowHandRetargeter;
-		
 		//Bow Blendshape
 		SkinnedMeshRenderer bowSkinnedMeshRenderer;
-		
 		//Arrow draw & rotation
 		public bool arrowOnHand;
 		public Transform arrowToDraw;
 		public Transform arrowToShoot; 
+
+        private Archer archer;
 	   
 		void Awake()
 		{
-			
-			if(bow != null)
+            archer = GetComponent<Archer>();
+
+            if (bow != null)
 			{
 				bowSkinnedMeshRenderer = bow.GetComponent<SkinnedMeshRenderer>();
 			}
@@ -71,7 +71,7 @@ namespace KevinIglesias {
                     {
                         if(arrowOnHand)
                         {
-                            //Implement your arrow shot script here
+                            archer.Shoot();
                         }
                         
                         arrowToDraw.gameObject.SetActive(false);

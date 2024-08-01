@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class SeekState : StateMachineBehaviour
 {
-    private MinionBehaviour minionBehaviour;
+    private Minion minion;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour = animator.GetComponent<MinionBehaviour>();
-        minionBehaviour.isAttack = false;
+        minion = animator.GetComponent<Minion>();
+        minion.isAttack = false;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour.TargetDetection();
-        minionBehaviour.AttackDetection();
+        minion.TargetDetection();
+        minion.AttackDetection();
     }
 }
