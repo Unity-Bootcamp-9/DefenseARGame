@@ -126,6 +126,7 @@ public class UI_BattlePopup : UI_Popup
         }
     }
 
+    bool isTooltipOn = false;
     private void Update()
     {
         sec += Time.deltaTime;
@@ -140,13 +141,14 @@ public class UI_BattlePopup : UI_Popup
         // 누르고 있는 시간 체크
         for (int i = 0; i < 4; i++)
         {
-            if (_isPressing[i])
+            if (!isTooltipOn && _isPressing[i])
             {
                 _pressTimes[i] += Time.deltaTime;
                 if (_pressTimes[i] >= 1.0f)
                 {
                     GetObject(i).gameObject.SetActive(true);
                     _isPressing[i] = false;
+                    isTooltipOn = true;
                 }
             }
         }
@@ -170,6 +172,7 @@ public class UI_BattlePopup : UI_Popup
         Debug.Log("OnPointerUpImage");
         GetObject(index).SetActive(false);
         _isPressing[index] = false;
+        isTooltipOn = false;
     }
 
     private void OnClickMapSettingButton()

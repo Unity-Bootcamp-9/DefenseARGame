@@ -11,7 +11,7 @@ public class HealSkill : Skill
     {
         SkillName = "Heal";
         SkillName_KR = "회복";
-        Description = "";
+        Description = "범위 내에 있는 아군 미니언에게 회복량만큼 HP를 회복합니다.";
         RequireMana = 7;
         Damage = -10;
         Radius = 9f;
@@ -34,7 +34,7 @@ public class HealSkill : Skill
     {
         yield return new WaitForSeconds(time);
         
-        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 7);
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius, targets, 1 << 7);
 
         for (int j = 0; j < targetAmount; j++)
         {

@@ -14,7 +14,7 @@ public class IceSkill : Skill
     {
         SkillName = "IceExplosion";
         SkillName_KR = "아이스 익스플로젼";
-        Description = "";
+        Description = "범위 내에 있는 적 미니언에게 1.3초간 피해량 만큼의 도트 데미지를 준 후 폭발하여 피해량의 5배 만큼의 피해와 둔화효과를 줍니다.";
         RequireMana = 4;
         Damage = 1;
         Radius = 15f;
