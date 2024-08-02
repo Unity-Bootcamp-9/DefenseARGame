@@ -62,9 +62,6 @@ public class UI_BattlePopup : UI_Popup
         _pressTimes = new float[Enum.GetValues(typeof(Images)).Length];
         _isPressing = new bool[Enum.GetValues(typeof(Images)).Length];
 
-        min = Managers.Game.PlayData.minute;
-        sec = Managers.Game.PlayData.second;
-
         RefreshUI();
 
         return true;
@@ -94,11 +91,10 @@ public class UI_BattlePopup : UI_Popup
 
         GetObject((int)GameObjects.AfterPause).SetActive(false);
 
-        Managers.Sound.Clear();
         Managers.Sound.Play(Sound.Bgm, "BGM");
-
-        min = 0;
-        sec = 0;
+        
+        min = Managers.Game.PlayData.minute;
+        sec = Managers.Game.PlayData.second;
     }
 
     private void SetTooltipInfo()
@@ -158,6 +154,8 @@ public class UI_BattlePopup : UI_Popup
     {
         Time.timeScale = 0f;
         GetObject((int)GameObjects.AfterPause).SetActive(true);
+
+        Managers.Sound.Play(Sound.Effect, "Select_UI_Bell_Bright_01");
     }
 
     void OnPointerDownImage(int index)
@@ -183,12 +181,16 @@ public class UI_BattlePopup : UI_Popup
 
         Managers.Game.PauseGame();
         Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
     private void OnClickContinueButton()
     {
         Time.timeScale = 1.0f;
         GetObject((int)GameObjects.AfterPause).SetActive(false);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
     private void OnClickBackToMainButton()
@@ -199,6 +201,10 @@ public class UI_BattlePopup : UI_Popup
 
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
+
+        Managers.Sound.Stop(Sound.Bgm);
+        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

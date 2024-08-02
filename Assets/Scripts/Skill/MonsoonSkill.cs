@@ -26,6 +26,8 @@ public class MonsoonSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position));
+
+        Managers.Sound.Play(Define.Sound.Effect, "Fire Ball Spell_Skill_Sorcerer_Medium_02");
     }
 
     IEnumerator Attack(Vector3 position)

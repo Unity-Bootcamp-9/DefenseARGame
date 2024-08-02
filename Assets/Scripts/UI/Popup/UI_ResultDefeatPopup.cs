@@ -19,6 +19,7 @@ public class UI_ResultDefeatPopup : UI_Popup
         GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
 
         Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Effect, "Defeated_Fail_Effect_02");
 
         return true;
     }
@@ -31,6 +32,8 @@ public class UI_ResultDefeatPopup : UI_Popup
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
 
         Managers.Game.FinishGame();
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

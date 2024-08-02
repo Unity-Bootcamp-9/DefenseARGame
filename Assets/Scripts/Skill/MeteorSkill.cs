@@ -28,6 +28,8 @@ public class MeteorSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
+
+        Managers.Sound.Play(Define.Sound.Effect, "Magic_Fire_Projectile_Out-001");
     }
 
     IEnumerator Attack(Vector3 position, float time)
@@ -41,5 +43,7 @@ public class MeteorSkill : Skill
             if (!targets[j].CompareTag("Minion")) continue;
             targets[j].GetComponent<Minion>().GetHit(Damage);
         }
+
+        Managers.Sound.Play(Define.Sound.Effect, "Magic_Fire_Impact-001");
     }
 }
