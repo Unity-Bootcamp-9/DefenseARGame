@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -62,7 +62,7 @@ public class SoundManager
         if (type == Define.Sound.Bgm)
         {
             AudioClip audioClip = Managers.Resource.Load<AudioClip>(path);
-            if (audioClip == null)
+            if (audioClip == null || audioSource.clip == audioClip)
                 return false;
 
             if (audioSource.isPlaying)

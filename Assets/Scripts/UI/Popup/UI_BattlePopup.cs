@@ -62,9 +62,6 @@ public class UI_BattlePopup : UI_Popup
         _pressTimes = new float[Enum.GetValues(typeof(Images)).Length];
         _isPressing = new bool[Enum.GetValues(typeof(Images)).Length];
 
-        min = Managers.Game.PlayData.minute;
-        sec = Managers.Game.PlayData.second;
-
         RefreshUI();
 
         return true;
@@ -94,11 +91,10 @@ public class UI_BattlePopup : UI_Popup
 
         GetObject((int)GameObjects.AfterPause).SetActive(false);
 
-        Managers.Sound.Clear();
         Managers.Sound.Play(Sound.Bgm, "BGM");
-
-        min = 0;
-        sec = 0;
+        
+        min = Managers.Game.PlayData.minute;
+        sec = Managers.Game.PlayData.second;
     }
 
     private void SetTooltipInfo()
