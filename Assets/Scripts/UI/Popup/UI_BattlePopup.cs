@@ -77,7 +77,7 @@ public class UI_BattlePopup : UI_Popup
         GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<HealSkill>();
 
         GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
-        
+
         _mana = GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>();
         _mana.FindListener();
         _mana.UpdateMana(-10 + Managers.Game.PlayData.currentMana);
@@ -97,24 +97,25 @@ public class UI_BattlePopup : UI_Popup
         sec = Managers.Game.PlayData.second;
     }
 
+    Skill[] skill = new Skill[4];
+
     private void SetTooltipInfo()
     {
-        Skill skill;
         for (int i = 0; i < 4; i++)
         {
             int index = i; // 클로저 문제 해결을 위해 지역 변수 사용
-            skill = GetImage(i).gameObject.GetOrAddComponent<Skill>();
-            if (skill.Damage > 0)
+            skill[i] = GetImage(i).gameObject.GetOrAddComponent<Skill>();
+            if (skill[i].Damage > 0)
             {
-                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n피해량 : {skill.Damage}\n스킬 범위 : {skill.Radius}";
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n피해량 : {skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
             }
-            else if(skill.Damage < 0)
+            else if(skill[i].Damage < 0)
             {
-                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n회복량 : {-skill.Damage}\n스킬 범위 : {skill.Radius}";
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n회복량 : {-skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
             }
             else
             {
-                GetText(i).text = $"스킬 이름 : {skill.SkillName_KR}\n스킬 설명 : {skill.Description}\n필요 마나 : {skill.RequireMana}\n스킬 범위 : {skill.Radius}";
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n스킬 범위 : {skill[i].Radius}";
             }
             GetImage(i).gameObject.BindEvent(() => OnPointerDownImage(index), Define.UIEvent.PointerDown);
             GetImage(i).gameObject.BindEvent(() => OnPointerUpImage(index), Define.UIEvent.PointerUp);
@@ -137,7 +138,7 @@ public class UI_BattlePopup : UI_Popup
         // 누르고 있는 시간 체크
         for (int i = 0; i < 4; i++)
         {
-            if (!isTooltipOn && _isPressing[i])
+            if (!skill[i]._isAiming && !isTooltipOn && _isPressing[i])
             {
                 _pressTimes[i] += Time.deltaTime;
                 if (_pressTimes[i] >= 1.0f)

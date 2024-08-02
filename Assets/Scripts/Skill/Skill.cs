@@ -15,7 +15,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public int RequireMana { get; protected set; }
     public int Damage { get; protected set; }
     public float Radius { get; protected set; }
-    private bool _isAiming;
+    public bool _isAiming { get; protected set; }
     private bool _isAble;
 
     private Color _activeColor = Color.white;
