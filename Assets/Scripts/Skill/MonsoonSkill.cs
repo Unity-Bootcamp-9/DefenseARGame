@@ -12,7 +12,7 @@ public class MonsoonSkill : Skill
         Description = "";
         RequireMana = 3;
         Damage = 0;
-        Radius = 3f;
+        Radius = 9f;
         base.Init();
     }
 

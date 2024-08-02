@@ -13,7 +13,7 @@ public class MeteorSkill : Skill
         SkillName_KR = "메테오";
         Description = "";
         RequireMana = 4;
-        Damage = 50;
+        Damage = 15;
         Radius = 9f;
         base.Init();
     }
