@@ -9,10 +9,10 @@ public class MonsoonSkill : Skill
     {
         SkillName = "Monsoon";
         SkillName_KR = "순풍";
-        Description = "";
+        Description = "범위 내에 있는 적 미니언을 스킬에서 미니언을 향하는 방향으로 밀어냅니다.";
         RequireMana = 3;
         Damage = 0;
-        Radius = 3f;
+        Radius = 9f;
         base.Init();
     }
 
@@ -26,6 +26,8 @@ public class MonsoonSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position));
+
+        Managers.Sound.Play(Define.Sound.Effect, "Fire Ball Spell_Skill_Sorcerer_Medium_02");
     }
 
     IEnumerator Attack(Vector3 position)

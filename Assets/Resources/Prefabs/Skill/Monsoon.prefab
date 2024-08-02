@@ -14684,7 +14684,6 @@ GameObject:
   - component: {fileID: 4470770987566294623}
   - component: {fileID: 5922775628153372203}
   - component: {fileID: 6662997372412009729}
-  - component: {fileID: 7485223201402966722}
   - component: {fileID: 7861572245651302143}
   m_Layer: 0
   m_Name: Monsoon
@@ -19572,27 +19571,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!135 &7485223201402966722
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6315715494939139598}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.38
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7861572245651302143
 MonoBehaviour:
   m_ObjectHideFlags: 0

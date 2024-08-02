@@ -54,6 +54,7 @@ public class Warrior : Minion
         if (target.GetComponent<Entity>() != null && target.GetComponent<Collider>().enabled == true)
         {
             target.GetComponent<Entity>().GetHit(damage);
+            Managers.Sound.Play(Define.Sound.Speech, $"Trap 1_Sharp_Spike_{Random.Range(1, 4):D2}", 0.2f);
         }
     }
 
