@@ -1437,6 +1437,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3871262235414998945, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.106
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871262235414998945, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871262235414998945, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4792163564212833468, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 10919da7b56ac234dab1b9e8d84e2575,
+        type: 2}
     - target: {fileID: 6723989668970296311, guid: d3d1af36bba23444ab01776827d5e263,
         type: 3}
       propertyPath: minionPrefab
@@ -1458,6 +1479,31 @@ PrefabInstance:
         type: 3}
       propertyPath: waveCreateDelay
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7995402885408126978, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8499826774987089506, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006208944823489953, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.395
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006208944823489953, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.746
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006208944823489953, guid: d3d1af36bba23444ab01776827d5e263,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -24.712
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
