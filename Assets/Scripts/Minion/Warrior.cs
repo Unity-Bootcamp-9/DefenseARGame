@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Pool;
 
 public class Warrior : Minion
 {
+    protected IObjectPool<Warrior> warriorObjectPool;
+    public IObjectPool<Warrior> WarriorObjectPool { set => warriorObjectPool = value; }
+
     public void Start()
     {
         isAttack = false;
@@ -54,4 +58,27 @@ public class Warrior : Minion
     }
 
 
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+        if (hp <= 0)
+        {
+            hpBar.enabled = false;
+            minionCollider.enabled = false;
+            agent.enabled = false;
+            Die();
+            target = transform;
+        }
+    }
+    public void Die()
+    {
+        animator.SetTrigger(hashDie);
+        StartCoroutine(Deactivate(2f));
+    }
+
+    IEnumerator Deactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        warriorObjectPool.Release(this);
+    }
 }

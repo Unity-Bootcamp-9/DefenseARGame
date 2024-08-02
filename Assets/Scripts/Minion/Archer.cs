@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.WSA;
+using UnityEngine.Pool;
 using static GoalManager;
 
 public class Archer : Minion
 {
+
+    protected IObjectPool<Archer> archerObjectPool;
+    public IObjectPool<Archer> ArcherObjectPool { set => archerObjectPool = value; }
+
     [SerializeField] private GameObject arrrowPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float shootSpeed;
-
-    
     private bool isShoot;
 
     public void Start()
@@ -79,7 +81,6 @@ public class Archer : Minion
             arrrowPrefab.SetActive(false);
         }
     }
-
     
     public void Shoot()
     {
@@ -88,6 +89,27 @@ public class Archer : Minion
         isShoot = true;
     }
 
+    public override void GetHit(int _damage)
+    {
+        base.GetHit(_damage);
+        if (hp <= 0)
+        {
+            hpBar.enabled = false;
+            minionCollider.enabled = false;
+            agent.enabled = false;
+            Die();
+            target = transform;
+        }
+    }
+    public void Die()
+    {
+        animator.SetTrigger(hashDie);
+        StartCoroutine(Deactivate(2f));
+    }
 
-
+    IEnumerator Deactivate(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        archerObjectPool.Release(this);
+    }
 }

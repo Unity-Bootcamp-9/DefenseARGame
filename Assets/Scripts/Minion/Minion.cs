@@ -24,15 +24,12 @@ public class Minion : Entity
     public bool isStun;
     public bool isAttack { get; set; }
 
-    protected IObjectPool<Minion> objectPool;
-    public IObjectPool<Minion> ObjectPool { set => objectPool = value; }
-
-    public void Init(Transform mainTurretTransform, Subject subject)
+    public void Init(Transform _mainTurretTransform, Subject _subject)
     {
-        defaultTarget = mainTurretTransform;
+        defaultTarget = _mainTurretTransform;
         DefaultTargetSet();
-        subject.RedWin += StopMinion;
-        subject.BlueWin += StopMinion;
+        _subject.RedWin += StopMinion;
+        _subject.BlueWin += StopMinion;
     }
 
     public void StopMinion()
@@ -49,7 +46,6 @@ public class Minion : Entity
 
     public void TargetDetection()
     {
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
 
         if (colliders.Length >= 1)
@@ -108,30 +104,6 @@ public class Minion : Entity
         {
             isAttack = false;
         }
-    }
-
-    public override void GetHit(int _damage)
-    {
-        base.GetHit(_damage);
-        if (hp <= 0)
-        {
-            hpBar.enabled = false;
-            minionCollider.enabled = false;
-            agent.enabled = false;
-            Die();
-            target = transform;
-        }
-    }
-    public void Die()
-    {
-        animator.SetTrigger(hashDie);
-        StartCoroutine(Deactivate(2f));
-    }
-
-    IEnumerator Deactivate(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        objectPool.Release(this);
     }
 
     private void OnDrawGizmos()
