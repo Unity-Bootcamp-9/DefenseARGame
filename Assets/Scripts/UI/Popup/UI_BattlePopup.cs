@@ -171,12 +171,16 @@ public class UI_BattlePopup : UI_Popup
 
         Managers.Game.PauseGame();
         Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
     private void OnClickContinueButton()
     {
         Time.timeScale = 1.0f;
         GetObject((int)GameObjects.AfterPause).SetActive(false);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
     private void OnClickBackToMainButton()
@@ -187,6 +191,10 @@ public class UI_BattlePopup : UI_Popup
 
         Managers.UI.ClosePopupUI(this);
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
+
+        Managers.Sound.Stop(Sound.Bgm);
+        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

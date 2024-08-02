@@ -19,6 +19,9 @@ public class UI_TitlePopup : UI_Popup
 
         GetButton((int)Buttons.BackGroundButton).gameObject.BindEvent(OnClickBackGroundButton);
 
+        Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
+
         return true;
     }
 
