@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MeteorSkill : Skill
 {
-    private const float duration = 1.3f;
+    private const float duration = 0.7f;
 
     private readonly Collider[] targets = new Collider[10];
 
@@ -14,7 +14,7 @@ public class MeteorSkill : Skill
         Description = "범위 내에 있는 적 미니언에게 피해량만큼의 피해를 입힙니다.";
         RequireMana = 4;
         Damage = 15;
-        Radius = 9f;
+        Radius = 10f;
         base.Init();
     }
 
@@ -28,8 +28,6 @@ public class MeteorSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
-
-        Managers.Sound.Play(Define.Sound.Effect, "Magic_Fire_Projectile_Out-001");
     }
 
     IEnumerator Attack(Vector3 position, float time)
@@ -43,7 +41,5 @@ public class MeteorSkill : Skill
             if (!targets[j].CompareTag("Minion")) continue;
             targets[j].GetComponent<Minion>().GetHit(Damage);
         }
-
-        Managers.Sound.Play(Define.Sound.Effect, "Magic_Fire_Impact-001");
     }
 }
