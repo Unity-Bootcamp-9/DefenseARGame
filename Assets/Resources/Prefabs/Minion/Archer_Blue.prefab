@@ -216,7 +216,7 @@ MonoBehaviour:
   HPFilledImage: {fileID: 6310354240214311415}
   hpBar: {fileID: 8670282341567565661}
   defaultTarget: {fileID: 0}
-  detectionRange: 12
+  detectionRange: 7
   attackRange: 6
   isStun: 0
   arrrowPrefab: {fileID: 3350562949195354035}

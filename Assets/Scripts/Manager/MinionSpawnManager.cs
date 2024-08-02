@@ -32,14 +32,14 @@ public class MinionSpawnManager : MonoBehaviour
     private Coroutine waveSpawnRoutine;
     private Coroutine minionSpawnRoutine;    
 
-    private IObjectPool<Warrior> warriorObjectPool;
-    private IObjectPool<Archer> archerObjectPool;
-
     public const int redLayer = 6;
     public const int blueLayer = 7;
 
     private string warriorName;
     private string archerName;
+
+    private IObjectPool<Warrior> warriorObjectPool;
+    private IObjectPool<Archer> archerObjectPool;
 
     private void Awake()
     {
