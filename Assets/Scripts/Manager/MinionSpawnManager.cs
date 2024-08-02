@@ -9,56 +9,87 @@ using UnityEngine.Pool;
 
 public class MinionSpawnManager : MonoBehaviour
 {
-    [SerializeField] private Minion minionPrefab;
-    [SerializeField] private bool collectionCheck = false;
-    [SerializeField] private int defaultCapacity = 10;
-    [SerializeField] private int maxPoolSize = 50;
-    [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float startDelay = 5f;
-    [SerializeField] private float waveCreateDelay = 30f;
-    [SerializeField] private float minionCreateDelay = 1f;
-    [SerializeField] private int minionsPerWave = 5;
+    [Header("[Spawn Option]")]
     [SerializeField] private Transform enemyMainTurret;
-    [SerializeField] private HPBar hpBar;
+    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private float startDelay;
+    [SerializeField] private float waveCreateDelay;
+    [SerializeField] private float minionCreateDelay;
+    [SerializeField] private int warriorsPerWave;
+    [SerializeField] private int archersPerWave;
+
+    [Header("[ObjectPool Option]")]
+    [SerializeField] private bool collectionCheck = false;
+    [SerializeField] private int defaultCapacity;
+    [SerializeField] private int maxPoolSize;
+
+    [Header("[Subject]")]
     [SerializeField] private Subject subject;
 
+    private Warrior warriorPrefab;
+    private Archer archerPrefab;
 
-
-    private int count = 0;
     private Coroutine waveSpawnRoutine;
-    private Coroutine minionSpawnRoutine;
-    private IObjectPool<Minion> objectPool;
+    private Coroutine minionSpawnRoutine;    
+
+    private IObjectPool<Warrior> warriorObjectPool;
+    private IObjectPool<Archer> archerObjectPool;
+
+    public const int redLayer = 6;
+    public const int blueLayer = 7;
+
+    private string warriorName;
+    private string archerName;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<Minion>(CreateMinion, OnTakeFromPool,
-                            OnReturnedToPool,OnDestroyPoolObject,collectionCheck,
-                            defaultCapacity,maxPoolSize);
+        warriorObjectPool = new ObjectPool<Warrior>(CreateWarrior, OnTakeFromPool,
+                            OnReturnedToPool, OnDestroyPoolObject, collectionCheck,
+                            defaultCapacity, maxPoolSize);
+
+        archerObjectPool = new ObjectPool<Archer>(CreateArcher, OnTakeFromPool,
+                    OnReturnedToPool, OnDestroyPoolObject, collectionCheck,
+                    defaultCapacity, maxPoolSize);
+
+        if(gameObject.layer == redLayer)
+        {
+            warriorName = "Warrior_Red";
+            archerName = "Archer_Red";
+        }
+        else if(gameObject.layer == blueLayer)
+        {
+            warriorName = "Warrior_Blue";
+            archerName = "Archer_Blue";
+        }
+
+        warriorPrefab = Managers.Resource.Load<Warrior>($"Prefabs/Minion/{warriorName}");
+        archerPrefab = Managers.Resource.Load<Archer>($"Prefabs/Minion/{archerName}");
+
         subject.RedWin += StopSpawn;
         subject.BlueWin += StopSpawn;
     }
 
     public void StopSpawn()
     {
-        if(waveSpawnRoutine != null)
+        if (waveSpawnRoutine != null)
             StopCoroutine(waveSpawnRoutine);
-        if(minionSpawnRoutine != null)
+        if (minionSpawnRoutine != null)
             StopCoroutine(minionSpawnRoutine);
     }
 
-    private Minion CreateMinion()
+    private Warrior CreateWarrior()
     {
-        Minion minionInstance = Instantiate(minionPrefab, spawnPoint, false);
-        minionInstance.ObjectPool = objectPool;
-        minionInstance.name = count.ToString();
-        count++;
+        Warrior minionInstance = Instantiate(warriorPrefab, spawnPoint, false);
+        minionInstance.transform.parent = transform;
+        minionInstance.WarriorObjectPool = warriorObjectPool;
         return minionInstance;
     }
-
-    private void OnReturnedToPool(Minion minion)
+    private Archer CreateArcher()
     {
-        minion.transform.position = spawnPoint.position;
-        minion.gameObject.SetActive(false);
+        Archer minionInstance = Instantiate(archerPrefab, spawnPoint, false);
+        minionInstance.transform.parent = transform;
+        minionInstance.ArcherObjectPool = archerObjectPool;
+        return minionInstance;
     }
 
     private void OnTakeFromPool(Minion minion)
@@ -66,6 +97,13 @@ public class MinionSpawnManager : MonoBehaviour
         minion.gameObject.SetActive(true);
         minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
     }
+
+    private void OnReturnedToPool(Minion minion)
+    {
+        minion.transform.SetPositionAndRotation(spawnPoint.position, spawnPoint.rotation);
+        minion.gameObject.SetActive(false);
+    }
+
 
     private void OnDestroyPoolObject(Minion minion)
     {
@@ -78,7 +116,7 @@ public class MinionSpawnManager : MonoBehaviour
     }
 
 
-    IEnumerator WaveSpawnRoutine(float _waveCreateDelay , float _startDelay)
+    IEnumerator WaveSpawnRoutine(float _waveCreateDelay, float _startDelay)
     {
         yield return new WaitForSeconds(_startDelay);
 
@@ -91,12 +129,19 @@ public class MinionSpawnManager : MonoBehaviour
 
     IEnumerator MinionSpawnRoutine(float _minionCreateDelay)
     {
-        for(int i = 0; i < minionsPerWave; ++i)
-        {
-            Minion minionObject = objectPool.Get();
-            minionObject.Init(enemyMainTurret, subject);
 
+        for (int i = 0; i < warriorsPerWave; ++i)
+        {
+            Warrior warriorObject = warriorObjectPool.Get();
+            warriorObject.Init(enemyMainTurret, subject);
+            yield return new WaitForSeconds(_minionCreateDelay);
+        }
+        for (int i = 0; i < archersPerWave; ++i)
+        {
+            Archer archerObject = archerObjectPool.Get();
+            archerObject.Init(enemyMainTurret, subject);
             yield return new WaitForSeconds(_minionCreateDelay);
         }
     }
+
 }

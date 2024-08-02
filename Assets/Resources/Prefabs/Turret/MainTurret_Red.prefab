@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6843080173656792841}
   - component: {fileID: 7985605789303817609}
   - component: {fileID: 134525324158293428}
-  - component: {fileID: 3856811699068097402}
   m_Layer: 6
   m_Name: MainTurret
   m_TagString: MainTurret
@@ -182,31 +181,6 @@ MonoBehaviour:
   subject: {fileID: 0}
   projectileSpeed: 0
   detectionRange: 0
---- !u!114 &3856811699068097402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753962671781916758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aff9c8fdd7220246a68ec1f7ff07dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minionPrefab: {fileID: 5740395305783412862, guid: 3a77a5ef394681545a0f6cda770dfc66,
-    type: 3}
-  collectionCheck: 0
-  defaultCapacity: 10
-  maxPoolSize: 50
-  spawnPoint: {fileID: 0}
-  startDelay: 5
-  waveCreateDelay: 30
-  minionCreateDelay: 1
-  minionsPerWave: 5
-  enemyMainTurret: {fileID: 0}
-  hpBar: {fileID: 8696837117897060995}
-  subject: {fileID: 0}
 --- !u!1 &2897988898009315164
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,18 +532,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3990830344614509540}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8696837117897060995 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5751967855997831527, guid: d7240eccbb7c8054395dc2dade6e4e4d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3990830344614509540}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e62b90365a676d44896acff78cfb5672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8655728751429978594
 PrefabInstance:
   m_ObjectHideFlags: 0

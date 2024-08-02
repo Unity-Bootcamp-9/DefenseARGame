@@ -906,7 +906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3840223976682978465}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,9 +2896,9 @@ Transform:
   m_GameObject: {fileID: 8407567454385511647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.501, y: 0, z: -2.94}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2210109757622215102}
   - {fileID: 130407189004913440}
@@ -3017,7 +3017,7 @@ MonoBehaviour:
   HPFilledImage: {fileID: 9095629561374662348}
   hpBar: {fileID: 5907540188097671270}
   defaultTarget: {fileID: 0}
-  detectionRange: 7
+  detectionRange: 12
   attackRange: 6
   isStun: 0
   arrrowPrefab: {fileID: 3214834469329469815}
@@ -3374,6 +3374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2136625596941363677, guid: 32e53fb08e3227742b5e3ce7fbae7b04,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136625596941363677, guid: 32e53fb08e3227742b5e3ce7fbae7b04,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3670,6 +3675,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136625596941363677, guid: 32e53fb08e3227742b5e3ce7fbae7b04,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2136625596941363677, guid: 32e53fb08e3227742b5e3ce7fbae7b04,
         type: 3}
