@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealSkill : Skill
 {
-    private const float duration = 2f;
+    private const float duration = 1f;
 
     private readonly Collider[] targets = new Collider[10];
 
@@ -41,7 +41,5 @@ public class HealSkill : Skill
             if (!targets[j].CompareTag("Minion")) continue;
             targets[j].GetComponent<Minion>().GetHit(Damage);
         }
-
-        Managers.Sound.Play(Define.Sound.Effect, "Level Up_Rise_Effect_02");
     }
 }
