@@ -36,7 +36,6 @@ public class GameManagerEx
         if (!_objectSpawner) return false;
 
         AR.enabled = true;
-        AR.Reset();
 
         _objectSpawner.gameObject.SetActive(true);
 
