@@ -104,6 +104,12 @@ public class Minion : Entity
         }
     }
 
+    public void SetTarget(Transform target)
+    {
+        agent.SetDestination(target.transform.position);
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
