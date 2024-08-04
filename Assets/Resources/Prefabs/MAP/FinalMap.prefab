@@ -8059,7 +8059,7 @@ Transform:
   m_GameObject: {fileID: 4800306339093090240}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.13, y: 1.8, z: -23.5}
+  m_LocalPosition: {x: -25.72, y: 1.8, z: -24.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15174,7 +15174,7 @@ Transform:
   m_GameObject: {fileID: 8444401904821022683}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.07, y: 1.8, z: 24.22}
+  m_LocalPosition: {x: 22.74, y: 1.8, z: 23.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16812,6 +16812,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHP
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 134525324158293428, guid: 0564b90cd24e5984b99fcb0952b00ae5,
+        type: 3}
+      propertyPath: damage
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 134525324158293428, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
@@ -19868,6 +19873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5726857791050026359, guid: c3407b84771099a4b9b2c973a8e7b681,
         type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726857791050026359, guid: c3407b84771099a4b9b2c973a8e7b681,
+        type: 3}
       propertyPath: subject
       value: 
       objectReference: {fileID: 8728216960826800911}
@@ -22236,6 +22246,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHP
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2312172258358982076, guid: 4bee4ad5f46db8f49956032434fbb167,
+        type: 3}
+      propertyPath: damage
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2312172258358982076, guid: 4bee4ad5f46db8f49956032434fbb167,
         type: 3}
@@ -31844,6 +31859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHP
       value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5788211565893414597, guid: 5395a7560fd578a47868c4ce0dc16f80,
+        type: 3}
+      propertyPath: damage
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5788211565893414597, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}

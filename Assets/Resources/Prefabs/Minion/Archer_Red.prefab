@@ -3012,7 +3012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa306904693d35b41998f04ec9bedfba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 60
+  damage: 40
   maxHP: 150
   HPFilledImage: {fileID: 9095629561374662348}
   hpBar: {fileID: 5907540188097671270}

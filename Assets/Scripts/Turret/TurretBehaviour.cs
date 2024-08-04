@@ -116,10 +116,10 @@ public class TurretBehaviour : Entity
         {
             projectile.SetActive(true);
             projectile.transform.position = spawnPoint.transform.position;
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(1f);
             projectile.SetActive(false);
             projectile.transform.position = spawnPoint.transform.position;
-            yield return new WaitForSeconds(1.3f);
+            yield return new WaitForSeconds(1f);
         }
     }
 

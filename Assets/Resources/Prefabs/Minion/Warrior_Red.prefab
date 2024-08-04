@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 50
-  maxHP: 300
+  maxHP: 250
   HPFilledImage: {fileID: 831203461542757613}
   hpBar: {fileID: 2614587255745178183}
   defaultTarget: {fileID: 0}
