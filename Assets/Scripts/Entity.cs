@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
-    [SerializeField] protected Image HPFilledImage;
     [SerializeField] protected int damage;
     [SerializeField] protected int maxHP;
+    [SerializeField] protected Image HPFilledImage;
     public int hp { get; protected set; }
     protected int enemyLayer;
 

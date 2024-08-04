@@ -22,6 +22,10 @@ public class UI_ResultVictoryPopup : UI_Popup
         BindButton(typeof(Buttons));
 
         GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
+
+        Managers.Sound.Clear();
+        Managers.Sound.Play(Sound.Effect, "Stage Selected_Long_Rise_02");
+
         return true;
     }
 
@@ -33,6 +37,8 @@ public class UI_ResultVictoryPopup : UI_Popup
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
 
         Managers.Game.FinishGame();
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

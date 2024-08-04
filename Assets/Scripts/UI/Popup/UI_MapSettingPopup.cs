@@ -27,8 +27,10 @@ public class UI_MapSettingPopup : UI_Popup
         Debug.Log("OnClickMapSettingButton");
         if (Managers.Game.StartGame())
         {
+            Managers.Resource.Load<Material>("Materials/M_Plane").color = Color.clear;
             Managers.UI.ClosePopupUI(this);
             Managers.UI.ShowPopupUI<UI_BattlePopup>();
+            Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
         }
     }
 }

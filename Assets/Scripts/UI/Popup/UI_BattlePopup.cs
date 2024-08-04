@@ -1,12 +1,26 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Define;
 
 public class UI_BattlePopup : UI_Popup
 {
+    enum GameObjects
+    {
+        ToolTip1,
+        ToolTip2,
+        ToolTip3,
+        ToolTip4,
+        AfterPause,
+    }
+
     enum Texts
     {
+        ToolTipText1,
+        ToolTipText2,
+        ToolTipText3,
+        ToolTipText4,
         PlayTimeText,
     }
 
@@ -19,8 +33,21 @@ public class UI_BattlePopup : UI_Popup
         Steminas,
     }
 
+    enum Buttons
+    {
+        PauseButton,
+        MapSettingButton,
+        BackToMainButton,
+        ContinueButton,
+    }
+
     float sec;
     int min;
+
+    private float[] _pressTimes;
+    private bool[] _isPressing;
+
+    Mana _mana;
 
     public override bool Init()
     {
@@ -29,20 +56,74 @@ public class UI_BattlePopup : UI_Popup
 
         BindText(typeof(Texts));
         BindImage(typeof(Images));
-        min = 0;
-        sec = 0;
+        BindButton(typeof(Buttons));
+        BindObject(typeof(GameObjects));
 
-        GetText((int)Texts.PlayTimeText).text = "00:00";
+        _pressTimes = new float[Enum.GetValues(typeof(Images)).Length];
+        _isPressing = new bool[Enum.GetValues(typeof(Images)).Length];
 
-        GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<MeteorSkill>();
-        GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<Skill>();
-        GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<Skill>();
-        GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<Skill>();
-        GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
+        RefreshUI();
 
         return true;
     }
 
+    private void RefreshUI()
+    {
+        GetText((int)Texts.PlayTimeText).text = "00:00";
+
+        GetImage((int)Images.Skill1Image).gameObject.GetOrAddComponent<MeteorSkill>();
+        GetImage((int)Images.Skill2Image).gameObject.GetOrAddComponent<MonsoonSkill>();
+        GetImage((int)Images.Skill3Image).gameObject.GetOrAddComponent<IceSkill>(); // 임시
+        GetImage((int)Images.Skill4Image).gameObject.GetOrAddComponent<HealSkill>();
+
+        GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>().FindListener();
+
+        _mana = GetImage((int)Images.Steminas).gameObject.GetOrAddComponent<Mana>();
+        _mana.FindListener();
+        _mana.UpdateMana(-10 + Managers.Game.PlayData.currentMana);
+
+        GetButton((int)Buttons.PauseButton).gameObject.BindEvent(OnClickPauseButton);
+        GetButton((int)Buttons.MapSettingButton).gameObject.BindEvent(OnClickMapSettingButton);
+        GetButton((int)Buttons.BackToMainButton).gameObject.BindEvent(OnClickBackToMainButton);
+        GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
+
+        SetTooltipInfo();
+
+        GetObject((int)GameObjects.AfterPause).SetActive(false);
+
+        Managers.Sound.Play(Sound.Bgm, "BGM");
+        
+        min = Managers.Game.PlayData.minute;
+        sec = Managers.Game.PlayData.second;
+    }
+
+    Skill[] skill = new Skill[4];
+
+    private void SetTooltipInfo()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            int index = i; // 클로저 문제 해결을 위해 지역 변수 사용
+            skill[i] = GetImage(i).gameObject.GetOrAddComponent<Skill>();
+            if (skill[i].Damage > 0)
+            {
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n피해량 : {skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
+            }
+            else if(skill[i].Damage < 0)
+            {
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n회복량 : {-skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
+            }
+            else
+            {
+                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n스킬 범위 : {skill[i].Radius}";
+            }
+            GetImage(i).gameObject.BindEvent(() => OnPointerDownImage(index), Define.UIEvent.PointerDown);
+            GetImage(i).gameObject.BindEvent(() => OnPointerUpImage(index), Define.UIEvent.PointerUp);
+            GetObject(i).SetActive(false);
+        }
+    }
+
+    bool isTooltipOn = false;
     private void Update()
     {
         sec += Time.deltaTime;
@@ -54,6 +135,77 @@ public class UI_BattlePopup : UI_Popup
             min++;
         }
 
+        // 누르고 있는 시간 체크
+        for (int i = 0; i < 4; i++)
+        {
+            if (!skill[i]._isAiming && !isTooltipOn && _isPressing[i])
+            {
+                _pressTimes[i] += Time.deltaTime;
+                if (_pressTimes[i] >= 1.0f)
+                {
+                    GetObject(i).gameObject.SetActive(true);
+                    _isPressing[i] = false;
+                    isTooltipOn = true;
+                }
+            }
+        }
+    }
+
+    private void OnClickPauseButton()
+    {
+        Time.timeScale = 0f;
+        GetObject((int)GameObjects.AfterPause).SetActive(true);
+
+        Managers.Sound.Play(Sound.Effect, "Select_UI_Bell_Bright_01");
+    }
+
+    void OnPointerDownImage(int index)
+    {
+        Debug.Log("OnPointerDownImage");
+        _isPressing[index] = true;
+        _pressTimes[index] = 0;
+    }
+
+    void OnPointerUpImage(int index)
+    {
+        Debug.Log("OnPointerUpImage");
+        GetObject(index).SetActive(false);
+        _isPressing[index] = false;
+        isTooltipOn = false;
+    }
+
+    private void OnClickMapSettingButton()
+    {
+        Time.timeScale = 1.0f;
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+
+        Managers.Game.PauseGame();
+        Managers.Game.PlayData = new PlayData(_mana.CurrentMana, min, sec);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
+    }
+
+    private void OnClickContinueButton()
+    {
+        Time.timeScale = 1.0f;
+        GetObject((int)GameObjects.AfterPause).SetActive(false);
+
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
+    }
+
+    private void OnClickBackToMainButton()
+    {
+        Time.timeScale = 1.0f;
+        Managers.Game.FinishGame();
+        Managers.Resource.Load<Material>("Materials/M_Plane").color = new Color(1f, 1f, 0f, 0.05f);
+
+        Managers.UI.ClosePopupUI(this);
+        Managers.UI.ShowPopupUI<UI_LevelPopup>();
+
+        Managers.Sound.Stop(Sound.Bgm);
+        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

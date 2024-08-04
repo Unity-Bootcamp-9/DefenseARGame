@@ -3,16 +3,19 @@ using UnityEngine;
 
 public class MeteorSkill : Skill
 {
-    private const float duration = 1.3f;
+    private const float duration = 0.7f;
 
     private readonly Collider[] targets = new Collider[10];
 
-    private void Start()
+    public override void Init()
     {
-        skillName = "Meteor";
-        requireMana = 4;
-        damage = 50;
-        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/Meteor");
+        SkillName = "Meteor";
+        SkillName_KR = "메테오";
+        Description = "범위 내에 있는 적 미니언에게 피해량만큼의 피해를 입힙니다.";
+        RequireMana = 4;
+        Damage = 40;
+        Radius = 10f;
+        base.Init();
     }
 
     protected override void Activate()
@@ -31,12 +34,12 @@ public class MeteorSkill : Skill
     {
         yield return new WaitForSeconds(time);
         
-        int targetAmount = Physics.OverlapSphereNonAlloc(position, radius / 2, targets, 1 << 6);
+        int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 6);
 
         for (int j = 0; j < targetAmount; j++)
         {
             if (!targets[j].CompareTag("Minion")) continue;
-            targets[j].GetComponent<MinionBehaviour>().GetHit(damage);
+            targets[j].GetComponent<Minion>().GetHit(Damage);
         }
     }
 }

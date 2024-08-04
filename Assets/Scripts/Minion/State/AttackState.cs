@@ -1,29 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AttackState : StateMachineBehaviour
 {
-    private MinionBehaviour minionBehaviour;
+    private Minion minion;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour = animator.GetComponent<MinionBehaviour>();
-        minionBehaviour.isAttack = true;
+        minion = animator.GetComponent<Minion>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(minionBehaviour.target.GetComponent<Entity>() != null)
+        minion.SetTarget(minion.transform);
+
+        if (minion.target.GetComponent<Entity>() != null)
         {
-            if(minionBehaviour.target.GetComponent<Entity>().hp <= 0  )
+            if(minion.target.GetComponent<Entity>().hp <= 0  )
             {
-                animator.SetBool(MinionBehaviour.hashAttack, false);
+                animator.SetBool(Minion.hashAttack, false);
             }
         }
-    }
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        minionBehaviour.isAttack = false;
     }
 }

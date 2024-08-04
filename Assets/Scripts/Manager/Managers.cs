@@ -13,11 +13,13 @@ public class Managers : MonoBehaviour
     private static UIManager uiManager = new();
     private static ResourceManager resourceManager = new();
     private static GameManagerEx gameManager = new();
+    private static SoundManager soundManager = new SoundManager();
 
     //public static DataManager Data { get { Init(); return dataManager; } }
     public static UIManager UI { get { Init(); return uiManager; } }
     public static ResourceManager Resource { get { Init(); return resourceManager; } }
     public static GameManagerEx Game { get { Init(); return gameManager; } }
+    public static SoundManager Sound {  get { Init(); return soundManager; } }
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
 
             gameManager.Init();
+            soundManager.Init();
 
             Application.targetFrameRate = 60;
         }

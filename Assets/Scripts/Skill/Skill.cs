@@ -7,73 +7,71 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Mana _mana;
-    public Mana mana
-    {
-        get => _mana;
-        set
-        {
-            if (!_mana) _mana = value;
-        }
-    }
+    public Mana Mana { get; set; }
 
-    [Header("UI")]
-    public Sprite iconSprite;
-    public Color activeColor = Color.white;
+    public string SkillName { get; protected set; }
+    public string SkillName_KR { get; protected set; }
+    public string Description { get; protected set; }
+    public int RequireMana { get; protected set; }
+    public int Damage { get; protected set; }
+    public float Radius { get; protected set; }
+    public bool _isAiming { get; protected set; }
+    private bool _isAble;
+
+    private Color _activeColor = Color.white;
     private Color _inactiveColor = Color.clear;
     private Image _baseImage;
     private Image _iconImage;
 
-    [Header("오브젝트")]
-    public Vector3 offset = Vector3.up * 9f;
-    public LayerMask groundLayer = 1 << 8; // Ground 레이어
-    public GameObject effectToSpawn;
     protected GameObject draggingObject;
+    protected GameObject effectToSpawn;
     protected SRPCircleRegionProjector Circle;
+    protected Vector3 offset = Vector3.up * 9f;
+    private LayerMask _groundLayer = 1 << 8 | 1 << 9; // Ground 레이어
 
-    [Header("스킬 정보")]
-    public string skillName = "Meteor";
-    [Range(1, 10)] public int requireMana = 4;
-    [Range(1, 100)] public int damage = 10;
-    [Range(1f, 15f)] public float radius = 9f;
-    private bool _isAiming;
-    private bool _isAble;
-
-    private void Awake()
+    public virtual void Init()
     {
         _baseImage = GetComponent<Image>();
         _baseImage.color = _inactiveColor;
 
         _iconImage = transform.GetChild(0).GetComponent<Image>();
-        if (_iconImage && iconSprite)
+        if (_iconImage)
         {
             _iconImage.material = Instantiate(_iconImage.material);
-            _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{skillName}");
+            _iconImage.sprite = Managers.Resource.Load<Sprite>($"Sprites/{SkillName}");
         }
 
         draggingObject = Managers.Resource.Instantiate($"Skill/Circle 1 Region");
         draggingObject.SetActive(false);
 
+        effectToSpawn = Managers.Resource.Load<GameObject>($"Prefabs/Skill/{SkillName}");
+
         Circle = draggingObject.GetComponent<SRPCircleRegionProjector>();
-        Circle.Radius = radius;
+        Circle.Radius = Radius;
+    }
+
+    private void Awake()
+    {
+        Init();
     }
 
     private void OnDestroy()
     {
-        _mana.ManaChanged -= ChangeColor;
+        Mana.ManaChanged -= ChangeColor;
+        Destroy(draggingObject);
     }
 
     /// <summary>
     /// 아이콘을 현재 마나에 따라 흑백으로 전환
     /// </summary>
     public void ChangeColor() =>
-        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(_mana.CurrentMana < requireMana));
+        _iconImage.material.SetFloat("_Grayscale", Convert.ToSingle(Mana.CurrentMana < RequireMana));
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (_mana.CurrentMana < requireMana) return;
+        if (Mana.CurrentMana < RequireMana) return;
 
-        _baseImage.color = activeColor;
+        _baseImage.color = _activeColor;
 
         _isAiming = true;
     }
@@ -82,7 +80,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     {
         if (draggingObject != null && _isAiming)
         {
-            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, groundLayer)
+            _isAble = Physics.Raycast(Camera.main.ScreenPointToRay(eventData.position), out RaycastHit hit, 1000f, _groundLayer)
                 && !RectTransformUtility.RectangleContainsScreenPoint(_iconImage.rectTransform, eventData.position);
 
             if (_isAble)
@@ -107,7 +105,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         if (_isAble)
         {
             Activate();
-            _mana.UpdateMana(-requireMana);
+            Mana.UpdateMana(-RequireMana);
         }
         else
         {

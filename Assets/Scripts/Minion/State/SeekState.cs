@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SeekState : StateMachineBehaviour
 {
-    private MinionBehaviour minionBehaviour;
+    private Minion minion;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour = animator.GetComponent<MinionBehaviour>();
+        minion = animator.GetComponent<Minion>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minionBehaviour.TargetDetection();
-        minionBehaviour.AttackDetection();
+        minion.TargetDetection();
+        minion.AttackDetection();
+        minion.SetTarget(minion.target);
     }
-
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-
-    }
-
-
-
-
 }

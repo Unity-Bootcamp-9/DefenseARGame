@@ -44,13 +44,13 @@ public class TurretBehaviour : Entity
         if (isAttack)
         {
             Vector3 moveDir = (target.transform.position - projectile.transform.position).normalized;
-            projectileRigid.MovePosition(projectile.transform.position + moveDir * projectileSpeed * Time.fixedDeltaTime);
+            projectileRigid.velocity = moveDir * projectileSpeed;
          
             if (Vector3.Distance(projectile.transform.position, target.position) < 0.8f)
             {
                 target.gameObject.GetComponent<Entity>().GetHit(damage);
-                projectile.transform.position = spawnPoint.transform.position;
                 projectile.SetActive(false);
+                projectile.transform.position = spawnPoint.transform.position;
             }
         }
         else
@@ -116,7 +116,10 @@ public class TurretBehaviour : Entity
         {
             projectile.SetActive(true);
             projectile.transform.position = spawnPoint.transform.position;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
+            projectile.SetActive(false);
+            projectile.transform.position = spawnPoint.transform.position;
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -137,6 +140,8 @@ public class TurretBehaviour : Entity
             animator.SetTrigger(hastisDead);
             destroyedTurret.SetActive(true);
             gameObject.SetActive(false);
+
+            Managers.Sound.Play(Define.Sound.Effect, "Sus4_Rock_Large_Debris_01_Mono");
         }
     }
     private void OnDrawGizmos()
