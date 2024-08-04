@@ -13,7 +13,7 @@ public class MeteorSkill : Skill
         SkillName_KR = "메테오";
         Description = "범위 내에 있는 적 미니언에게 피해량만큼의 피해를 입힙니다.";
         RequireMana = 4;
-        Damage = 15;
+        Damage = 40;
         Radius = 10f;
         base.Init();
     }

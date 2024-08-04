@@ -11,7 +11,6 @@ public class Warrior : Minion
 
     public void Start()
     {
-        isAttack = false;
         isStun = false;
         animator = GetComponent<Animator>();
 
@@ -36,14 +35,6 @@ public class Warrior : Minion
             if (target == null)
             {
                 DefaultTargetSet();
-            }
-            if (isAttack)
-            {
-                agent.SetDestination(transform.position);
-            }
-            else
-            {
-                agent.SetDestination(target.position);
             }
             transform.LookAt(target);
         }

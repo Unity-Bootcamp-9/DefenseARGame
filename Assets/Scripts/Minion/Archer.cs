@@ -18,7 +18,6 @@ public class Archer : Minion
 
     public void Start()
     {
-        isAttack = false;
         isStun = false;
         isShoot = false;
         animator = GetComponent<Animator>();
@@ -43,14 +42,6 @@ public class Archer : Minion
             if (target == null)
             {
                 DefaultTargetSet();
-            }
-            if (isAttack)
-            {
-                agent.SetDestination(transform.position);
-            }
-            else
-            {
-                agent.SetDestination(target.position);
             }
             transform.LookAt(target);
 

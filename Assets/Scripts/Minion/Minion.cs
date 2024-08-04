@@ -22,7 +22,6 @@ public class Minion : Entity
     public Transform target { get; protected set; }
     protected NavMeshAgent agent;
     public bool isStun;
-    public bool isAttack { get; set; }
 
     public void Init(Transform _mainTurretTransform, Subject _subject)
     {
@@ -98,11 +97,10 @@ public class Minion : Entity
         if (attackTarget != null)
         {
             animator.SetBool(hashAttack, true);
-            isAttack = true;
         }
         else
         {
-            isAttack = false;
+            animator.SetBool(hashAttack, false);
         }
     }
 
