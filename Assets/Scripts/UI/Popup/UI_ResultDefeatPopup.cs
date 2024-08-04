@@ -6,7 +6,7 @@ public class UI_ResultDefeatPopup : UI_Popup
 {
     enum Buttons
     {
-        ContinueButton,
+        PlayAgainButton,
     }
 
     public override bool Init()
@@ -16,7 +16,7 @@ public class UI_ResultDefeatPopup : UI_Popup
 
         BindButton(typeof(Buttons));
 
-        GetButton((int)Buttons.ContinueButton).gameObject.BindEvent(OnClickContinueButton);
+        GetButton((int)Buttons.PlayAgainButton).gameObject.BindEvent(OnClickPlayAgainButton);
 
         Managers.Sound.Clear();
         Managers.Sound.Play(Sound.Effect, "Defeated_Fail_Effect_02");
@@ -24,9 +24,9 @@ public class UI_ResultDefeatPopup : UI_Popup
         return true;
     }
 
-    void OnClickContinueButton()
+    void OnClickPlayAgainButton()
     {
-        Debug.Log("OnClickContinueButton");
+        Debug.Log("OnClickPlayAgainButton");
         Managers.UI.ClosePopupUI(this);
 
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
