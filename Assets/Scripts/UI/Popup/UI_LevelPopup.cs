@@ -1,4 +1,5 @@
 using System;
+using static Define;
 
 public class UI_LevelPopup : UI_Popup
 {
@@ -15,6 +16,9 @@ public class UI_LevelPopup : UI_Popup
         BindButton(typeof(Buttons));
 
         GetButton((int)Buttons.LevelSelectButton).gameObject.BindEvent(OnClickLevelSelectButton);
+        
+        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
+
         return true;
     }
 
@@ -25,7 +29,7 @@ public class UI_LevelPopup : UI_Popup
 
         Managers.Game.ReadyGame();
 
-        Managers.Sound.Play(Define.Sound.Effect, "Confirm 1_UI_Impact_01");
+        Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
 }

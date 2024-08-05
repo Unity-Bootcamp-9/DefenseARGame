@@ -204,7 +204,6 @@ public class UI_BattlePopup : UI_Popup
         Managers.UI.ShowPopupUI<UI_LevelPopup>();
 
         Managers.Sound.Stop(Sound.Bgm);
-        Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
         Managers.Sound.Play(Sound.Effect, "Confirm 1_UI_Impact_01");
     }
 
