@@ -138,7 +138,7 @@ public class UI_BattlePopup : UI_Popup
         // 누르고 있는 시간 체크
         for (int i = 0; i < 4; i++)
         {
-            if (!skill[i]._isAiming && !isTooltipOn && _isPressing[i])
+            if (_isPressing[i] && !skill[i]._isAble && !isTooltipOn)
             {
                 _pressTimes[i] += Time.deltaTime;
                 if (_pressTimes[i] >= 1.0f)
@@ -147,6 +147,11 @@ public class UI_BattlePopup : UI_Popup
                     _isPressing[i] = false;
                     isTooltipOn = true;
                 }
+            }
+            else if (skill[i]._isAble)
+            {
+                GetObject(i).gameObject.SetActive(false);
+                _pressTimes[i] = 0;
             }
         }
     }
@@ -171,6 +176,7 @@ public class UI_BattlePopup : UI_Popup
         Debug.Log("OnPointerUpImage");
         GetObject(index).SetActive(false);
         _isPressing[index] = false;
+        _pressTimes[index] = 0;
         isTooltipOn = false;
     }
 

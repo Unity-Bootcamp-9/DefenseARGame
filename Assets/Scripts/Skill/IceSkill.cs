@@ -31,6 +31,7 @@ public class IceSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
+        base.Activate();
 
         Managers.Sound.Play(Define.Sound.Effect, "Nunchaku Attack_Skill_Bass_02");
     }
