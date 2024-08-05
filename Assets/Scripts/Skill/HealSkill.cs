@@ -13,7 +13,7 @@ public class HealSkill : Skill
         SkillName_KR = "회복";
         Description = "범위 내에 있는 아군 미니언에게 회복량만큼 HP를 회복합니다.";
         RequireMana = 7;
-        Damage = -10;
+        Damage = -30;
         Radius = 9f;
         base.Init();
     }

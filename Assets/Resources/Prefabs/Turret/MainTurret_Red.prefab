@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1564872041206919230}
   - component: {fileID: 2090620638799549472}
   - component: {fileID: 6843080173656792841}
-  - component: {fileID: 7985605789303817609}
   - component: {fileID: 134525324158293428}
   m_Layer: 6
   m_Name: MainTurret
@@ -143,22 +142,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!208 &7985605789303817609
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2753962671781916758}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 7, y: 8.5, z: 7}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 3.2, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!114 &134525324158293428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +175,6 @@ GameObject:
   - component: {fileID: 1302597739376932610}
   - component: {fileID: 119301195353863345}
   - component: {fileID: 1642292645862579273}
-  - component: {fileID: 7331251971966742657}
   m_Layer: 6
   m_Name: DestroyedTurret
   m_TagString: Turret
@@ -268,22 +250,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &7331251971966742657
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2897988898009315164}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 7, y: 8.5, z: 7}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 3.2, z: 0}
-  m_TimeToStationary: 0.5
 --- !u!1 &3379499723897570802
 GameObject:
   m_ObjectHideFlags: 0

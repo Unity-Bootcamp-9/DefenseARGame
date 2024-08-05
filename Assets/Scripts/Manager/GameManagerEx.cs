@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets;
 using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
@@ -11,10 +12,12 @@ public class GameManagerEx
     private GameObject _map;
 
     public PlayData PlayData { get; set; }
+    public ARSession AR { get; private set; }
 
     public void Init()
     {
         _objectSpawner = Utils.GetOrAddComponent<ObjectSpawner>(Managers.Resource.Instantiate("MAP/Object Spawner"));
+        AR = Object.FindObjectOfType<ARSession>();
 
         if (_objectSpawner)
         {
@@ -24,12 +27,15 @@ public class GameManagerEx
             };
 
             _objectSpawner.GetComponent<ARInteractorSpawnTrigger>().arInteractor = Object.FindObjectOfType<XRRayInteractor>();
+            AR.enabled = false;
         }
     }
 
     public bool ReadyGame()
     {
         if (!_objectSpawner) return false;
+
+        AR.enabled = true;
 
         _objectSpawner.gameObject.SetActive(true);
 
@@ -86,6 +92,8 @@ public class GameManagerEx
     public bool FinishGame()
     {
         if (!_map) return false;
+        AR.Reset();
+        AR.enabled = false;
         Object.Destroy(_map);
         return true;
     }
@@ -93,6 +101,8 @@ public class GameManagerEx
     public bool PauseGame()
     {
         if (!_map || !_objectSpawner) return false;
+
+        AR.Reset();
 
         _map.SetActive(false);
         _objectSpawner.gameObject.SetActive(true);

@@ -16,7 +16,7 @@ public class IceSkill : Skill
         SkillName_KR = "아이스 익스플로젼";
         Description = "범위 내에 있는 적 미니언에게 1.3초간 피해량 만큼의 도트 데미지를 준 후 폭발하여 피해량의 5배 만큼의 피해와 둔화효과를 줍니다.";
         RequireMana = 4;
-        Damage = 1;
+        Damage = 2;
         Radius = 15f;
         base.Init();
     }
@@ -63,7 +63,7 @@ public class IceSkill : Skill
     {
         targetColl.gameObject.GetComponent<NavMeshAgent>().speed = 0.6f;
         yield return new WaitForSeconds(1f);
-        targetColl.gameObject.GetComponent<NavMeshAgent>().speed = 2f;        
+        targetColl.gameObject.GetComponent<NavMeshAgent>().speed = 3f;        
     }
 
     private void TakeSlow(Vector3 position)

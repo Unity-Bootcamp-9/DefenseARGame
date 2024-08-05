@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AttackState : StateMachineBehaviour
 {
@@ -13,7 +14,9 @@ public class AttackState : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(minion.target.GetComponent<Entity>() != null)
+        minion.SetTarget(minion.transform);
+
+        if (minion.target.GetComponent<Entity>() != null)
         {
             if(minion.target.GetComponent<Entity>().hp <= 0  )
             {
