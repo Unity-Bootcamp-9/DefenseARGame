@@ -28,6 +28,8 @@ public class MeteorSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position, duration));
+        base.Activate();
+
     }
 
     IEnumerator Attack(Vector3 position, float time)

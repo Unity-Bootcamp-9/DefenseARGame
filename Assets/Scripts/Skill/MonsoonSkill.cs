@@ -26,6 +26,7 @@ public class MonsoonSkill : Skill
             );
 
         StartCoroutine(Attack(effect.transform.position));
+        base.Activate();
 
         Managers.Sound.Play(Define.Sound.Effect, "Fire Ball Spell_Skill_Sorcerer_Medium_02");
     }

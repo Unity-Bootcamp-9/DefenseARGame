@@ -26,8 +26,8 @@ public class HealSkill : Skill
                 draggingObject.transform.position - offset,
                 draggingObject.transform.rotation
             );
-
         StartCoroutine(Heal(effect.transform.position, duration));
+        base.Activate();
     }
 
     IEnumerator Heal(Vector3 position, float time)

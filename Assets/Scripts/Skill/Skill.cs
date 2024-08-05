@@ -16,7 +16,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     public int Damage { get; protected set; }
     public float Radius { get; protected set; }
     public bool _isAiming { get; protected set; }
-    private bool _isAble;
+    public bool _isAble { get; protected set; }
 
     private Color _activeColor = Color.white;
     private Color _inactiveColor = Color.clear;
@@ -109,6 +109,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
         }
         else
         {
+            _isAble = false;
             Debug.Log("스킬 취소");
         }
 
@@ -118,5 +119,7 @@ public class Skill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHan
     protected virtual void Activate()
     {
         Debug.Log("스킬 발동");
+        _isAble = false;
+
     }
 }
