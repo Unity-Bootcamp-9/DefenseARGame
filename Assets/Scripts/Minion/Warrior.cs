@@ -13,14 +13,16 @@ public class Warrior : Minion
     {
         isStun = false;
         animator = GetComponent<Animator>();
-
         enemyLayerSet();
+        animator.SetBool(hashDie, false);
     }
 
     private void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         minionCollider = GetComponent<Collider>();
+        animator = GetComponent<Animator>();
+        animator.SetBool(hashDie, false);
         hp = maxHP;
         hpBar.enabled = true;
         agent.enabled = true;
@@ -56,7 +58,7 @@ public class Warrior : Minion
         if (hp <= 0)
         {
             hpBar.enabled = false;
-            minionCollider.enabled = false;
+            //minionCollider.enabled = false;
             agent.enabled = false;
             Die();
             target = transform;
@@ -64,7 +66,7 @@ public class Warrior : Minion
     }
     public void Die()
     {
-        animator.SetTrigger(hashDie);
+        animator.SetBool(hashDie, true);
         StartCoroutine(Deactivate(2f));
     }
 

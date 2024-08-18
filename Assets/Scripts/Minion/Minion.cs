@@ -10,7 +10,7 @@ public class Minion : Entity
     public static readonly int hashInPursuit = Animator.StringToHash("InPursuit");
     public static readonly int hashDetected = Animator.StringToHash("Detected");
     public static readonly int hashAttack = Animator.StringToHash("Attack");
-    public static readonly int hashDie = Animator.StringToHash("Die");
+    public static readonly int hashDie = Animator.StringToHash("IsDie");
 
     [SerializeField] protected Canvas hpBar;
     [SerializeField] protected Transform defaultTarget;
@@ -46,6 +46,7 @@ public class Minion : Entity
     public void TargetDetection()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << enemyLayer);
+
 
         if (colliders.Length >= 1)
         {

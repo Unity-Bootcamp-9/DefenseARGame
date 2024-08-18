@@ -23,13 +23,16 @@ public class Archer : Minion
         animator = GetComponent<Animator>();
         enemyLayerSet();
         arrrowPrefab.SetActive(false);
+        animator.SetBool(hashDie, false);
     }
     private void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         minionCollider = GetComponent<Collider>();
-        hp = maxHP;
+        animator = GetComponent<Animator>();
         arrrowPrefab.SetActive(false);
+        animator.SetBool(hashDie, false);
+        hp = maxHP;
         hpBar.enabled = true;
         agent.enabled = true;
         minionCollider.enabled = true;
@@ -88,7 +91,7 @@ public class Archer : Minion
         if (hp <= 0)
         {
             hpBar.enabled = false;
-            minionCollider.enabled = false;
+            //minionCollider.enabled = false;
             agent.enabled = false;
             Die();
             target = transform;
@@ -96,7 +99,7 @@ public class Archer : Minion
     }
     public void Die()
     {
-        animator.SetTrigger(hashDie);
+        animator.SetBool(hashDie, true);
         StartCoroutine(Deactivate(2f));
     }
 
