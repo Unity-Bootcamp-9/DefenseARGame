@@ -20,10 +20,11 @@ public class UI_LevelPopup : UI_Popup
 
     void OnClickLevelSelectButton()
     {
-        Managers.UI.ClosePopupUI(this);
-        Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
-
-        Managers.Game.ReadyGame();
+        if (Managers.Game.ReadyGame())
+        {
+            Managers.UI.ClosePopupUI(this);
+            Managers.UI.ShowPopupUI<UI_MapSettingPopup>();
+        }
 
         Managers.Sound.Play(Define.Sound.Effect, "Confirm 1_UI_Impact_01");
     }

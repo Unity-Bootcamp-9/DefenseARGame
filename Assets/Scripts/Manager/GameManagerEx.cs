@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Android;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets;
@@ -33,6 +34,8 @@ public class GameManagerEx
 
     public bool ReadyGame()
     {
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera)) return false;
+
         if (!_objectSpawner) return false;
 
         AR.enabled = true;
