@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class MonsoonSkill : Skill
 {
-    private readonly Collider[] targets = new Collider[10];
+    private readonly Collider[] targets = new Collider[100];
 
     public override void Init()
     {
         SkillName = "Monsoon";
         SkillName_KR = "순풍";
-        Description = "범위 내에 있는 적 미니언을 스킬에서 미니언을 향하는 방향으로 밀어냅니다.";
+        Description = "범위 내에 있는 적 미니언을 스킬 시전 위치로 당겨옵니다.";
         RequireMana = 3;
         Damage = 0;
-        Radius = 9f;
+        Radius = 10f;
         base.Init();
     }
 
@@ -22,7 +22,7 @@ public class MonsoonSkill : Skill
             (
                 effectToSpawn,
                 draggingObject.transform.position - offset,
-                draggingObject.transform.rotation
+                Quaternion.Euler(-90, 0, 0)
             );
 
         StartCoroutine(Attack(effect.transform.position));
@@ -55,7 +55,7 @@ public class MonsoonSkill : Skill
             while (time < 0.5f)
             {
                 time += Time.deltaTime;
-                Vector3 direction = (coll.gameObject.transform.position - eventPositon).normalized; // 반대 방향
+                Vector3 direction = (eventPositon - coll.gameObject.transform.position).normalized; // 반대 방향
                 coll.gameObject.transform.position += direction * 16f * Time.deltaTime;
                 yield return null; // 다음 프레임까지 대기
             }
