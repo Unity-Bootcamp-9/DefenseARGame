@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Android;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Samples.ARStarterAssets;
@@ -33,6 +34,27 @@ public class GameManagerEx
 
     public bool ReadyGame()
     {
+#if UNITY_ANDROID
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+        {
+            using (var unityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+            using (AndroidJavaObject currentActivityObject = unityClass.GetStatic<AndroidJavaObject>("currentActivity"))
+            {
+                string packageName = currentActivityObject.Call<string>("getPackageName");
+
+                using (var uriClass = new AndroidJavaClass("android.net.Uri"))
+                using (AndroidJavaObject uriObject = uriClass.CallStatic<AndroidJavaObject>("fromParts", "package", packageName, null))
+                using (var intentObject = new AndroidJavaObject("android.content.Intent", "android.settings.APPLICATION_DETAILS_SETTINGS", uriObject))
+                {
+                    intentObject.Call<AndroidJavaObject>("addCategory", "android.intent.category.DEFAULT");
+                    intentObject.Call<AndroidJavaObject>("setFlags", 0x10000000);
+                    currentActivityObject.Call("startActivity", intentObject);
+                }
+            }
+            return false;
+        }
+#endif
+
         if (!_objectSpawner) return false;
 
         AR.enabled = true;

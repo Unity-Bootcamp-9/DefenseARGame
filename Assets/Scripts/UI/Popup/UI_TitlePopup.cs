@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Android;
 using static Define;
 
 public class UI_TitlePopup : UI_Popup
@@ -18,6 +19,11 @@ public class UI_TitlePopup : UI_Popup
         BindButton(typeof(Buttons));
 
         GetButton((int)Buttons.BackGroundButton).gameObject.BindEvent(OnClickBackGroundButton);
+
+        if (!Permission.HasUserAuthorizedPermission(Permission.Camera))
+        {
+            Permission.RequestUserPermission(Permission.Camera);
+        }
 
         Managers.Sound.Clear();
         Managers.Sound.Play(Sound.Bgm, "track_shortadventure_loop");
