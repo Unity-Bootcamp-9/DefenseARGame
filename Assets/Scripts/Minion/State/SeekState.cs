@@ -17,6 +17,5 @@ public class SeekState : StateMachineBehaviour
     {
         minion.TargetDetection();
         minion.AttackDetection();
-        minion.SetTarget(minion.target);
     }
 }

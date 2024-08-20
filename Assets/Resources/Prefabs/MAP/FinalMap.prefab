@@ -5482,7 +5482,7 @@ GameObject:
   - component: {fileID: 2642997871404178383}
   m_Layer: 9
   m_Name: SM_platform_moba (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
@@ -5803,7 +5803,7 @@ GameObject:
   - component: {fileID: 2287746108683980812}
   m_Layer: 9
   m_Name: SM_spawn_base_moba (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
@@ -6626,7 +6626,7 @@ GameObject:
   - component: {fileID: 904348660029863956}
   m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
@@ -8719,7 +8719,7 @@ GameObject:
   - component: {fileID: 7120482135416026042}
   m_Layer: 9
   m_Name: SM_spawn_base_moba (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
@@ -13137,7 +13137,7 @@ GameObject:
   - component: {fileID: 7825917155768504486}
   m_Layer: 9
   m_Name: SM_platform_moba (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 22
@@ -16998,6 +16998,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8790804599480867158, guid: 0564b90cd24e5984b99fcb0952b00ae5,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9054532937136415780, guid: 0564b90cd24e5984b99fcb0952b00ae5,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -19695,6 +19700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 669488920869858367, guid: c3407b84771099a4b9b2c973a8e7b681,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 944246963818532705, guid: c3407b84771099a4b9b2c973a8e7b681,
         type: 3}
@@ -22456,6 +22466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031146804911041260, guid: 4bee4ad5f46db8f49956032434fbb167,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31929,6 +31944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242131660066485175, guid: 5395a7560fd578a47868c4ce0dc16f80,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7306290160681916101, guid: 5395a7560fd578a47868c4ce0dc16f80,
         type: 3}

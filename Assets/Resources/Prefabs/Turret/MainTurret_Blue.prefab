@@ -330,12 +330,11 @@ MonoBehaviour:
   damage: 50
   maxHP: 2000
   HPFilledImage: {fileID: 6893887272990891496}
-  projectile: {fileID: 7306290160681916101}
+  projectilePrefab: {fileID: 7306290160681916101}
   destroyedTurret: {fileID: 3685199664770916449}
   hpBar: {fileID: 8101385937710609218}
   spawnPoint: {fileID: 5620954009364840426}
   subject: {fileID: 0}
-  projectileSpeed: 0
   detectionRange: 0
 --- !u!114 &8750429483589875470
 MonoBehaviour:

@@ -9,21 +9,19 @@ public class TurretBehaviour : Entity
     public static readonly int hastisDead = Animator.StringToHash("IsDead");
 
     private List<Transform> enemyMinions = new List<Transform>(100);
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private GameObject destroyedTurret;
     [SerializeField] private Canvas hpBar;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private Subject subject;
-    [SerializeField] private float projectileSpeed;
     [SerializeField] private float detectionRange;
 
     public Transform target { get; private set; }
+    private Projectile projectile;
     private Animator animator;
     private Collider turretCollier;
-    private Rigidbody projectileRigid;
 
     public bool isDead { get; private set; }
-    private bool isAttack = false;
     private IEnumerator attackCoroutine;
 
     protected override void Awake()
@@ -32,32 +30,13 @@ public class TurretBehaviour : Entity
         destroyedTurret.SetActive(false);
         animator = GetComponentInParent<Animator>();    
         turretCollier = GetComponent<Collider>();
-        projectileRigid = projectile.GetComponent<Rigidbody>();
-        projectile.transform.position = spawnPoint.transform.position;
-        projectile.SetActive(false);
+        projectile = projectilePrefab.GetComponent<Projectile>();
+        projectilePrefab.transform.position = spawnPoint.transform.position;
+        projectilePrefab.SetActive(false);
         enemyLayerSet();
         hp = maxHP;
     }
 
-    private void FixedUpdate()
-    {
-        if (isAttack)
-        {
-            Vector3 moveDir = (target.transform.position - projectile.transform.position).normalized;
-            projectileRigid.velocity = moveDir * projectileSpeed;
-         
-            if (Vector3.Distance(projectile.transform.position, target.position) < 0.8f)
-            {
-                target.gameObject.GetComponent<Entity>().GetHit(damage);
-                projectile.SetActive(false);
-                projectile.transform.position = spawnPoint.transform.position;
-            }
-        }
-        else
-        {
-            projectile.SetActive(false);
-        }
-    }
     
     public void TargetDetection()
     {
@@ -68,11 +47,9 @@ public class TurretBehaviour : Entity
         {
             target = TargetSelection(colliders, transform);
             animator.SetBool(hashAttackStart , true);
-            isAttack = true;
         }
         else
         {
-            isAttack = false;
             animator.SetBool(hashAttackStart, false);
         }
     }
@@ -114,12 +91,9 @@ public class TurretBehaviour : Entity
     {
         while (true)
         {
-            projectile.SetActive(true);
-            projectile.transform.position = spawnPoint.transform.position;
-            yield return new WaitForSeconds(1f);
-            projectile.SetActive(false);
-            projectile.transform.position = spawnPoint.transform.position;
-            yield return new WaitForSeconds(1f);
+            projectilePrefab.SetActive(true);
+            projectile.Init(damage, target.gameObject,spawnPoint);
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -130,10 +104,9 @@ public class TurretBehaviour : Entity
         {
             if(gameObject.CompareTag("MainTurret"))
             {
-
                 subject.SetResult(gameObject.layer);
             }
-            projectile.SetActive(false);
+            projectilePrefab.SetActive(false);
             isDead = true;
             hpBar.enabled = false;
             turretCollier.enabled = false;
