@@ -35,6 +35,8 @@ public class MeteorSkill : Skill
     IEnumerator Attack(Vector3 position, float time)
     {
         yield return new WaitForSeconds(time);
+
+        Vibration.VibrateAndroid(100);
         
         int targetAmount = Physics.OverlapSphereNonAlloc(position, Radius / 2, targets, 1 << 6);
 

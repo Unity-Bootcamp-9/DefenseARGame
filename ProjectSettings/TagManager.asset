@@ -8,6 +8,7 @@ TagManager:
   - Turret
   - Weapon
   - MainTurret
+  - Ground
   layers:
   - Default
   - TransparentFX

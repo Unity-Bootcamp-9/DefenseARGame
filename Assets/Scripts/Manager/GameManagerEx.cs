@@ -30,6 +30,8 @@ public class GameManagerEx
             _objectSpawner.GetComponent<ARInteractorSpawnTrigger>().arInteractor = Object.FindObjectOfType<XRRayInteractor>();
             AR.enabled = false;
         }
+
+        Vibration.Init();
     }
 
     public bool ReadyGame()
