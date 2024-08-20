@@ -7,20 +7,19 @@ using static GoalManager;
 
 public class Archer : Minion
 {
-
     protected IObjectPool<Archer> archerObjectPool;
     public IObjectPool<Archer> ArcherObjectPool { set => archerObjectPool = value; }
 
     [SerializeField] private GameObject arrrowPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float shootSpeed;
-    private bool isShoot;
+    protected Arrow arrow;
 
     public void Start()
     {
         isStun = false;
-        isShoot = false;
         animator = GetComponent<Animator>();
+        arrow = arrrowPrefab.GetComponent<Arrow>();
         enemyLayerSet();
         arrrowPrefab.SetActive(false);
     }
@@ -44,41 +43,16 @@ public class Archer : Minion
                 DefaultTargetSet();
             }
             transform.LookAt(target);
-
-            ArrowMove();
         }
     }
 
-    public void ArrowMove()
-    {
-        if (isShoot)
-        {
-            Vector3 dir = ((target.position + new Vector3(0,2,0)) - arrrowPrefab.transform.position).normalized;
-            
-            arrrowPrefab.transform.position += dir * shootSpeed * Time.deltaTime;
-            
-            if (Vector3.Distance(arrrowPrefab.transform.position, target.position) < 2.5f)
-            {
-                if (target.GetComponent<Entity>() != null && target.GetComponent<Collider>().enabled == true)
-                {
-                    target.GetComponent<Entity>().GetHit(damage);
-                }
-                isShoot = false;
-                arrrowPrefab.SetActive(false);
-            }
-        }
-        else
-        {
-            arrrowPrefab.SetActive(false);
-        }
-    }
+
     
     public void Shoot()
     {
         arrrowPrefab.transform.position = shootPoint.transform.position;
+        arrow.Init(damage, target.gameObject, shootPoint);
         arrrowPrefab.SetActive(true);
-        isShoot = true;
-
         Managers.Sound.Play(Define.Sound.Speech, $"Shooting_Archer_Arrow_Bow_{Random.Range(1, 4):D2}", 0.2f);
     }
 
