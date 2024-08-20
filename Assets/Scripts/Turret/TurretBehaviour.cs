@@ -93,7 +93,6 @@ public class TurretBehaviour : Entity
         {
             projectilePrefab.SetActive(true);
             projectile.Init(damage, target.gameObject, enemyLayer,spawnPoint);
-            //projectilePrefab.transform.position = spawnPoint.transform.position;
             yield return new WaitForSeconds(2f);
         }
     }
@@ -105,7 +104,6 @@ public class TurretBehaviour : Entity
         {
             if(gameObject.CompareTag("MainTurret"))
             {
-
                 subject.SetResult(gameObject.layer);
             }
             projectilePrefab.SetActive(false);

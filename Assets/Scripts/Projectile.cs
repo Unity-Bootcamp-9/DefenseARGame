@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private int damage;
-    private int enemyLayer;
     private GameObject target;
     private Transform spawnPoint;
     private Rigidbody projectileRigid;
-    private float projectileSpeed = 21f;
     private Vector3 curMoveDir;
     private Vector3 preMoveDir;
+    private int damage;
+    private int enemyLayer;
+    private float projectileSpeed = 21f;
 
     private void Start()
     {
@@ -40,8 +40,6 @@ public class Projectile : MonoBehaviour
             projectileRigid.velocity = preMoveDir * projectileSpeed;
         }
     }
-
-
     
     private void OnTriggerEnter(Collider other)
     {
@@ -57,13 +55,4 @@ public class Projectile : MonoBehaviour
             gameObject.transform.position = spawnPoint.position;
         }
     }
-
-
-
-
-
-
-
-
-
 }
