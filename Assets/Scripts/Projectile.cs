@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     private Vector3 curMoveDir;
     private Vector3 preMoveDir;
     private int damage;
-    private int enemyLayer;
     private float projectileSpeed = 21f;
 
     private void Start()
@@ -19,11 +18,10 @@ public class Projectile : MonoBehaviour
         projectileRigid = GetComponent<Rigidbody>();    
     }
 
-    public void Init(int _damgae, GameObject _target, int _enemyLayer, Transform _spawnPoint)
+    public void Init(int _damgae, GameObject _target, Transform _spawnPoint)
     {
         damage = _damgae;
         target = _target;
-        enemyLayer = _enemyLayer;
         spawnPoint = _spawnPoint;
     }
 
@@ -43,7 +41,7 @@ public class Projectile : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == enemyLayer)
+        if (other.gameObject == target)
         {
             other.gameObject.GetComponent<Entity>().GetHit(damage);
             gameObject.SetActive(false);

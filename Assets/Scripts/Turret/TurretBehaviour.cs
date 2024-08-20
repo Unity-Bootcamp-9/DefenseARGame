@@ -92,7 +92,7 @@ public class TurretBehaviour : Entity
         while (true)
         {
             projectilePrefab.SetActive(true);
-            projectile.Init(damage, target.gameObject, enemyLayer,spawnPoint);
+            projectile.Init(damage, target.gameObject,spawnPoint);
             yield return new WaitForSeconds(2f);
         }
     }
