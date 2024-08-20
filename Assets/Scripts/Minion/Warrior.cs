@@ -9,12 +9,9 @@ public class Warrior : Minion
     protected IObjectPool<Warrior> warriorObjectPool;
     public IObjectPool<Warrior> WarriorObjectPool { set => warriorObjectPool = value; }
 
-    public void Start()
+    protected override void Start()
     {
-        isStun = false;
-        animator = GetComponent<Animator>();
         enemyLayerSet();
-        animator.SetBool(hashDie, false);
     }
 
     private void OnEnable()
@@ -39,6 +36,7 @@ public class Warrior : Minion
                 DefaultTargetSet();
             }
             transform.LookAt(target);
+            SetTarget();
         }
     }
 
@@ -58,7 +56,7 @@ public class Warrior : Minion
         if (hp <= 0)
         {
             hpBar.enabled = false;
-            //minionCollider.enabled = false;
+            minionCollider.enabled = false;
             agent.enabled = false;
             Die();
             target = transform;

@@ -23,6 +23,13 @@ public class Minion : Entity
     protected NavMeshAgent agent;
     public bool isStun;
 
+    protected virtual void Start()
+    {
+        isStun = false;
+        animator = GetComponent<Animator>();
+        animator.SetBool(hashDie, false);
+    }
+
     public void Init(Transform _mainTurretTransform, Subject _subject)
     {
         defaultTarget = _mainTurretTransform;
@@ -105,11 +112,17 @@ public class Minion : Entity
         }
     }
 
-    public void SetTarget(Transform target)
+    public void SetTarget()
     {
-        agent.SetDestination(target.transform.position);
+        if (animator.GetBool(hashAttack) == true)
+        {
+            agent.SetDestination(this.transform.position);
+        }
+        else
+        {
+            agent.SetDestination(target.transform.position);
+        }
     }
-
 
     private void OnDrawGizmos()
     {

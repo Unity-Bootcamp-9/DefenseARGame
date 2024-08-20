@@ -14,8 +14,6 @@ public class AttackState : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        minion.SetTarget(minion.transform);
-
         if (minion.target.GetComponent<Entity>() != null)
         {
             if(minion.target.GetComponent<Entity>().hp <= 0  )

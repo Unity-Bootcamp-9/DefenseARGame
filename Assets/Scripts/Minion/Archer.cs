@@ -16,14 +16,11 @@ public class Archer : Minion
     [SerializeField] private float shootSpeed;
     private bool isShoot;
 
-    public void Start()
+    protected override void Start()
     {
-        isStun = false;
         isShoot = false;
-        animator = GetComponent<Animator>();
         enemyLayerSet();
         arrrowPrefab.SetActive(false);
-        animator.SetBool(hashDie, false);
     }
     private void OnEnable()
     {
@@ -49,6 +46,7 @@ public class Archer : Minion
             transform.LookAt(target);
 
             ArrowMove();
+            SetTarget();
         }
     }
 
@@ -91,7 +89,7 @@ public class Archer : Minion
         if (hp <= 0)
         {
             hpBar.enabled = false;
-            //minionCollider.enabled = false;
+            minionCollider.enabled = false;
             agent.enabled = false;
             Die();
             target = transform;
