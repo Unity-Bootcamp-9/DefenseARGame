@@ -91,8 +91,11 @@ public class TurretBehaviour : Entity
     {
         while (true)
         {
-            projectilePrefab.SetActive(true);
-            projectile.Init(damage, target.gameObject,spawnPoint);
+            if (target != null)
+            {
+                projectilePrefab.SetActive(true);
+                projectile.Init(damage, target.gameObject,spawnPoint);
+            }
             yield return new WaitForSeconds(2f);
         }
     }

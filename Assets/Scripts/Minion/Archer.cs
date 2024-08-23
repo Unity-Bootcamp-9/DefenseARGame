@@ -47,10 +47,9 @@ public class Archer : Minion
                 DefaultTargetSet();
             }
             transform.LookAt(target);
+            SetTarget();
         }
     }
-
-
     
     public void Shoot()
     {

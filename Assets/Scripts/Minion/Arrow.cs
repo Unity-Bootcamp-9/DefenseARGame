@@ -28,10 +28,16 @@ public class Arrow : MonoBehaviour
         MoveDir = (target.transform.position - transform.position).normalized;
         MoveDir.y = 0;
         projectileRigid.velocity = MoveDir * projectileSpeed;
-
-        if (target == null)
+    }
+    private void Update()
+    {
+        if(target.GetComponent<Entity>() != null)
         {
-            gameObject.SetActive(false);       
+            if (target.GetComponent<Entity>().hp <= 0)
+            {
+                gameObject.SetActive(false);
+                gameObject.transform.position = spawnPoint.position;
+            }
         }
     }
 
