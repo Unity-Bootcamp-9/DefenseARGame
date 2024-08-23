@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour
     private Transform spawnPoint;
     private Rigidbody projectileRigid;
     private int damage;
-    private float projectileSpeed = 31f;
+    private float projectileSpeed = 20f;
     private Vector3 MoveDir;
 
     private void Start()
