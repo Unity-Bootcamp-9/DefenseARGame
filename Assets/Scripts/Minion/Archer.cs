@@ -56,7 +56,7 @@ public class Archer : Minion
         arrrowPrefab.transform.position = shootPoint.transform.position;
         arrow.Init(damage, target.gameObject, shootPoint);
         arrrowPrefab.SetActive(true);
-        Managers.Sound.Play(Define.Sound.Speech, $"Shooting_Archer_Arrow_Bow_{Random.Range(1, 4):D2}", 0.2f);
+        //Managers.Sound.Play(Define.Sound.Speech, $"Shooting_Archer_Arrow_Bow_{Random.Range(1, 4):D2}", 0.2f);
     }
 
     public override void GetHit(int _damage)
