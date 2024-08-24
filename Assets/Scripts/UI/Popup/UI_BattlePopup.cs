@@ -30,6 +30,10 @@ public class UI_BattlePopup : UI_Popup
         Skill2Image,
         Skill3Image,
         Skill4Image,
+        ToolTipIcon1,
+        ToolTipIcon2,
+        ToolTipIcon3,
+        ToolTipIcon4,
         Steminas,
     }
 
@@ -107,15 +111,18 @@ public class UI_BattlePopup : UI_Popup
             skill[i] = GetImage(i).gameObject.GetOrAddComponent<Skill>();
             if (skill[i].Damage > 0)
             {
-                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n피해량 : {skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
+                GetText(i).text = $"{skill[i].Damage}";
+                GetImage(i + 4).sprite = Managers.Resource.Load<Sprite>($"Sprites/TooltipIcon/Attack");
             }
             else if(skill[i].Damage < 0)
             {
-                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n회복량 : {-skill[i].Damage}\n스킬 범위 : {skill[i].Radius}";
+                GetText(i).text = $"{-skill[i].Damage}";
+                GetImage(i + 4).sprite = Managers.Resource.Load<Sprite>($"Sprites/TooltipIcon/Heal");
             }
             else
             {
-                GetText(i).text = $"스킬 이름 : {skill[i].SkillName_KR}\n스킬 설명 : {skill[i].Description}\n필요 마나 : {skill[i].RequireMana}\n스킬 범위 : {skill[i].Radius}";
+                GetText(i).text = $"-";
+                GetImage(i + 4).sprite = Managers.Resource.Load<Sprite>($"Sprites/TooltipIcon/{skill[i].SkillName}");
             }
             GetImage(i).gameObject.BindEvent(() => OnPointerDownImage(index), Define.UIEvent.PointerDown);
             GetImage(i).gameObject.BindEvent(() => OnPointerUpImage(index), Define.UIEvent.PointerUp);
@@ -141,7 +148,7 @@ public class UI_BattlePopup : UI_Popup
             if (_isPressing[i] && !skill[i]._isAble && !isTooltipOn)
             {
                 _pressTimes[i] += Time.deltaTime;
-                if (_pressTimes[i] >= 1.0f)
+                if (_pressTimes[i] >= 0.5f)
                 {
                     GetObject(i).gameObject.SetActive(true);
                     _isPressing[i] = false;
