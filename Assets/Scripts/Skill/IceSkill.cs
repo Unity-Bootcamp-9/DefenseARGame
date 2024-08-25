@@ -44,6 +44,7 @@ public class IceSkill : Skill
         }
         
         Managers.Sound.Play(Define.Sound.Effect, "Gaint Sword_Skill_Knight_Hit_02");
+        Vibration.VibrateAndroid(100);
         TakeDamage(position, Damage * 5);
         TakeSlow(position);
     }
