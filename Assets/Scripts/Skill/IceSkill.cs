@@ -40,10 +40,12 @@ public class IceSkill : Skill
         for( int i = 0; i < 5; ++i )
         {
             TakeDamage(position, Damage);
+            Vibration.VibrateAndroid(30);
             yield return new WaitForSeconds(time);
         }
         
         Managers.Sound.Play(Define.Sound.Effect, "Gaint Sword_Skill_Knight_Hit_02");
+        Vibration.VibrateAndroid(100);
         TakeDamage(position, Damage * 5);
         TakeSlow(position);
     }
