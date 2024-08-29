@@ -40,7 +40,7 @@ public class IceSkill : Skill
         for( int i = 0; i < 5; ++i )
         {
             TakeDamage(position, Damage);
-            Vibration.VibrateAndroid(100);
+            Vibration.VibrateAndroid(30);
             yield return new WaitForSeconds(time);
         }
         
